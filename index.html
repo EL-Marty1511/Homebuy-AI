@@ -1,482 +1,3040 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HomeBuy AI</title>
 
-<style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f4f7f9;
-  color: #102a43;
-}
+  <meta charset="UTF-8">
 
-.app {
-  max-width: 480px;
-  margin: auto;
-  min-height: 100vh;
-  background: white;
-  padding: 25px;
-}
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-.logo {
-  font-size: 23px;
-  font-weight: bold;
-}
+  <title>HomeBuy AI</title>
 
-.logo span {
-  color: #2f9e44;
-}
 
-.hero {
-  text-align: center;
-  padding-top: 50px;
-}
+  <style>
 
-.house {
-  font-size: 70px;
-}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-h1 {
-  font-size: 34px;
-}
 
-p {
-  color: #627d98;
-  line-height: 1.5;
-}
+    body {
 
-.card {
-  background: #f5f8fb;
-  padding: 18px;
-  border-radius: 16px;
-  margin-top: 15px;
-  text-align: left;
-}
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
-button {
-  width: 100%;
-  padding: 17px;
-  margin-top: 20px;
-  border-radius: 14px;
-  border: none;
-  background: #102a43;
-  color: white;
-  font-size: 17px;
-  font-weight: bold;
-  cursor: pointer;
-}
+      background: #eef3f7;
 
-.option {
-  background: white;
-  color: #102a43;
-  border: 1px solid #d9e2ec;
-  text-align: left;
-}
+      color: #102a43;
 
-.ai {
-  background: #f5f8fb;
-  padding: 16px;
-  border-radius: 16px;
-  margin: 20px 0;
-  line-height: 1.5;
-}
-</style>
+      min-height: 100vh;
+
+    }
+
+
+    .app {
+
+      width: 100%;
+
+      max-width: 520px;
+
+      min-height: 100vh;
+
+      margin: auto;
+
+      background: #ffffff;
+
+      position: relative;
+
+      overflow: hidden;
+
+      box-shadow:
+        0 0 40px
+        rgba(16, 42, 67, 0.08);
+
+    }
+
+
+    .header {
+
+      padding:
+        22px
+        24px
+        10px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+    }
+
+
+    .logo {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 9px;
+
+      font-size: 21px;
+
+      font-weight: 800;
+
+      color: #073b5c;
+
+    }
+
+
+    .logo-icon {
+
+      width: 34px;
+
+      height: 34px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #0b567f,
+          #13a89e
+        );
+
+      color: white;
+
+      border-radius: 10px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+    }
+
+
+    .logo span {
+
+      color: #12a69c;
+
+    }
+
+
+    .tagline {
+
+      font-size: 10px;
+
+      color: #72849a;
+
+      text-align: right;
+
+      line-height: 1.3;
+
+    }
+
+
+    .progress-section {
+
+      padding:
+        8px
+        24px
+        18px;
+
+    }
+
+
+    .progress-top {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      margin-bottom: 8px;
+
+    }
+
+
+    .progress-label {
+
+      font-size: 12px;
+
+      font-weight: 700;
+
+      color: #718096;
+
+    }
+
+
+    .progress-number {
+
+      font-size: 12px;
+
+      font-weight: 700;
+
+      color: #0b8d88;
+
+    }
+
+
+    .progress {
+
+      height: 7px;
+
+      background: #e7edf2;
+
+      border-radius: 20px;
+
+      overflow: hidden;
+
+    }
+
+
+    .progress-bar {
+
+      height: 100%;
+
+      background:
+        linear-gradient(
+          90deg,
+          #0c567e,
+          #13aaa0
+        );
+
+      border-radius: 20px;
+
+      transition:
+        width 0.4s ease;
+
+    }
+
+
+    .content {
+
+      padding:
+        12px
+        24px
+        30px;
+
+    }
+
+
+    .screen {
+
+      animation:
+        fadeIn 0.3s ease;
+
+    }
+
+
+    @keyframes fadeIn {
+
+      from {
+
+        opacity: 0;
+
+        transform:
+          translateY(8px);
+
+      }
+
+      to {
+
+        opacity: 1;
+
+        transform:
+          translateY(0);
+
+      }
+
+    }
+
+
+    .eyebrow {
+
+      display: inline-flex;
+
+      background: #e9f8f6;
+
+      color: #087f79;
+
+      padding:
+        8px
+        12px;
+
+      border-radius: 30px;
+
+      font-size: 11px;
+
+      font-weight: 800;
+
+      text-transform: uppercase;
+
+      margin-bottom: 18px;
+
+    }
+
+
+    h1 {
+
+      font-size: 36px;
+
+      line-height: 1.08;
+
+      letter-spacing: -1.3px;
+
+      margin-bottom: 17px;
+
+    }
+
+
+    h2 {
+
+      font-size: 29px;
+
+      line-height: 1.12;
+
+      letter-spacing: -0.8px;
+
+      margin-bottom: 12px;
+
+    }
+
+
+    .subtitle {
+
+      color: #607286;
+
+      font-size: 16px;
+
+      line-height: 1.55;
+
+      margin-bottom: 24px;
+
+    }
+
+
+    .welcome {
+
+      min-height: 72vh;
+
+      display: flex;
+
+      flex-direction: column;
+
+      justify-content: center;
+
+    }
+
+
+    .house-hero {
+
+      height: 190px;
+
+      border-radius: 24px;
+
+      margin-bottom: 25px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #0b567f,
+          #13a99f
+        );
+
+      position: relative;
+
+      overflow: hidden;
+
+      display: flex;
+
+      align-items: flex-end;
+
+      padding: 22px;
+
+      box-shadow:
+        0 15px 35px
+        rgba(8, 78, 116, 0.18);
+
+    }
+
+
+    .house-shape {
+
+      position: absolute;
+
+      right: 28px;
+
+      bottom: 25px;
+
+      font-size: 115px;
+
+      opacity: 0.25;
+
+    }
+
+
+    .hero-text {
+
+      color: white;
+
+      font-weight: 700;
+
+      font-size: 15px;
+
+    }
+
+
+    .benefits {
+
+      display: grid;
+
+      gap: 10px;
+
+      margin:
+        18px
+        0
+        24px;
+
+    }
+
+
+    .benefit {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 12px;
+
+      font-size: 14px;
+
+      color: #40566c;
+
+    }
+
+
+    .benefit-icon {
+
+      width: 30px;
+
+      height: 30px;
+
+      background: #e9f8f6;
+
+      color: #078d86;
+
+      border-radius: 9px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+    }
+
+
+    .info-card {
+
+      background:
+        linear-gradient(
+          135deg,
+          #f1f8fc,
+          #edf9f7
+        );
+
+      border:
+        1px solid
+        #d9ebef;
+
+      border-radius: 18px;
+
+      padding: 18px;
+
+      margin:
+        18px
+        0;
+
+    }
+
+
+    .info-card-title {
+
+      font-size: 14px;
+
+      font-weight: 800;
+
+      color: #173f5f;
+
+      margin-bottom: 8px;
+
+    }
+
+
+    .info-card p {
+
+      margin: 0;
+
+      font-size: 14px;
+
+      line-height: 1.5;
+
+      color: #607286;
+
+    }
+
+
+    .options {
+
+      display: grid;
+
+      gap: 11px;
+
+      margin-top: 20px;
+
+    }
+
+
+    .option {
+
+      width: 100%;
+
+      border:
+        2px solid
+        #e3e9ee;
+
+      background: white;
+
+      border-radius: 16px;
+
+      padding: 16px;
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 14px;
+
+      cursor: pointer;
+
+      text-align: left;
+
+      transition:
+        all 0.2s ease;
+
+      color: #173f5f;
+
+    }
+
+
+    .option:hover {
+
+      border-color: #6bc9c2;
+
+      transform:
+        translateY(-1px);
+
+    }
+
+
+    .option.selected {
+
+      border-color: #11a79e;
+
+      background: #effbf9;
+
+      box-shadow:
+        0 5px 18px
+        rgba(17, 167, 158, 0.12);
+
+    }
+
+
+    .option-icon {
+
+      width: 42px;
+
+      height: 42px;
+
+      border-radius: 12px;
+
+      background: #f0f5f8;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      font-size: 20px;
+
+      font-weight: bold;
+
+      flex-shrink: 0;
+
+    }
+
+
+    .option.selected
+    .option-icon {
+
+      background: #d8f3ef;
+
+    }
+
+
+    .option-text {
+
+      flex: 1;
+
+    }
+
+
+    .option-title {
+
+      font-size: 15px;
+
+      font-weight: 700;
+
+      margin-bottom: 3px;
+
+    }
+
+
+    .option-description {
+
+      font-size: 12px;
+
+      color: #718096;
+
+    }
+
+
+    .input-label {
+
+      font-size: 13px;
+
+      font-weight: 700;
+
+      color: #40566c;
+
+      margin-bottom: 8px;
+
+      display: block;
+
+    }
+
+
+    .input-wrapper {
+
+      position: relative;
+
+      margin-top: 20px;
+
+    }
+
+
+    .input-prefix {
+
+      position: absolute;
+
+      left: 16px;
+
+      top: 50%;
+
+      transform:
+        translateY(-50%);
+
+      color: #74879a;
+
+      font-weight: 700;
+
+      font-size: 17px;
+
+    }
+
+
+    .input-wrapper input {
+
+      padding-left: 43px;
+
+    }
+
+
+    input {
+
+      width: 100%;
+
+      padding: 16px;
+
+      border:
+        2px solid
+        #e0e7ed;
+
+      border-radius: 15px;
+
+      outline: none;
+
+      font-size: 17px;
+
+      color: #173f5f;
+
+    }
+
+
+    input:focus {
+
+      border-color: #13a69d;
+
+      box-shadow:
+        0 0 0 4px
+        rgba(19,166,157,0.08);
+
+    }
+
+
+    .navigation {
+
+      display: flex;
+
+      gap: 10px;
+
+      margin-top: 26px;
+
+    }
+
+
+    .back-button {
+
+      width: 35%;
+
+      padding: 16px;
+
+      border:
+        2px solid
+        #dce4ea;
+
+      background: white;
+
+      color: #173f5f;
+
+      border-radius: 14px;
+
+      font-weight: 700;
+
+      cursor: pointer;
+
+    }
+
+
+    .continue-button {
+
+      width: 65%;
+
+      padding: 16px;
+
+      border: none;
+
+      background:
+        linear-gradient(
+          135deg,
+          #0c5279,
+          #087d8a
+        );
+
+      color: white;
+
+      border-radius: 14px;
+
+      font-weight: 700;
+
+      cursor: pointer;
+
+      box-shadow:
+        0 7px 18px
+        rgba(8,82,121,0.18);
+
+    }
+
+
+    .continue-button:disabled {
+
+      background: #cbd5dd;
+
+      box-shadow: none;
+
+      cursor: not-allowed;
+
+    }
+
+
+    /* =========================
+       REVIEW SCREEN
+    ========================= */
+
+    .review-card {
+
+      background: #ffffff;
+
+      border:
+        1px solid
+        #e1e8ed;
+
+      border-radius: 20px;
+
+      overflow: hidden;
+
+      margin-top: 20px;
+
+      box-shadow:
+        0 8px 25px
+        rgba(16,42,67,0.06);
+
+    }
+
+
+    .review-item {
+
+      padding: 17px;
+
+      border-bottom:
+        1px solid
+        #edf1f4;
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 13px;
+
+    }
+
+
+    .review-item:last-child {
+
+      border-bottom: none;
+
+    }
+
+
+    .review-icon {
+
+      width: 38px;
+
+      height: 38px;
+
+      background: #eaf7f5;
+
+      color: #087f79;
+
+      border-radius: 11px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      flex-shrink: 0;
+
+    }
+
+
+    .review-info {
+
+      flex: 1;
+
+      min-width: 0;
+
+    }
+
+
+    .review-label {
+
+      font-size: 11px;
+
+      color: #7b8a99;
+
+      margin-bottom: 4px;
+
+    }
+
+
+    .review-value {
+
+      font-size: 14px;
+
+      font-weight: 700;
+
+      color: #173f5f;
+
+      word-break: break-word;
+
+    }
+
+
+    .edit-button {
+
+      border: none;
+
+      background: #eef8f7;
+
+      color: #087f79;
+
+      padding:
+        8px
+        11px;
+
+      border-radius: 9px;
+
+      font-size: 12px;
+
+      font-weight: 800;
+
+      cursor: pointer;
+
+      flex-shrink: 0;
+
+    }
+
+
+    .edit-button:hover {
+
+      background: #dff3f0;
+
+    }
+
+
+    .review-note {
+
+      margin-top: 17px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #f1f8fc,
+          #edf9f7
+        );
+
+      border-radius: 17px;
+
+      padding: 17px;
+
+    }
+
+
+    .review-note strong {
+
+      color: #173f5f;
+
+      font-size: 14px;
+
+    }
+
+
+    .review-note p {
+
+      margin:
+        7px
+        0
+        0;
+
+      color: #607286;
+
+      font-size: 13px;
+
+      line-height: 1.5;
+
+    }
+
+
+    .final-button {
+
+      margin-top: 20px;
+
+      width: 100%;
+
+      padding: 18px;
+
+      border: none;
+
+      border-radius: 15px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #0c5279,
+          #087d8a
+        );
+
+      color: white;
+
+      font-size: 16px;
+
+      font-weight: 800;
+
+      cursor: pointer;
+
+      box-shadow:
+        0 9px 22px
+        rgba(8,82,121,0.18);
+
+    }
+
+
+    .footer-note {
+
+      text-align: center;
+
+      color: #91a0ae;
+
+      font-size: 11px;
+
+      margin-top: 16px;
+
+      line-height: 1.4;
+
+    }
+
+
+    .error {
+
+      color: #c0392b;
+
+      background: #fff3f2;
+
+      border-radius: 10px;
+
+      padding: 10px;
+
+      font-size: 13px;
+
+      margin-top: 8px;
+
+    }
+
+
+    @media (max-width: 600px) {
+
+      body {
+
+        background: white;
+
+      }
+
+
+      .app {
+
+        box-shadow: none;
+
+      }
+
+
+      .content {
+
+        padding-left: 20px;
+
+        padding-right: 20px;
+
+      }
+
+    }
+
+  </style>
+
 </head>
+
 
 <body>
 
+
 <div class="app">
 
-<div class="logo">
-HomeBuy <span>AI</span>
+
+  <!-- HEADER -->
+
+  <div class="header">
+
+    <div class="logo">
+
+      <div class="logo-icon">
+        🏠
+      </div>
+
+      HomeBuy <span>AI</span>
+
+    </div>
+
+
+    <div class="tagline">
+
+      Your Home.<br>
+
+      A Smarter Tomorrow.
+
+    </div>
+
+  </div>
+
+
+
+  <!-- PROGRESS -->
+
+  <div class="progress-section">
+
+    <div class="progress-top">
+
+      <div
+        class="progress-label"
+        id="progressLabel">
+
+        Let's get started
+
+      </div>
+
+
+      <div
+        class="progress-number"
+        id="progressNumber">
+
+        1 of 8
+
+      </div>
+
+    </div>
+
+
+    <div class="progress">
+
+      <div
+        class="progress-bar"
+        id="progressBar">
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- CONTENT -->
+
+  <div class="content">
+
+    <div
+      class="screen"
+      id="app">
+    </div>
+
+  </div>
+
+
 </div>
 
-<div id="screen"></div>
 
-</div>
 
 <script>
 
-var screen = document.getElementById("screen");
 
-function welcome() {
+/* ==========================================
+   USER DATA
+========================================== */
 
-screen.innerHTML = `
-<div class="hero">
+let answers = {
 
-<div class="house">🏠</div>
+  homeStatus: "",
 
-<h1>Your Home Journey Starts Here.</h1>
+  military: "",
 
-<p>
-Buying a home shouldn't feel like guessing.
-HomeBuy AI helps you understand what home
-actually makes sense for your life.
-</p>
+  militaryStatus: "",
 
-<div class="card">
-<strong>🏠 Know Your Number</strong>
-<p>
-Understand what you can comfortably afford,
-not just what you may qualify for.
-</p>
-</div>
+  location: "",
 
-<div class="card">
-<strong>💰 Find Opportunities</strong>
-<p>
-Discover programs and benefits you may be
-able to take advantage of.
-</p>
-</div>
+  income: "",
 
-<div class="card">
-<strong>🤝 Stay In Control</strong>
-<p>
-AI advises. You make the decision.
-</p>
-</div>
+  debt: "",
 
-<button onclick="startAdvisor()">
-Let's Get Started →
-</button>
+  propertyType: ""
 
-</div>
-`;
+};
+
+
+
+/* ==========================================
+   ELEMENTS
+========================================== */
+
+const app =
+  document.getElementById("app");
+
+
+const progressBar =
+  document.getElementById("progressBar");
+
+
+const progressLabel =
+  document.getElementById("progressLabel");
+
+
+const progressNumber =
+  document.getElementById("progressNumber");
+
+
+
+/* ==========================================
+   PROGRESS
+========================================== */
+
+function updateProgress(
+  percent,
+  step,
+  label
+) {
+
+  progressBar.style.width =
+    percent + "%";
+
+  progressNumber.textContent =
+    step + " of 8";
+
+  progressLabel.textContent =
+    label;
 
 }
+
+
+
+/* ==========================================
+   WELCOME
+========================================== */
+
+function showWelcome() {
+
+  updateProgress(
+    8,
+    1,
+    "Let's get started"
+  );
+
+
+  app.innerHTML = `
+
+    <div class="screen">
+
+      <div class="welcome">
+
+
+        <div class="house-hero">
+
+          <div class="house-shape">
+            🏡
+          </div>
+
+          <div class="hero-text">
+            Your goals. Your home. Your future.
+          </div>
+
+        </div>
+
+
+        <div class="eyebrow">
+          ✦ Your Home Buying Advisor
+        </div>
+
+
+        <h1>
+          Let's find a home that actually
+          makes sense for you.
+        </h1>
+
+
+        <p class="subtitle">
+
+          HomeBuy AI helps you understand what
+          you can comfortably afford, explore
+          your options, and make confident
+          decisions before you buy.
+
+        </p>
+
+
+        <div class="benefits">
+
+
+          <div class="benefit">
+
+            <div class="benefit-icon">
+              ✦
+            </div>
+
+            Personalized guidance
+
+          </div>
+
+
+          <div class="benefit">
+
+            <div class="benefit-icon">
+              ✓
+            </div>
+
+            Real insights, not guesswork
+
+          </div>
+
+
+          <div class="benefit">
+
+            <div class="benefit-icon">
+              ♡
+            </div>
+
+            Support at every step
+
+          </div>
+
+
+        </div>
+
+
+        <button
+          class="final-button"
+          onclick="startAdvisor()">
+
+          Let's Get Started →
+
+        </button>
+
+
+        <div class="footer-note">
+
+          You make the decision.
+          We're here to help you
+          make a better one.
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+
+/* ==========================================
+   INTRO
+========================================== */
 
 function startAdvisor() {
 
-screen.innerHTML = `
+  updateProgress(
+    15,
+    1,
+    "Getting to know you"
+  );
 
-<div class="ai">
 
-🏠 <strong>HomeBuy AI Advisor</strong>
+  app.innerHTML = `
 
-<br><br>
+    <div class="screen">
 
-Hey! I'm your HomeBuy AI Advisor.
 
-<br><br>
+      <div class="eyebrow">
+        ✦ Before we begin
+      </div>
 
-Before we start talking about houses,
-I want to learn a little about you.
 
-<br><br>
+      <h2>
+        Let's make this about you.
+      </h2>
 
-I'm not here to tell you what you
-<strong>want</strong> to hear.
 
-<br><br>
+      <p class="subtitle">
 
-I'm here to help you understand what
-you <strong>need</strong> to know.
+        I'm going to ask you a few questions
+        so I can understand your situation
+        and give you more useful answers.
 
-</div>
+      </p>
 
-<h2>Have you owned a home before?</h2>
 
-<button class="option" onclick="answer('First-time homebuyer')">
-🏠 I'm a first-time homebuyer
-</button>
+      <div class="info-card">
 
-<button class="option" onclick="answer('Current homeowner')">
-🏡 I currently own a home
-</button>
+        <div class="info-card-title">
+          A little information goes a long way.
+        </div>
 
-<button class="option" onclick="answer('Multiple properties')">
-🏘️ I own multiple properties
-</button>
+        <p>
 
-<button class="option" onclick="answer('Investment')">
-💰 I'm buying primarily as an investment
-</button>
+          There are no right or wrong answers.
+          The more you tell me, the more helpful
+          HomeBuy AI can be.
 
-<button class="option" onclick="answer('Not sure')">
-🤷 I'm not sure yet
-</button>
+        </p>
 
-`;
+      </div>
 
-}
 
-function answer(choice) {
+      <div class="navigation">
 
-screen.innerHTML = `
+        <button
+          class="back-button"
+          onclick="showWelcome()">
 
-<div class="ai">
+          ← Back
 
-🏠 <strong>HomeBuy AI</strong>
+        </button>
 
-<br><br>
 
-Got it. You selected:
+        <button
+          class="continue-button"
+          onclick="showHomeStatus()">
 
-<strong>${choice}</strong>
+          Continue →
 
-<br><br>
+        </button>
 
-That's helpful.
+      </div>
 
-I’m going to use that information as
-we build your homebuyer profile.
 
-</div>
+    </div>
 
-<h2>Do you have military service?</h2>
-
-<p>
-I ask because military service may give you
-access to benefits that other buyers don't have.
-</p>
-
-<button onclick="military('Yes')">
-Yes
-</button>
-
-<button onclick="military('No')">
-No
-</button>
-
-`;
+  `;
 
 }
 
-function military(choice) {
 
-screen.innerHTML = `
 
-<div class="ai">
+/* ==========================================
+   HOME STATUS
+========================================== */
 
-🏠 <strong>HomeBuy AI</strong>
+function showHomeStatus() {
 
-<br><br>
+  updateProgress(
+    25,
+    2,
+    "About your homeownership"
+  );
 
-Thanks. I'll keep that in mind.
 
-<br><br>
+  app.innerHTML = `
 
-Next, I want to understand where you're
-planning to buy because location can affect
-taxes, insurance, and available programs.
+    <div class="screen">
 
-</div>
 
-<h2>Where are you looking to buy?</h2>
+      <div class="eyebrow">
+        🏠 Your experience
+      </div>
 
-<input
-id="location"
-placeholder="City, State or ZIP"
-style="
-width:100%;
-padding:15px;
-font-size:16px;
-border:1px solid #d9e2ec;
-border-radius:12px;
-box-sizing:border-box;
-">
 
-<button onclick="locationNext()">
-Continue →
-</button>
+      <h2>
+        Have you owned a home before?
+      </h2>
 
-`;
 
-}
+      <p class="subtitle">
 
-function locationNext() {
+        This helps HomeBuy AI understand
+        your experience and identify resources
+        that may be relevant to you.
 
-var location =
-document.getElementById("location").value;
+      </p>
 
-if (location.trim() === "") {
 
-alert("Tell me where you're thinking about buying.");
+      <div class="options">
 
-return;
 
-}
+        ${homeOption(
+          "First-time homebuyer",
+          "🏠",
+          "I'm purchasing my first home"
+        )}
 
-screen.innerHTML = `
 
-<div class="ai">
+        ${homeOption(
+          "Current homeowner",
+          "🔑",
+          "I'm looking to purchase another property"
+        )}
 
-🏠 <strong>HomeBuy AI</strong>
 
-<br><br>
+        ${homeOption(
+          "Multiple properties",
+          "🏢",
+          "I'm adding another property to my portfolio"
+        )}
 
-Perfect. We're starting to build your profile.
 
-<br><br>
+        ${homeOption(
+          "Investment",
+          "📈",
+          "I'm looking for an investment opportunity"
+        )}
 
-<strong>${location}</strong>
 
-<br><br>
+      </div>
 
-Now let's talk about the part that matters most:
 
-<strong>what you can comfortably afford.</strong>
+      <div class="navigation">
 
-</div>
 
-<h2>What is your annual household income?</h2>
+        <button
+          class="back-button"
+          onclick="startAdvisor()">
 
-<input
-id="income"
-type="number"
-placeholder="Example: 82000"
-style="
-width:100%;
-padding:15px;
-font-size:16px;
-border:1px solid #d9e2ec;
-border-radius:12px;
-box-sizing:border-box;
-">
+          ← Back
 
-<button onclick="incomeNext()">
-Continue →
-</button>
+        </button>
 
-`;
 
-}
+        <button
+          class="continue-button"
+          onclick="continueHomeStatus()"
+          ${answers.homeStatus === ""
+            ? "disabled"
+            : ""}>
 
-function incomeNext() {
+          Continue →
 
-var income =
-document.getElementById("income").value;
+        </button>
 
-if (income === "" || Number(income) <= 0) {
 
-alert("Enter your annual household income.");
+      </div>
 
-return;
+
+    </div>
+
+  `;
 
 }
 
-screen.innerHTML = `
 
-<div class="ai">
 
-🏠 <strong>HomeBuy AI</strong>
+function homeOption(
+  title,
+  icon,
+  description
+) {
 
-<br><br>
+  const selected =
+    answers.homeStatus === title
+      ? "selected"
+      : "";
 
-Okay. I have your income.
 
-<br><br>
+  return `
 
-But here's something important:
+    <button
+      class="option ${selected}"
+      onclick="selectHomeStatus('${title}')">
 
-<br><br>
+      <div class="option-icon">
+        ${icon}
+      </div>
 
-<strong>
-Income alone doesn't tell me what you
-should spend on a home.
-</strong>
+      <div class="option-text">
 
-<br><br>
+        <div class="option-title">
+          ${title}
+        </div>
 
-I need to understand your debts and
-monthly obligations too.
+        <div class="option-description">
+          ${description}
+        </div>
 
-</div>
+      </div>
 
-<h2>About how much do you pay toward debt each month?</h2>
+    </button>
 
-<input
-id="debt"
-type="number"
-placeholder="Example: 1250"
-style="
-width:100%;
-padding:15px;
-font-size:16px;
-border:1px solid #d9e2ec;
-border-radius:12px;
-box-sizing:border-box;
-">
-
-<button onclick="finishDemo()">
-Continue →
-</button>
-
-`;
+  `;
 
 }
 
-function finishDemo() {
 
-screen.innerHTML = `
 
-<div class="ai">
+function selectHomeStatus(status) {
 
-🏠 <strong>HomeBuy AI</strong>
+  answers.homeStatus =
+    status;
 
-<br><br>
-
-Alright. We're getting somewhere.
-
-<br><br>
-
-This is just the beginning of your
-HomeBuy AI profile.
-
-<br><br>
-
-In the next version, I'll take your
-income, debts, savings, down payment,
-military status, location, taxes,
-insurance, and other information and
-help you determine:
-
-<br><br>
-
-<strong>
-🟢 Comfortable
-</strong>
-
-<br>
-
-<strong>
-🟡 Stretch
-</strong>
-
-<br>
-
-<strong>
-🔴 Not Recommended
-</strong>
-
-<br><br>
-
-And then you'll be able to ask me
-questions about your situation.
-
-<br><br>
-
-<strong>
-AI can help. You make the decision.
-</strong>
-
-</div>
-
-<button onclick="welcome()">
-Start Over
-</button>
-
-`;
+  showHomeStatus();
 
 }
 
-welcome();
+
+
+function continueHomeStatus() {
+
+  if (!answers.homeStatus) {
+    return;
+  }
+
+  showMilitaryQuestion();
+
+}
+
+
+
+/* ==========================================
+   MILITARY QUESTION
+========================================== */
+
+function showMilitaryQuestion() {
+
+  updateProgress(
+    35,
+    3,
+    "Understanding your options"
+  );
+
+
+  app.innerHTML = `
+
+    <div class="screen">
+
+
+      <div class="eyebrow">
+        Military benefits
+      </div>
+
+
+      <h2>
+        Have you served in the military?
+      </h2>
+
+
+      <p class="subtitle">
+
+        This helps HomeBuy AI identify
+        potential military and VA-related
+        homebuying options.
+
+      </p>
+
+
+      <div class="options">
+
+
+        <button
+          class="option
+          ${answers.military === 'Yes'
+            ? 'selected'
+            : ''}"
+          onclick="selectMilitary('Yes')">
+
+
+          <div class="option-icon">
+            ✓
+          </div>
+
+
+          <div class="option-text">
+
+            <div class="option-title">
+              Yes
+            </div>
+
+            <div class="option-description">
+              I have served or currently serve
+            </div>
+
+          </div>
+
+
+        </button>
+
+
+
+        <button
+          class="option
+          ${answers.military === 'No'
+            ? 'selected'
+            : ''}"
+          onclick="selectMilitary('No')">
+
+
+          <div class="option-icon">
+            ✕
+          </div>
+
+
+          <div class="option-text">
+
+            <div class="option-title">
+              No
+            </div>
+
+            <div class="option-description">
+              I have not served in the military
+            </div>
+
+          </div>
+
+
+        </button>
+
+
+      </div>
+
+
+      <div class="info-card">
+
+        <div class="info-card-title">
+          Your service matters.
+        </div>
+
+        <p>
+
+          If you have served, we'll ask one
+          additional question so we can better
+          understand which homebuying pathways
+          may apply to you.
+
+        </p>
+
+      </div>
+
+
+      <div class="navigation">
+
+        <button
+          class="back-button"
+          onclick="showHomeStatus()">
+
+          ← Back
+
+        </button>
+
+
+        <button
+          class="continue-button"
+          onclick="continueMilitary()"
+          ${answers.military === ""
+            ? "disabled"
+            : ""}>
+
+          Continue →
+
+        </button>
+
+
+      </div>
+
+
+    </div>
+
+  `;
+
+}
+
+
+
+function selectMilitary(answer) {
+
+  answers.military =
+    answer;
+
+  showMilitaryQuestion();
+
+}
+
+
+
+function continueMilitary() {
+
+  if (!answers.military) {
+    return;
+  }
+
+
+  if (answers.military === "Yes") {
+
+    showMilitaryStatus();
+
+  } else {
+
+    answers.militaryStatus = "";
+
+    showLocation();
+
+  }
+
+}
+
+
+
+/* ==========================================
+   MILITARY STATUS
+========================================== */
+
+function showMilitaryStatus() {
+
+  updateProgress(
+    45,
+    4,
+    "Military status"
+  );
+
+
+  app.innerHTML = `
+
+    <div class="screen">
+
+
+      <div class="eyebrow">
+        Your service
+      </div>
+
+
+      <h2>
+        What is your current military status?
+      </h2>
+
+
+      <p class="subtitle">
+
+        Select the option that best
+        describes you.
+
+      </p>
+
+
+      <div class="options">
+
+
+        ${militaryOption(
+          "Active Duty",
+          "★",
+          "Currently serving on active duty"
+        )}
+
+
+        ${militaryOption(
+          "Reserve",
+          "◆",
+          "Currently serving in the Reserve"
+        )}
+
+
+        ${militaryOption(
+          "National Guard",
+          "◆",
+          "Currently serving in the National Guard"
+        )}
+
+
+        ${militaryOption(
+          "Veteran",
+          "★",
+          "Previously served in the military"
+        )}
+
+
+        ${militaryOption(
+          "Retired Military",
+          "★",
+          "Retired from military service"
+        )}
+
+
+      </div>
+
+
+      <div class="navigation">
+
+        <button
+          class="back-button"
+          onclick="showMilitaryQuestion()">
+
+          ← Back
+
+        </button>
+
+
+        <button
+          class="continue-button"
+          onclick="continueMilitaryStatus()"
+          ${answers.militaryStatus === ""
+            ? "disabled"
+            : ""}>
+
+          Continue →
+
+        </button>
+
+
+      </div>
+
+
+    </div>
+
+  `;
+
+}
+
+
+
+function militaryOption(
+  title,
+  icon,
+  description
+) {
+
+  const selected =
+    answers.militaryStatus === title
+      ? "selected"
+      : "";
+
+
+  return `
+
+    <button
+      class="option ${selected}"
+      onclick="selectMilitaryStatus('${title}')">
+
+      <div class="option-icon">
+        ${icon}
+      </div>
+
+      <div class="option-text">
+
+        <div class="option-title">
+          ${title}
+        </div>
+
+        <div class="option-description">
+          ${description}
+        </div>
+
+      </div>
+
+    </button>
+
+  `;
+
+}
+
+
+
+function selectMilitaryStatus(status) {
+
+  answers.militaryStatus =
+    status;
+
+  showMilitaryStatus();
+
+}
+
+
+
+function continueMilitaryStatus() {
+
+  if (!answers.militaryStatus) {
+    return;
+  }
+
+  showLocation();
+
+}
+
+
+
+/* ==========================================
+   LOCATION
+========================================== */
+
+function showLocation() {
+
+  updateProgress(
+    57,
+    5,
+    "Where are you buying?"
+  );
+
+
+  app.innerHTML = `
+
+    <div class="screen">
+
+
+      <div class="eyebrow">
+        📍 Your market
+      </div>
+
+
+      <h2>
+        Where are you looking to buy?
+      </h2>
+
+
+      <p class="subtitle">
+
+        Enter the city, state, or ZIP code
+        where you're thinking about purchasing
+        a home.
+
+      </p>
+
+
+      <div class="input-wrapper">
+
+        <span class="input-prefix">
+          📍
+        </span>
+
+        <input
+          id="locationInput"
+          type="text"
+          placeholder="Example: Waukegan, IL"
+          value="${answers.location}"
+        >
+
+      </div>
+
+
+      <div id="locationError"></div>
+
+
+      <div class="navigation">
+
+        <button
+          class="back-button"
+          onclick="goBackFromLocation()">
+
+          ← Back
+
+        </button>
+
+
+        <button
+          class="continue-button"
+          onclick="saveLocation()">
+
+          Continue →
+
+        </button>
+
+      </div>
+
+
+    </div>
+
+  `;
+
+}
+
+
+
+function goBackFromLocation() {
+
+  if (answers.military === "Yes") {
+
+    showMilitaryStatus();
+
+  } else {
+
+    showMilitaryQuestion();
+
+  }
+
+}
+
+
+
+function saveLocation() {
+
+  const location =
+    document
+      .getElementById("locationInput")
+      .value
+      .trim();
+
+
+  if (!location) {
+
+    document
+      .getElementById("locationError")
+      .innerHTML = `
+
+        <div class="error">
+          Please enter a city, state, or ZIP code.
+        </div>
+
+      `;
+
+    return;
+
+  }
+
+
+  answers.location =
+    location;
+
+
+  showIncome();
+
+}
+
+
+
+/* ==========================================
+   INCOME
+========================================== */
+
+function showIncome() {
+
+  updateProgress(
+    68,
+    6,
+    "Understanding your finances"
+  );
+
+
+  app.innerHTML = `
+
+    <div class="screen">
+
+
+      <div class="eyebrow">
+        💰 Your income
+      </div>
+
+
+      <h2>
+        What is your approximate annual
+        household income?
+      </h2>
+
+
+      <p class="subtitle">
+
+        An estimate is perfectly fine.
+        This helps HomeBuy AI understand
+        your potential affordability range.
+
+      </p>
+
+
+      <label class="input-label">
+        Annual household income
+      </label>
+
+
+      <div class="input-wrapper">
+
+        <span class="input-prefix">
+          $
+        </span>
+
+
+        <input
+          id="incomeInput"
+          type="number"
+          placeholder="Example: 85000"
+          value="${answers.income}"
+        >
+
+      </div>
+
+
+      <div id="incomeError"></div>
+
+
+      <div class="navigation">
+
+        <button
+          class="back-button"
+          onclick="showLocation()">
+
+          ← Back
+
+        </button>
+
+
+        <button
+          class="continue-button"
+          onclick="saveIncome()">
+
+          Continue →
+
+        </button>
+
+      </div>
+
+
+    </div>
+
+  `;
+
+}
+
+
+
+function saveIncome() {
+
+  const income =
+    document
+      .getElementById("incomeInput")
+      .value;
+
+
+  if (
+    !income ||
+    Number(income) <= 0
+  ) {
+
+    document
+      .getElementById("incomeError")
+      .innerHTML = `
+
+        <div class="error">
+          Please enter your approximate annual income.
+        </div>
+
+      `;
+
+    return;
+
+  }
+
+
+  answers.income =
+    income;
+
+
+  showDebt();
+
+}
+
+
+
+/* ==========================================
+   DEBT
+========================================== */
+
+function showDebt() {
+
+  updateProgress(
+    78,
+    7,
+    "Understanding your finances"
+  );
+
+
+  app.innerHTML = `
+
+    <div class="screen">
+
+
+      <div class="eyebrow">
+        💳 Your monthly obligations
+      </div>
+
+
+      <h2>
+        About how much do you pay
+        toward debt each month?
+      </h2>
+
+
+      <p class="subtitle">
+
+        Include things like car payments,
+        student loans, credit cards,
+        and personal loans.
+
+      </p>
+
+
+      <label class="input-label">
+        Monthly debt payments
+      </label>
+
+
+      <div class="input-wrapper">
+
+        <span class="input-prefix">
+          $
+        </span>
+
+
+        <input
+          id="debtInput"
+          type="number"
+          placeholder="Example: 850"
+          value="${answers.debt}"
+        >
+
+      </div>
+
+
+      <div id="debtError"></div>
+
+
+      <div class="navigation">
+
+        <button
+          class="back-button"
+          onclick="showIncome()">
+
+          ← Back
+
+        </button>
+
+
+        <button
+          class="continue-button"
+          onclick="saveDebt()">
+
+          Continue →
+
+        </button>
+
+      </div>
+
+
+    </div>
+
+  `;
+
+}
+
+
+
+function saveDebt() {
+
+  const debt =
+    document
+      .getElementById("debtInput")
+      .value;
+
+
+  if (
+    debt === "" ||
+    Number(debt) < 0
+  ) {
+
+    document
+      .getElementById("debtError")
+      .innerHTML = `
+
+        <div class="error">
+          Please enter your approximate monthly debt.
+        </div>
+
+      `;
+
+    return;
+
+  }
+
+
+  answers.debt =
+    debt;
+
+
+  showPropertyType();
+
+}
+
+
+
+/* ==========================================
+   PROPERTY TYPE
+========================================== */
+
+function showPropertyType() {
+
+  updateProgress(
+    90,
+    8,
+    "Your home search"
+  );
+
+
+  app.innerHTML = `
+
+    <div class="screen">
+
+
+      <div class="eyebrow">
+        🏡 Your next property
+      </div>
+
+
+      <h2>
+        What type of property are you
+        planning to purchase?
+      </h2>
+
+
+      <p class="subtitle">
+
+        This helps your HomeBuy AI Advisor
+        understand what you're looking for
+        and give you more relevant guidance.
+
+      </p>
+
+
+      <div class="options">
+
+
+        ${propertyOption(
+          "Single Family Home",
+          "🏠",
+          "A traditional single-family residence"
+        )}
+
+
+        ${propertyOption(
+          "Multi-Family Home",
+          "🏢",
+          "A property with multiple residential units"
+        )}
+
+
+        ${propertyOption(
+          "Land",
+          "🌳",
+          "Land for future use or development"
+        )}
+
+
+        ${propertyOption(
+          "Condo",
+          "🏙️",
+          "A condominium or condo unit"
+        )}
+
+
+      </div>
+
+
+      <div class="info-card">
+
+        <div class="info-card-title">
+
+          Your plans can change.
+          That's okay.
+
+        </div>
+
+
+        <p>
+
+          You can update your property type
+          anytime in your settings. Life changes,
+          and we're always here to help you
+          adjust your homebuying plan.
+
+        </p>
+
+
+      </div>
+
+
+      <div class="navigation">
+
+        <button
+          class="back-button"
+          onclick="showDebt()">
+
+          ← Back
+
+        </button>
+
+
+        <button
+          class="continue-button"
+          onclick="continuePropertyType()"
+          ${answers.propertyType === ""
+            ? "disabled"
+            : ""}>
+
+          Continue →
+
+        </button>
+
+
+      </div>
+
+
+    </div>
+
+  `;
+
+}
+
+
+
+function propertyOption(
+  title,
+  icon,
+  description
+) {
+
+  const selected =
+    answers.propertyType === title
+      ? "selected"
+      : "";
+
+
+  return `
+
+    <button
+      class="option ${selected}"
+      onclick="selectPropertyType('${title}')">
+
+      <div class="option-icon">
+        ${icon}
+      </div>
+
+
+      <div class="option-text">
+
+        <div class="option-title">
+          ${title}
+        </div>
+
+        <div class="option-description">
+          ${description}
+        </div>
+
+      </div>
+
+
+    </button>
+
+  `;
+
+}
+
+
+
+function selectPropertyType(type) {
+
+  answers.propertyType =
+    type;
+
+  showPropertyType();
+
+}
+
+
+
+function continuePropertyType() {
+
+  if (!answers.propertyType) {
+    return;
+  }
+
+
+  showReview();
+
+}
+
+
+
+/* ==========================================
+   REVIEW SCREEN
+========================================== */
+
+function showReview() {
+
+  updateProgress(
+    100,
+    8,
+    "Review your information"
+  );
+
+
+  let militaryText =
+    "No military service";
+
+
+  if (answers.military === "Yes") {
+
+    militaryText =
+      answers.militaryStatus;
+
+  }
+
+
+  app.innerHTML = `
+
+    <div class="screen">
+
+
+      <div class="eyebrow">
+        ✦ Almost there
+      </div>
+
+
+      <h2>
+        Review your information
+      </h2>
+
+
+      <p class="subtitle">
+
+        Take a moment to make sure everything
+        looks right. You can edit anything
+        before continuing.
+
+      </p>
+
+
+      <div class="review-card">
+
+
+        <div class="review-item">
+
+
+          <div class="review-icon">
+            🏠
+          </div>
+
+
+          <div class="review-info">
+
+            <div class="review-label">
+              Homeownership
+            </div>
+
+
+            <div class="review-value">
+              ${answers.homeStatus}
+            </div>
+
+          </div>
+
+
+          <button
+            class="edit-button"
+            onclick="editHomeStatus()">
+
+            Edit
+
+          </button>
+
+
+        </div>
+
+
+
+        <div class="review-item">
+
+
+          <div class="review-icon">
+            ✓
+          </div>
+
+
+          <div class="review-info">
+
+            <div class="review-label">
+              Military
+            </div>
+
+
+            <div class="review-value">
+              ${militaryText}
+            </div>
+
+          </div>
+
+
+          <button
+            class="edit-button"
+            onclick="editMilitary()">
+
+            Edit
+
+          </button>
+
+
+        </div>
+
+
+
+        <div class="review-item">
+
+
+          <div class="review-icon">
+            📍
+          </div>
+
+
+          <div class="review-info">
+
+            <div class="review-label">
+              Location
+            </div>
+
+
+            <div class="review-value">
+              ${answers.location}
+            </div>
+
+          </div>
+
+
+          <button
+            class="edit-button"
+            onclick="showLocation()">
+
+            Edit
+
+          </button>
+
+
+        </div>
+
+
+
+        <div class="review-item">
+
+
+          <div class="review-icon">
+            $
+          </div>
+
+
+          <div class="review-info">
+
+            <div class="review-label">
+              Annual household income
+            </div>
+
+
+            <div class="review-value">
+
+              $${Number(
+                answers.income
+              ).toLocaleString()}
+
+            </div>
+
+          </div>
+
+
+          <button
+            class="edit-button"
+            onclick="showIncome()">
+
+            Edit
+
+          </button>
+
+
+        </div>
+
+
+
+        <div class="review-item">
+
+
+          <div class="review-icon">
+            💳
+          </div>
+
+
+          <div class="review-info">
+
+            <div class="review-label">
+              Monthly debt
+            </div>
+
+
+            <div class="review-value">
+
+              $${Number(
+                answers.debt
+              ).toLocaleString()}
+
+            </div>
+
+          </div>
+
+
+          <button
+            class="edit-button"
+            onclick="showDebt()">
+
+            Edit
+
+          </button>
+
+
+        </div>
+
+
+
+        <div class="review-item">
+
+
+          <div class="review-icon">
+            🏡
+          </div>
+
+
+          <div class="review-info">
+
+            <div class="review-label">
+              Property type
+            </div>
+
+
+            <div class="review-value">
+              ${answers.propertyType}
+            </div>
+
+          </div>
+
+
+          <button
+            class="edit-button"
+            onclick="showPropertyType()">
+
+            Edit
+
+          </button>
+
+
+        </div>
+
+
+      </div>
+
+
+      <div class="review-note">
+
+
+        <strong>
+          Your information isn't set in stone.
+        </strong>
+
+
+        <p>
+
+          Life changes, and your homebuying plans
+          can change with it. You can update your
+          information anytime in Settings.
+
+        </p>
+
+
+      </div>
+
+
+      <button
+        class="final-button"
+        onclick="enterAdvisor()">
+
+        Continue to My HomeBuy AI Advisor →
+
+      </button>
+
+
+      <div class="footer-note">
+
+        You make the decision.
+        We're here to help you make
+        a better one.
+
+      </div>
+
+
+    </div>
+
+  `;
+
+}
+
+
+
+/* ==========================================
+   EDIT HOMEOWNERSHIP
+========================================== */
+
+function editHomeStatus() {
+
+  showHomeStatus();
+
+}
+
+
+
+/* ==========================================
+   EDIT MILITARY
+========================================== */
+
+function editMilitary() {
+
+  showMilitaryQuestion();
+
+}
+
+
+
+/* ==========================================
+   ENTER APP
+========================================== */
+
+function enterAdvisor() {
+
+  updateProgress(
+    100,
+    8,
+    "Your Advisor"
+  );
+
+
+  app.innerHTML = `
+
+    <div class="screen">
+
+
+      <div class="success-icon"
+        style="
+          width:68px;
+          height:68px;
+          border-radius:50%;
+          background:linear-gradient(
+            135deg,
+            #0ca59b,
+            #16b8a7
+          );
+          color:white;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          margin:20px auto;
+          font-size:30px;
+        ">
+
+        ✓
+
+      </div>
+
+
+      <div class="eyebrow">
+        ✦ Welcome to HomeBuy AI
+      </div>
+
+
+      <h2>
+        Your Advisor is ready.
+      </h2>
+
+
+      <p class="subtitle">
+
+        Now we can start looking at what
+        actually makes sense for you.
+
+      </p>
+
+
+      <div class="info-card">
+
+        <div class="info-card-title">
+
+          Your next step
+
+        </div>
+
+
+        <p>
+
+          HomeBuy AI will help you understand
+          your comfortable price range, explore
+          potential programs, analyze properties,
+          and understand the financial tradeoffs
+          before you buy.
+
+        </p>
+
+      </div>
+
+
+      <button
+        class="final-button"
+        onclick="showReview()">
+
+        Review My Information
+
+      </button>
+
+
+      <div class="footer-note">
+
+        You can change your information
+        anytime in Settings.
+
+      </div>
+
+
+    </div>
+
+  `;
+
+}
+
+
+
+/* ==========================================
+   START OVER
+========================================== */
+
+function startOver() {
+
+  answers = {
+
+    homeStatus: "",
+
+    military: "",
+
+    militaryStatus: "",
+
+    location: "",
+
+    income: "",
+
+    debt: "",
+
+    propertyType: ""
+
+  };
+
+
+  showWelcome();
+
+}
+
+
+
+/* ==========================================
+   START
+========================================== */
+
+showWelcome();
+
 
 </script>
+
 
 </body>
 </html>
