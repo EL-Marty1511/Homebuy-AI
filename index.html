@@ -4,44 +4,76 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>HomeBuy AI</title>
+<title>HomeBuy AI | Your Homebuying Advisor</title>
 
 <style>
+
+/* =========================================================
+   HOMEBUY AI
+   COMPLETE WEBSITE STYLES
+========================================================= */
 
 :root {
     --blue: #2563eb;
     --blue-dark: #1d4ed8;
     --blue-light: #eff6ff;
+
     --purple: #7c3aed;
     --purple-light: #f5f3ff;
+
     --green: #16a34a;
     --green-light: #f0fdf4;
+
     --orange: #f97316;
     --orange-light: #fff7ed;
+
     --yellow: #eab308;
     --yellow-light: #fefce8;
+
     --red: #dc2626;
     --red-light: #fef2f2;
+
     --dark: #172033;
     --text: #334155;
     --muted: #64748b;
+
     --border: #e2e8f0;
     --background: #f6f8fc;
     --white: #ffffff;
 }
 
+
+/* =========================================================
+   RESET
+========================================================= */
+
 * {
     box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    background:
-        radial-gradient(circle at top left, #eaf2ff, transparent 35%),
-        radial-gradient(circle at top right, #f4edff, transparent 30%),
-        var(--background);
     color: var(--text);
+
+    background:
+        radial-gradient(
+            circle at top left,
+            #eaf2ff,
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at top right,
+            #f4edff,
+            transparent 30%
+        ),
+        var(--background);
+
+    min-height: 100vh;
 }
 
 button,
@@ -54,18 +86,29 @@ button {
     cursor: pointer;
 }
 
+
+/* =========================================================
+   HEADER
+========================================================= */
+
 .header {
-    background: rgba(255,255,255,.95);
-    border-bottom: 1px solid var(--border);
     position: sticky;
     top: 0;
-    z-index: 10;
+    z-index: 100;
+
+    background: rgba(255,255,255,0.96);
+
+    border-bottom: 1px solid var(--border);
+
+    backdrop-filter: blur(10px);
 }
 
 .header-inner {
     max-width: 1000px;
     margin: auto;
-    padding: 15px 20px;
+
+    padding: 14px 20px;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -80,544 +123,985 @@ button {
 .logo {
     width: 46px;
     height: 46px;
+
     border-radius: 14px;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     font-size: 25px;
-    background: linear-gradient(135deg, var(--blue), var(--purple));
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--blue),
+            var(--purple)
+        );
+
     color: white;
+
+    box-shadow:
+        0 8px 18px rgba(37,99,235,0.25);
 }
 
 .logo-text h1 {
     margin: 0;
+
     color: var(--dark);
+
     font-size: 19px;
 }
 
 .logo-text p {
     margin: 3px 0 0;
+
     color: var(--muted);
+
     font-size: 12px;
 }
 
 .ai-badge {
     background: var(--purple-light);
+
     color: var(--purple);
+
     padding: 8px 13px;
+
     border-radius: 30px;
+
     font-size: 12px;
+
     font-weight: bold;
 }
 
+
+/* =========================================================
+   MAIN
+========================================================= */
+
 .main {
     max-width: 900px;
+
     margin: auto;
-    padding: 28px 18px 70px;
+
+    padding:
+        28px
+        18px
+        80px;
 }
 
-.progress-area {
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.progress {
     margin-bottom: 25px;
 }
 
 .progress-info {
     display: flex;
     justify-content: space-between;
-    font-size: 13px;
-    font-weight: bold;
+
     color: var(--muted);
+
+    font-size: 13px;
+
+    font-weight: bold;
+
     margin-bottom: 8px;
 }
 
 .progress-bar {
     height: 8px;
+
     background: #e5eaf2;
+
     border-radius: 20px;
+
     overflow: hidden;
 }
 
 .progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--blue), var(--purple));
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--blue),
+            var(--purple)
+        );
+
     border-radius: 20px;
+
+    transition: width 0.3s ease;
 }
 
+
+/* =========================================================
+   CARDS
+========================================================= */
+
 .card {
-    background: white;
+    background: var(--white);
+
     border: 1px solid var(--border);
+
     border-radius: 24px;
-    box-shadow: 0 10px 30px rgba(15,23,42,.07);
+
+    box-shadow:
+        0 10px 30px rgba(15,23,42,0.07);
 }
+
+
+/* =========================================================
+   WELCOME
+========================================================= */
 
 .welcome {
     text-align: center;
-    padding: 45px 25px;
-    position: relative;
+
+    padding:
+        48px
+        25px;
+
     overflow: hidden;
 }
 
 .house {
-    font-size: 70px;
+    font-size: 72px;
+
     margin-bottom: 10px;
+
+    animation:
+        floatHouse 3s ease-in-out infinite;
+}
+
+@keyframes floatHouse {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+
 }
 
 .welcome h2 {
-    font-size: 42px;
     margin: 0;
+
     color: var(--dark);
+
+    font-size: 42px;
 }
 
 .gradient {
-    background: linear-gradient(90deg, var(--blue), var(--purple));
+    background:
+        linear-gradient(
+            90deg,
+            var(--blue),
+            var(--purple)
+        );
+
     -webkit-background-clip: text;
+
+    background-clip: text;
+
     color: transparent;
 }
 
 .welcome-description {
-    max-width: 650px;
-    margin: 15px auto;
-    line-height: 1.7;
+    max-width: 680px;
+
+    margin:
+        17px
+        auto;
+
     color: var(--muted);
+
+    line-height: 1.7;
+
     font-size: 16px;
 }
 
-.trust-box {
-    max-width: 700px;
-    margin: 25px auto;
-    padding: 20px;
-    border-radius: 18px;
-    background: linear-gradient(135deg, var(--blue-light), var(--purple-light));
+
+/* =========================================================
+   TRUST BOX
+========================================================= */
+
+.trust {
+    max-width: 720px;
+
+    margin:
+        28px
+        auto;
+
+    padding: 21px;
+
+    border-radius: 19px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--blue-light),
+            var(--purple-light)
+        );
+
     text-align: left;
-    line-height: 1.6;
+
+    line-height: 1.65;
+
     font-size: 14px;
+
+    border: 1px solid #dbeafe;
 }
+
+
+/* =========================================================
+   FEATURE CARDS
+========================================================= */
 
 .features {
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+
+    grid-template-columns:
+        repeat(3,1fr);
+
     gap: 12px;
-    margin: 25px 0;
+
+    margin:
+        26px
+        0;
 }
 
 .feature {
-    padding: 18px 12px;
-    border: 1px solid var(--border);
-    border-radius: 18px;
+    padding: 19px 13px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 19px;
+
+    background: white;
+
+    transition: 0.2s;
+}
+
+.feature:hover {
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 12px 25px rgba(15,23,42,0.08);
 }
 
 .feature-icon {
-    font-size: 28px;
+    font-size: 30px;
 }
 
 .feature strong {
     display: block;
-    margin-top: 7px;
+
+    margin-top: 8px;
+
     color: var(--dark);
 }
 
 .feature span {
     display: block;
-    margin-top: 5px;
+
+    margin-top: 6px;
+
     font-size: 12px;
+
     color: var(--muted);
+
+    line-height: 1.4;
 }
 
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
 .btn {
-    border: none;
+    border: 0;
+
     border-radius: 14px;
-    padding: 14px 22px;
+
+    padding:
+        14px
+        22px;
+
     font-weight: bold;
+
     font-size: 15px;
+
+    transition:
+        0.2s;
 }
 
 .primary {
-    background: linear-gradient(135deg, var(--blue), var(--purple));
+    background:
+        linear-gradient(
+            135deg,
+            var(--blue),
+            var(--purple)
+        );
+
     color: white;
-    box-shadow: 0 8px 20px rgba(37,99,235,.2);
+
+    box-shadow:
+        0 8px 20px rgba(37,99,235,0.22);
 }
 
 .primary:hover {
-    transform: translateY(-2px);
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 12px 25px rgba(37,99,235,0.30);
 }
 
 .secondary {
     background: white;
+
     color: var(--text);
-    border: 2px solid var(--border);
+
+    border:
+        2px solid var(--border);
 }
 
-.screen-title {
-    margin-bottom: 22px;
+.secondary:hover {
+    border-color: #bfdbfe;
+
+    background: #f8fafc;
+}
+
+
+/* =========================================================
+   PAGE TITLE
+========================================================= */
+
+.title {
+    margin-bottom: 23px;
 }
 
 .step {
     display: inline-block;
+
     background: var(--blue-light);
+
     color: var(--blue);
+
     border-radius: 30px;
-    padding: 7px 12px;
+
+    padding:
+        7px
+        12px;
+
     font-size: 12px;
+
     font-weight: bold;
+
     margin-bottom: 10px;
 }
 
-.screen-title h2 {
+.title h2 {
     margin: 0;
+
     color: var(--dark);
+
     font-size: 34px;
 }
 
-.screen-title p {
+.title p {
     color: var(--muted);
+
     line-height: 1.6;
+
     margin-top: 8px;
 }
 
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.form {
+    padding: 25px;
+}
+
 .section {
-    margin-bottom: 25px;
+    margin-bottom: 27px;
+}
+
+.section:last-child {
+    margin-bottom: 0;
 }
 
 .section-title {
     color: var(--dark);
-    font-size: 16px;
+
     font-weight: bold;
+
     margin-bottom: 12px;
 }
 
+
+/* =========================================================
+   OPTIONS
+========================================================= */
+
 .options {
     display: grid;
-    grid-template-columns: repeat(2,1fr);
+
+    grid-template-columns:
+        repeat(2,1fr);
+
     gap: 12px;
 }
 
 .option {
-    border: 2px solid var(--border);
+    border:
+        2px solid var(--border);
+
     background: white;
+
     border-radius: 18px;
+
     padding: 18px;
+
     text-align: left;
-    min-height: 95px;
-    transition: .2s;
+
+    min-height: 92px;
+
+    transition:
+        0.2s;
+
+    position: relative;
 }
 
 .option:hover {
     border-color: #93c5fd;
-    box-shadow: 0 8px 20px rgba(15,23,42,.07);
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(15,23,42,0.07);
 }
 
 .option.selected {
     border-color: var(--blue);
-    background: var(--blue-light);
+
+    background:
+        linear-gradient(
+            135deg,
+            #eff6ff,
+            #f5f3ff
+        );
+
+    box-shadow:
+        0 7px 18px rgba(37,99,235,0.10);
 }
 
-.option-icon {
+.icon {
     font-size: 28px;
+
     margin-bottom: 7px;
 }
 
-.option-title {
+.option strong {
     display: block;
-    font-weight: bold;
+
     color: var(--dark);
 }
 
-.option-description {
+.desc {
     display: block;
+
     font-size: 12px;
+
     color: var(--muted);
-    margin-top: 5px;
+
     line-height: 1.4;
+
+    margin-top: 5px;
 }
 
-.form-card {
-    padding: 24px;
-}
+
+/* =========================================================
+   INPUTS
+========================================================= */
 
 label {
     display: block;
+
     color: var(--dark);
+
     font-weight: bold;
+
     margin-bottom: 9px;
 }
 
 input,
 select {
     width: 100%;
+
     padding: 15px;
-    border: 2px solid var(--border);
+
+    border:
+        2px solid var(--border);
+
     border-radius: 14px;
+
     background: white;
+
     color: var(--dark);
+
     outline: none;
+
+    font-size: 15px;
 }
 
 input:focus,
 select:focus {
     border-color: var(--blue);
+
+    box-shadow:
+        0 0 0 4px rgba(37,99,235,0.07);
+}
+
+.input-group {
+    margin-bottom: 23px;
 }
 
 .help {
     color: var(--muted);
+
     font-size: 12px;
+
     margin-top: 6px;
 }
 
-.input-group {
-    margin-bottom: 22px;
-}
+
+/* =========================================================
+   INFO
+========================================================= */
 
 .info {
     background: var(--orange-light);
-    border: 1px solid #fed7aa;
-    padding: 17px;
+
+    border:
+        1px solid #fed7aa;
+
+    padding: 18px;
+
     border-radius: 17px;
+
     font-size: 13px;
+
     line-height: 1.6;
 }
 
-.navigation {
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.nav {
     display: flex;
-    justify-content: space-between;
+
+    justify-content:
+        space-between;
+
     gap: 12px;
+
     margin-top: 25px;
 }
 
+
+/* =========================================================
+   REVIEW
+========================================================= */
+
 .review {
     margin-bottom: 14px;
+
     overflow: hidden;
 }
 
-.review-header {
-    padding: 15px 18px;
-    background: #f8fafc;
+.review-head {
+    padding:
+        15px
+        18px;
+
+    background:
+        #f8fafc;
+
     display: flex;
-    justify-content: space-between;
+
+    justify-content:
+        space-between;
+
     align-items: center;
 }
 
-.review-header strong {
+.review-head strong {
     color: var(--dark);
 }
 
 .edit {
-    border: none;
+    border: 0;
+
     background: var(--blue-light);
+
     color: var(--blue);
-    padding: 7px 10px;
+
+    padding:
+        7px
+        10px;
+
     border-radius: 8px;
+
     font-weight: bold;
 }
 
 .review-body {
-    padding: 17px 18px;
+    padding:
+        17px
+        18px;
 }
 
-.review-row {
+.row {
     display: flex;
-    justify-content: space-between;
+
+    justify-content:
+        space-between;
+
     gap: 20px;
-    padding: 6px 0;
+
+    padding:
+        7px
+        0;
 }
 
-.review-row span {
+.row span {
     color: var(--muted);
 }
 
-.review-row strong {
+.row strong {
     color: var(--dark);
+
     text-align: right;
 }
 
-.dashboard-header {
-    background: linear-gradient(135deg, #172033, #334c7a);
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+.dash-head {
+    background:
+        linear-gradient(
+            135deg,
+            #172033,
+            #334c7a
+        );
+
     color: white;
-    padding: 30px;
+
+    padding: 31px;
+
     border-radius: 25px;
+
     margin-bottom: 18px;
-    position: relative;
-    overflow: hidden;
 }
 
-.dashboard-header h2 {
+.dash-head h2 {
     margin: 0;
+
     font-size: 31px;
 }
 
-.dashboard-header p {
+.dash-head p {
     color: #dbe5f4;
+
     line-height: 1.6;
-    max-width: 650px;
+
+    max-width: 680px;
 }
 
-.dashboard-grid {
+.dash-grid {
     display: grid;
-    grid-template-columns: repeat(2,1fr);
+
+    grid-template-columns:
+        repeat(2,1fr);
+
     gap: 14px;
 }
 
-.dashboard-card {
+.dash-card {
     background: white;
-    border: 1px solid var(--border);
+
+    border:
+        1px solid var(--border);
+
     border-radius: 22px;
+
     padding: 22px;
-    transition: .2s;
+
+    transition:
+        0.2s;
+
     position: relative;
 }
 
-.dashboard-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 35px rgba(15,23,42,.1);
+.dash-card:hover {
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 15px 35px rgba(15,23,42,0.10);
 }
 
-.dashboard-icon {
+.dash-icon {
     width: 55px;
+
     height: 55px;
+
     border-radius: 16px;
+
     display: flex;
-    justify-content: center;
+
     align-items: center;
+
+    justify-content: center;
+
     font-size: 28px;
+
     margin-bottom: 14px;
 }
 
 .blue-bg {
-    background: var(--blue-light);
+    background:
+        var(--blue-light);
 }
 
 .green-bg {
-    background: var(--green-light);
+    background:
+        var(--green-light);
 }
 
 .purple-bg {
-    background: var(--purple-light);
+    background:
+        var(--purple-light);
 }
 
 .orange-bg {
-    background: var(--orange-light);
+    background:
+        var(--orange-light);
 }
 
 .yellow-bg {
-    background: var(--yellow-light);
+    background:
+        var(--yellow-light);
 }
 
-.dashboard-card h3 {
+.dash-card h3 {
     margin: 0;
+
     color: var(--dark);
 }
 
-.dashboard-card p {
+.dash-card p {
     color: var(--muted);
+
     font-size: 13px;
+
     line-height: 1.6;
 }
 
-.card-link {
+.link {
     color: var(--blue);
+
     font-weight: bold;
+
     font-size: 13px;
 }
 
 .coming {
-    opacity: .75;
+    opacity: 0.75;
 }
 
 .badge {
     position: absolute;
+
     top: 15px;
+
     right: 15px;
-    background: #f1f5f9;
+
+    background:
+        #f1f5f9;
+
     color: var(--muted);
-    padding: 6px 8px;
+
+    padding:
+        6px
+        8px;
+
     border-radius: 20px;
+
     font-size: 9px;
+
     font-weight: bold;
 }
 
-.affordability {
-    padding: 28px;
-}
 
-.big-number {
-    font-size: 55px;
-    font-weight: 900;
-    color: var(--dark);
-    text-align: center;
+/* =========================================================
+   AFFORDABILITY
+========================================================= */
+
+.afford {
+    padding: 29px;
 }
 
 .center {
     text-align: center;
 }
 
+.big {
+    font-size: 54px;
+
+    font-weight: 900;
+
+    color: var(--dark);
+
+    margin:
+        8px
+        0;
+}
+
 .muted {
     color: var(--muted);
+
     font-size: 13px;
 }
 
 .metrics {
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+
+    grid-template-columns:
+        repeat(3,1fr);
+
     gap: 12px;
-    margin-top: 25px;
+
+    margin-top: 24px;
 }
 
 .metric {
-    background: #f8fafc;
+    background:
+        #f8fafc;
+
     border-radius: 16px;
+
     padding: 15px;
 }
 
 .metric small {
     display: block;
+
     color: var(--muted);
 }
 
 .metric strong {
     display: block;
+
     margin-top: 6px;
+
     color: var(--dark);
 }
 
-.ai-box {
-    background: linear-gradient(135deg, var(--purple-light), var(--blue-light));
-    border: 1px solid #ddd6fe;
+.ai {
+    background:
+        linear-gradient(
+            135deg,
+            var(--purple-light),
+            var(--blue-light)
+        );
+
+    border:
+        1px solid #ddd6fe;
+
     border-radius: 18px;
+
     padding: 20px;
+
     margin-top: 20px;
+
     line-height: 1.6;
 }
 
-.ai-title {
+.ai strong {
     color: var(--purple);
-    font-weight: bold;
 }
 
 .risk {
     text-align: center;
-    padding: 18px;
+
+    padding: 17px;
+
     border-radius: 17px;
+
     margin-top: 20px;
+
     font-weight: bold;
 }
 
-.green-risk {
-    background: var(--green-light);
-    color: var(--green);
+.risk-green {
+    background:
+        var(--green-light);
+
+    color:
+        var(--green);
 }
 
-.yellow-risk {
-    background: var(--yellow-light);
-    color: #a16207;
+.risk-yellow {
+    background:
+        var(--yellow-light);
+
+    color:
+        #a16207;
 }
 
-.red-risk {
-    background: var(--red-light);
-    color: var(--red);
+.risk-red {
+    background:
+        var(--red-light);
+
+    color:
+        var(--red);
 }
 
-@media(max-width:700px) {
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
 
     .main {
-        padding: 18px 12px 50px;
+        padding:
+            18px
+            12px
+            50px;
     }
 
     .ai-badge {
@@ -625,7 +1109,9 @@ select:focus {
     }
 
     .welcome {
-        padding: 35px 18px;
+        padding:
+            35px
+            18px;
     }
 
     .welcome h2 {
@@ -640,7 +1126,7 @@ select:focus {
         grid-template-columns: 1fr;
     }
 
-    .dashboard-grid {
+    .dash-grid {
         grid-template-columns: 1fr;
     }
 
@@ -648,32 +1134,42 @@ select:focus {
         grid-template-columns: 1fr;
     }
 
-    .navigation {
-        flex-direction: column-reverse;
+    .nav {
+        flex-direction:
+            column-reverse;
     }
 
-    .navigation .btn {
+    .nav .btn {
         width: 100%;
     }
 
-    .review-row {
-        flex-direction: column;
+    .row {
+        flex-direction:
+            column;
+
         gap: 3px;
     }
 
-    .review-row strong {
+    .row strong {
         text-align: left;
     }
 
-    .big-number {
+    .big {
         font-size: 42px;
     }
+
 }
 
 </style>
 </head>
 
+
 <body>
+
+
+<!-- ========================================================
+     HEADER
+========================================================= -->
 
 <header class="header">
 
@@ -686,8 +1182,15 @@ select:focus {
             </div>
 
             <div class="logo-text">
-                <h1>HomeBuy AI</h1>
-                <p>Your Homebuying Advisor</p>
+
+                <h1>
+                    HomeBuy AI
+                </h1>
+
+                <p>
+                    Your Homebuying Advisor
+                </p>
+
             </div>
 
         </div>
@@ -701,6 +1204,10 @@ select:focus {
 </header>
 
 
+<!-- ========================================================
+     APPLICATION
+========================================================= -->
+
 <main class="main">
 
     <div id="app"></div>
@@ -710,163 +1217,291 @@ select:focus {
 
 <script>
 
-/* =========================================
-   HOME BUY AI
-========================================= */
+/* =========================================================
+   HOMEBUY AI APPLICATION
+========================================================= */
+
+
+/* =========================================================
+   USER ANSWERS
+========================================================= */
 
 var answers = {
+
     homeStatus: "",
+
     military: "",
+
     militaryStatus: "",
+
     state: "",
+
     location: "",
+
     loanType: "",
+
     income: "",
+
     debt: "",
+
     savings: "",
+
     downPayment: "",
+
     creditScore: "",
+
     comfortablePayment: "",
+
     emergencySavings: "",
+
     propertyType: "",
+
     purchasePurpose: "",
+
     timeline: "",
+
     targetPrice: "",
+
     priorities: []
+
 };
 
-var step = 0;
+
+/* =========================================================
+   STATES
+========================================================= */
 
 var states = [
-    "Alabama","Alaska","Arizona","Arkansas","California",
-    "Colorado","Connecticut","Delaware","Florida","Georgia",
-    "Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas",
-    "Kentucky","Louisiana","Maine","Maryland","Massachusetts",
-    "Michigan","Minnesota","Mississippi","Missouri","Montana",
-    "Nebraska","Nevada","New Hampshire","New Jersey",
-    "New Mexico","New York","North Carolina","North Dakota",
-    "Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island",
-    "South Carolina","South Dakota","Tennessee","Texas","Utah",
-    "Vermont","Virginia","Washington","West Virginia",
-    "Wisconsin","Wyoming"
+
+    "Alabama",
+    "Alaska",
+    "Arizona",
+    "Arkansas",
+    "California",
+    "Colorado",
+    "Connecticut",
+    "Delaware",
+    "Florida",
+    "Georgia",
+    "Hawaii",
+    "Idaho",
+    "Illinois",
+    "Indiana",
+    "Iowa",
+    "Kansas",
+    "Kentucky",
+    "Louisiana",
+    "Maine",
+    "Maryland",
+    "Massachusetts",
+    "Michigan",
+    "Minnesota",
+    "Mississippi",
+    "Missouri",
+    "Montana",
+    "Nebraska",
+    "Nevada",
+    "New Hampshire",
+    "New Jersey",
+    "New Mexico",
+    "New York",
+    "North Carolina",
+    "North Dakota",
+    "Ohio",
+    "Oklahoma",
+    "Oregon",
+    "Pennsylvania",
+    "Rhode Island",
+    "South Carolina",
+    "South Dakota",
+    "Tennessee",
+    "Texas",
+    "Utah",
+    "Vermont",
+    "Virginia",
+    "Washington",
+    "West Virginia",
+    "Wisconsin",
+    "Wyoming"
+
 ];
 
-var app = document.getElementById("app");
 
-
-/* =========================================
+/* =========================================================
    STORAGE
-========================================= */
+========================================================= */
 
-function save() {
+function saveAnswers() {
 
     try {
+
         localStorage.setItem(
             "homebuyAIAnswers",
             JSON.stringify(answers)
         );
-    } catch(e) {}
+
+    } catch (error) {
+
+        console.log("Storage unavailable.");
+
+    }
 
 }
 
 
-function load() {
+function loadAnswers() {
 
     try {
 
         var saved =
-            localStorage.getItem("homebuyAIAnswers");
+            localStorage.getItem(
+                "homebuyAIAnswers"
+            );
 
-        if (saved) {
+        if (!saved) {
+            return;
+        }
 
-            var parsed =
-                JSON.parse(saved);
+        var parsed =
+            JSON.parse(saved);
 
-            for (var key in parsed) {
+        Object.keys(answers).forEach(
+            function(key) {
 
                 if (
-                    Object.prototype.hasOwnProperty.call(
-                        answers,
-                        key
-                    )
+                    parsed[key] !== undefined
                 ) {
 
-                    answers[key] = parsed[key];
+                    answers[key] =
+                        parsed[key];
 
                 }
 
             }
+        );
 
-        }
+    } catch (error) {
 
-    } catch(e) {}
+        console.log(
+            "Could not load saved answers."
+        );
+
+    }
 
 }
 
 
-load();
+loadAnswers();
 
 
-/* =========================================
-   ESCAPE
-========================================= */
+/* =========================================================
+   HTML SAFETY
+========================================================= */
 
-function safe(value) {
+function escapeHTML(value) {
 
-    if (value === null || value === undefined) {
+    if (
+        value === null ||
+        value === undefined
+    ) {
+
         return "";
+
     }
 
     return String(value)
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
 }
 
 
-/* =========================================
-   PROGRESS
-========================================= */
+/* =========================================================
+   APP ELEMENT
+========================================================= */
 
-function progress(number) {
+var app =
+    document.getElementById("app");
 
-    if (number === 0) {
+
+/* =========================================================
+   PROGRESS BAR
+========================================================= */
+
+function progress(step) {
+
+    if (step === 0) {
+
         return "";
+
     }
 
-    var percent =
-        Math.round((number / 8) * 100);
+    var percentage =
+        Math.round(
+            (step / 8) * 100
+        );
 
     return `
-        <div class="progress-area">
+
+        <div class="progress">
 
             <div class="progress-info">
-                <span>Your Homebuying Journey</span>
-                <span>${number} of 8</span>
+
+                <span>
+                    Your Homebuying Journey
+                </span>
+
+                <span>
+                    ${step} of 8
+                </span>
+
             </div>
 
             <div class="progress-bar">
 
                 <div
                     class="progress-fill"
-                    style="width:${percent}%"
+                    style="width:${percentage}%"
                 ></div>
 
             </div>
 
         </div>
+
     `;
+
 }
 
 
-/* =========================================
-   OPTION
-========================================= */
+/* =========================================================
+   OPTION BUTTON
+========================================================= */
 
 function option(
-    emoji,
+    icon,
     title,
     value,
     selected,
@@ -875,42 +1510,45 @@ function option(
 ) {
 
     return `
+
         <button
             type="button"
             class="option ${selected ? "selected" : ""}"
             onclick="${action}"
         >
 
-            <div class="option-icon">
-                ${emoji}
+            <div class="icon">
+                ${icon}
             </div>
 
-            <span class="option-title">
-                ${safe(title)}
-            </span>
+            <strong>
+                ${escapeHTML(title)}
+            </strong>
 
             ${
                 description
                 ?
-                `<span class="option-description">
-                    ${safe(description)}
-                </span>`
+                `
+                    <span class="desc">
+                        ${escapeHTML(description)}
+                    </span>
+                `
                 :
                 ""
             }
 
         </button>
+
     `;
+
 }
 
 
-/* =========================================
-   WELCOME
-========================================= */
+/* =========================================================
+   WELCOME SCREEN
+========================================================= */
 
 function welcome() {
-
-    step = 0;
 
     app.innerHTML = `
 
@@ -921,22 +1559,31 @@ function welcome() {
             </div>
 
             <h2>
+
                 Welcome to
+
                 <span class="gradient">
                     HomeBuy AI
                 </span>
+
             </h2>
 
             <p class="welcome-description">
-                Buying a home is one of the biggest financial
-                decisions you'll ever make. HomeBuy AI helps
-                you understand the numbers before you make it.
+
+                Buying a home is one of the biggest
+                financial decisions you will ever make.
+
+                HomeBuy AI helps you understand the
+                numbers before you make it.
+
             </p>
 
-            <div class="trust-box">
+
+            <div class="trust">
 
                 <strong>
-                    🤝 HomeBuy AI is here to help you get to the right professionals.
+                    🤝 HomeBuy AI is here to help you
+                    get to the right professionals.
                 </strong>
 
                 <br><br>
@@ -948,74 +1595,120 @@ function welcome() {
 
                 <br><br>
 
-                Instead, we'll help you understand when you
-                may need them, what questions to ask, and
-                eventually help you find professionals who
-                can assist you.
+                Instead, we help you understand when you
+                may need them, what questions to ask,
+                and eventually help you find professionals
+                who can assist you.
 
                 <br><br>
 
                 <strong>
-                    AI helps you prepare. Professionals help you complete the process. You make the decision.
+                    AI helps you prepare.
+                    Professionals help you complete
+                    the process.
+                    You make the decision.
                 </strong>
 
             </div>
 
+
             <div class="features">
 
                 <div class="feature">
-                    <div class="feature-icon">💰</div>
-                    <strong>Know Your Numbers</strong>
-                    <span>Understand what your home could really cost.</span>
+
+                    <div class="feature-icon">
+                        💰
+                    </div>
+
+                    <strong>
+                        Know Your Numbers
+                    </strong>
+
+                    <span>
+                        Understand what your home
+                        could really cost.
+                    </span>
+
                 </div>
 
-                <div class="feature">
-                    <div class="feature-icon">🧠</div>
-                    <strong>Make Better Decisions</strong>
-                    <span>See the financial tradeoffs before buying.</span>
-                </div>
 
                 <div class="feature">
-                    <div class="feature-icon">🤝</div>
-                    <strong>Find The Right Help</strong>
-                    <span>Connect with professionals when you need them.</span>
+
+                    <div class="feature-icon">
+                        🧠
+                    </div>
+
+                    <strong>
+                        Make Better Decisions
+                    </strong>
+
+                    <span>
+                        See financial tradeoffs
+                        before buying.
+                    </span>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        🤝
+                    </div>
+
+                    <strong>
+                        Find The Right Help
+                    </strong>
+
+                    <span>
+                        Connect with professionals
+                        when you need them.
+                    </span>
+
                 </div>
 
             </div>
 
+
             <button
                 class="btn primary"
-                onclick="start()"
+                onclick="startApp()"
             >
+
                 🚀 Let's Get Started
+
             </button>
 
         </div>
+
     `;
+
 }
 
 
-function start() {
+/* =========================================================
+   START APP
+========================================================= */
 
-    step = 1;
+function startApp() {
 
-    aboutYou();
+    showAboutYou();
+
 }
 
 
-/* =========================================
+/* =========================================================
+   STEP 1
    ABOUT YOU
-========================================= */
+========================================================= */
 
-function aboutYou() {
-
-    step = 1;
+function showAboutYou() {
 
     app.innerHTML = `
 
-        ${progress(step)}
+        ${progress(1)}
 
-        <div class="screen-title">
+        <div class="title">
 
             <div class="step">
                 👋 STEP 1
@@ -1026,13 +1719,15 @@ function aboutYou() {
             </h2>
 
             <p>
-                This helps us understand what type of
-                homebuying journey you're on.
+                This helps us understand what type
+                of homebuying journey you're on.
             </p>
 
         </div>
 
-        <div class="card form-card">
+
+        <div class="card form">
+
 
             <div class="section">
 
@@ -1042,36 +1737,40 @@ function aboutYou() {
 
                 <div class="options">
 
+
                     ${option(
                         "🌱",
                         "I'm a first-time buyer",
                         "first",
                         answers.homeStatus === "first",
-                        "homeStatus('first')",
+                        "selectHomeStatus('first')",
                         "I'm purchasing my first home."
                     )}
+
 
                     ${option(
                         "🏡",
                         "Yes, I've owned a home",
                         "previous",
                         answers.homeStatus === "previous",
-                        "homeStatus('previous')",
+                        "selectHomeStatus('previous')",
                         "I've owned a home before."
                     )}
+
 
                     ${option(
                         "🏘️",
                         "I own multiple properties",
                         "multiple",
                         answers.homeStatus === "multiple",
-                        "homeStatus('multiple')",
+                        "selectHomeStatus('multiple')",
                         "I'm looking at another property."
                     )}
 
                 </div>
 
             </div>
+
 
             <div class="section">
 
@@ -1081,21 +1780,23 @@ function aboutYou() {
 
                 <div class="options">
 
+
                     ${option(
                         "🇺🇸",
                         "Yes",
                         "yes",
                         answers.military === "yes",
-                        "military('yes')",
+                        "selectMilitary('yes')",
                         "We'll show military related pathways."
                     )}
+
 
                     ${option(
                         "🙂",
                         "No",
                         "no",
                         answers.military === "no",
-                        "military('no')",
+                        "selectMilitary('no')",
                         "We'll show other pathways."
                     )}
 
@@ -1103,39 +1804,79 @@ function aboutYou() {
 
             </div>
 
+
             ${
                 answers.military === "yes"
                 ?
                 `
-                <div class="section">
 
-                    <div class="section-title">
-                        🎖️ What is your military status?
+                    <div class="section">
+
+                        <div class="section-title">
+                            🎖️ What is your military status?
+                        </div>
+
+                        <div class="options">
+
+
+                            ${option(
+                                "🪖",
+                                "Active Duty",
+                                "active",
+                                answers.militaryStatus === "active",
+                                "selectMilitaryStatus('active')"
+                            )}
+
+
+                            ${option(
+                                "🇺🇸",
+                                "Reserve",
+                                "reserve",
+                                answers.militaryStatus === "reserve",
+                                "selectMilitaryStatus('reserve')"
+                            )}
+
+
+                            ${option(
+                                "⭐",
+                                "National Guard",
+                                "guard",
+                                answers.militaryStatus === "guard",
+                                "selectMilitaryStatus('guard')"
+                            )}
+
+
+                            ${option(
+                                "🎖️",
+                                "Veteran",
+                                "veteran",
+                                answers.militaryStatus === "veteran",
+                                "selectMilitaryStatus('veteran')"
+                            )}
+
+
+                            ${option(
+                                "🏅",
+                                "Retired Military",
+                                "retired",
+                                answers.militaryStatus === "retired",
+                                "selectMilitaryStatus('retired')"
+                            )}
+
+                        </div>
+
                     </div>
 
-                    <div class="options">
-
-                        ${option("🪖","Active Duty","active",answers.militaryStatus==="active","militaryStatus('active')")}
-
-                        ${option("🇺🇸","Reserve","reserve",answers.militaryStatus==="reserve","militaryStatus('reserve')")}
-
-                        ${option("⭐","National Guard","guard",answers.militaryStatus==="guard","militaryStatus('guard')")}
-
-                        ${option("🎖️","Veteran","veteran",answers.militaryStatus==="veteran","militaryStatus('veteran')")}
-
-                        ${option("🏅","Retired Military","retired",answers.militaryStatus==="retired","militaryStatus('retired')")}
-
-                    </div>
-
-                </div>
                 `
                 :
                 ""
             }
 
+
         </div>
 
-        <div class="navigation">
+
+        <div class="nav">
 
             <button
                 class="btn secondary"
@@ -1144,111 +1885,162 @@ function aboutYou() {
                 ← Back
             </button>
 
+
             <button
                 class="btn primary"
-                onclick="continueAbout()"
+                onclick="continueAboutYou()"
             >
                 Continue →
             </button>
 
         </div>
+
     `;
+
 }
 
 
-function homeStatus(value) {
+/* =========================================================
+   ABOUT YOU FUNCTIONS
+========================================================= */
 
-    answers.homeStatus = value;
+function selectHomeStatus(value) {
 
-    save();
+    answers.homeStatus =
+        value;
 
-    aboutYou();
+    saveAnswers();
+
+    showAboutYou();
+
 }
 
 
-function military(value) {
+function selectMilitary(value) {
 
-    answers.military = value;
+    answers.military =
+        value;
 
     if (value === "no") {
 
-        answers.militaryStatus = "";
+        answers.militaryStatus =
+            "";
 
-        if (answers.loanType === "VA") {
-            answers.loanType = "";
+        if (
+            answers.loanType === "VA"
+        ) {
+
+            answers.loanType =
+                "";
+
         }
 
     }
 
-    save();
+    saveAnswers();
 
-    aboutYou();
+    showAboutYou();
+
 }
 
 
-function militaryStatus(value) {
+function selectMilitaryStatus(value) {
 
-    answers.militaryStatus = value;
+    answers.militaryStatus =
+        value;
 
-    save();
+    saveAnswers();
 
-    aboutYou();
+    showAboutYou();
+
 }
 
 
-function continueAbout() {
+function continueAboutYou() {
 
     if (!answers.homeStatus) {
-        alert("Please select your homeownership status.");
+
+        alert(
+            "Please select your homeownership status."
+        );
+
         return;
+
     }
 
+
     if (!answers.military) {
-        alert("Please select whether you have served in the military.");
+
+        alert(
+            "Please select whether you have served in the military."
+        );
+
         return;
+
     }
+
 
     if (
         answers.military === "yes" &&
         !answers.militaryStatus
     ) {
-        alert("Please select your military status.");
+
+        alert(
+            "Please select your military status."
+        );
+
         return;
+
     }
 
-    locationScreen();
+
+    showLocation();
+
 }
 
 
-/* =========================================
+/* =========================================================
+   STEP 2
    LOCATION
-========================================= */
+========================================================= */
 
-function locationScreen() {
-
-    step = 2;
+function showLocation() {
 
     var stateOptions =
-        `<option value="">Select your state</option>`;
+        '<option value="">Select your state</option>';
 
-    for (var i = 0; i < states.length; i++) {
+
+    for (
+        var i = 0;
+        i < states.length;
+        i++
+    ) {
 
         stateOptions += `
+
             <option
-                value="${safe(states[i])}"
-                ${answers.state === states[i] ? "selected" : ""}
+                value="${escapeHTML(states[i])}"
+                ${
+                    answers.state === states[i]
+                    ?
+                    "selected"
+                    :
+                    ""
+                }
             >
-                ${safe(states[i])}
+                ${escapeHTML(states[i])}
             </option>
+
         `;
 
     }
 
+
     app.innerHTML = `
 
-        ${progress(step)}
+        ${progress(2)}
 
-        <div class="screen-title">
+        <div class="title">
 
             <div class="step">
                 📍 STEP 2
@@ -1259,13 +2051,16 @@ function locationScreen() {
             </h2>
 
             <p>
-                Location can affect taxes, insurance,
-                programs, and the true cost of owning a home.
+                Location can affect taxes,
+                insurance, programs, and the true
+                cost of owning a home.
             </p>
 
         </div>
 
-        <div class="card form-card">
+
+        <div class="card form">
+
 
             <div class="input-group">
 
@@ -1274,12 +2069,15 @@ function locationScreen() {
                 </label>
 
                 <select
-                    onchange="setState(this.value)"
+                    onchange="selectState(this.value)"
                 >
+
                     ${stateOptions}
+
                 </select>
 
             </div>
+
 
             <div class="input-group">
 
@@ -1289,46 +2087,53 @@ function locationScreen() {
 
                 <input
                     type="text"
-                    value="${safe(answers.location)}"
+                    value="${escapeHTML(answers.location)}"
                     placeholder="Example: Waukegan or 60085"
-                    oninput="setLocation(this.value)"
+                    oninput="updateLocation(this.value)"
                 >
 
             </div>
+
 
             ${
                 answers.state
                 ?
                 `
-                <div class="info">
 
-                    <strong>
-                        💡 Why do we ask for your state?
-                    </strong>
+                    <div class="info">
 
-                    <br>
+                        <strong>
+                            💡 Why do we ask for your state?
+                        </strong>
 
-                    Your state may offer benefits,
-                    grants, tax programs, down payment assistance,
-                    or other resources that could help during
-                    the homebuying process.
+                        <br>
 
-                </div>
+                        Your state may offer benefits,
+                        grants, tax programs, down payment
+                        assistance, or other resources
+                        that could help during the
+                        homebuying process.
+
+                    </div>
+
                 `
                 :
                 ""
             }
 
+
         </div>
 
-        <div class="navigation">
+
+        <div class="nav">
 
             <button
                 class="btn secondary"
-                onclick="aboutYou()"
+                onclick="showAboutYou()"
             >
                 ← Back
             </button>
+
 
             <button
                 class="btn primary"
@@ -1338,117 +2143,146 @@ function locationScreen() {
             </button>
 
         </div>
+
     `;
+
 }
 
 
-function setState(value) {
+function selectState(value) {
 
-    answers.state = value;
+    answers.state =
+        value;
 
-    save();
+    saveAnswers();
 
-    locationScreen();
+    showLocation();
+
 }
 
 
-function setLocation(value) {
+function updateLocation(value) {
 
-    answers.location = value;
+    answers.location =
+        value;
 
-    save();
+    saveAnswers();
+
 }
 
 
 function continueLocation() {
 
     if (!answers.state) {
-        alert("Please select your state.");
+
+        alert(
+            "Please select your state."
+        );
+
         return;
+
     }
 
-    if (!answers.location.trim()) {
-        alert("Please enter a city, county, or ZIP.");
+
+    if (
+        !answers.location.trim()
+    ) {
+
+        alert(
+            "Please enter a city, county, or ZIP."
+        );
+
         return;
+
     }
 
-    loanScreen();
+
+    showLoanType();
+
 }
 
 
-/* =========================================
-   LOAN
-========================================= */
+/* =========================================================
+   STEP 3
+   LOAN TYPE
+========================================================= */
 
-function loanScreen() {
-
-    step = 3;
+function showLoanType() {
 
     var html = "";
 
-    if (answers.military === "yes") {
+
+    if (
+        answers.military === "yes"
+    ) {
 
         html += option(
             "🪖",
             "VA Loan",
             "VA",
             answers.loanType === "VA",
-            "loan('VA')",
+            "selectLoan('VA')",
             "For eligible veterans and service members."
         );
 
     }
+
 
     html += option(
         "🏦",
         "FHA Loan",
         "FHA",
         answers.loanType === "FHA",
-        "loan('FHA')",
+        "selectLoan('FHA')",
         "A common option with lower down payment requirements."
     );
+
 
     html += option(
         "🏠",
         "Conventional Loan",
         "Conventional",
         answers.loanType === "Conventional",
-        "loan('Conventional')",
+        "selectLoan('Conventional')",
         "A common home loan offered by private lenders."
     );
+
 
     html += option(
         "🌾",
         "USDA Loan",
         "USDA",
         answers.loanType === "USDA",
-        "loan('USDA')",
+        "selectLoan('USDA')",
         "May be available for eligible properties."
     );
+
 
     html += option(
         "💵",
         "Cash",
         "Cash",
         answers.loanType === "Cash",
-        "loan('Cash')",
+        "selectLoan('Cash')",
         "Purchasing without a mortgage."
     );
+
 
     html += option(
         "🤔",
         "I'm Not Sure",
         "Not Sure",
         answers.loanType === "Not Sure",
-        "loan('Not Sure')",
+        "selectLoan('Not Sure')",
         "That's okay. We'll help you understand your options."
     );
 
+
     app.innerHTML = `
 
-        ${progress(step)}
+        ${progress(3)}
 
-        <div class="screen-title">
+        <div class="title">
 
             <div class="step">
                 💳 STEP 3
@@ -1465,82 +2299,109 @@ function loanScreen() {
 
         </div>
 
+
         <div class="options">
+
             ${html}
+
         </div>
 
-        <div class="navigation">
+
+        <div class="nav">
 
             <button
                 class="btn secondary"
-                onclick="locationScreen()"
+                onclick="showLocation()"
             >
                 ← Back
             </button>
 
+
             <button
                 class="btn primary"
-                onclick="continueLoan()"
+                onclick="continueLoanType()"
             >
                 Continue →
             </button>
 
         </div>
+
     `;
+
 }
 
 
-function loan(value) {
+function selectLoan(value) {
 
     if (
         value === "VA" &&
         answers.military !== "yes"
     ) {
+
         return;
+
     }
 
-    answers.loanType = value;
 
-    save();
+    answers.loanType =
+        value;
 
-    loanScreen();
+    saveAnswers();
+
+    showLoanType();
+
 }
 
 
-function continueLoan() {
+function continueLoanType() {
 
     if (!answers.loanType) {
-        alert("Please select a loan option.");
+
+        alert(
+            "Please select a loan option."
+        );
+
         return;
+
     }
+
 
     if (
         answers.loanType === "VA" &&
         answers.military !== "yes"
     ) {
-        answers.loanType = "";
-        save();
-        alert("VA loans are only available through this pathway when military service is selected.");
+
+        answers.loanType =
+            "";
+
+        saveAnswers();
+
+        alert(
+            "VA loans require military service to be selected."
+        );
+
         return;
+
     }
 
-    incomeScreen();
+
+    showIncome();
+
 }
 
 
-/* =========================================
+/* =========================================================
+   STEP 4
    INCOME
-========================================= */
+========================================================= */
 
-function incomeScreen() {
-
-    step = 4;
+function showIncome() {
 
     app.innerHTML = `
 
-        ${progress(step)}
+        ${progress(4)}
 
-        <div class="screen-title">
+        <div class="title">
 
             <div class="step">
                 💼 STEP 4
@@ -1551,13 +2412,16 @@ function incomeScreen() {
             </h2>
 
             <p>
-                This helps HomeBuy AI understand what
-                monthly payment may fit your lifestyle.
+                This helps HomeBuy AI understand
+                what monthly payment may fit
+                your lifestyle.
             </p>
 
         </div>
 
-        <div class="card form-card">
+
+        <div class="card form">
+
 
             <div class="input-group">
 
@@ -1568,16 +2432,18 @@ function incomeScreen() {
                 <input
                     type="number"
                     min="0"
-                    value="${safe(answers.income)}"
+                    value="${escapeHTML(answers.income)}"
                     placeholder="Example: 85000"
-                    oninput="setIncome(this.value)"
+                    oninput="updateIncome(this.value)"
                 >
 
                 <div class="help">
-                    Include the household income you expect to use when buying.
+                    Include the household income you
+                    expect to use when buying.
                 </div>
 
             </div>
+
 
             <div class="input-group">
 
@@ -1588,9 +2454,9 @@ function incomeScreen() {
                 <input
                     type="number"
                     min="0"
-                    value="${safe(answers.debt)}"
+                    value="${escapeHTML(answers.debt)}"
                     placeholder="Example: 800"
-                    oninput="setDebt(this.value)"
+                    oninput="updateDebt(this.value)"
                 >
 
                 <div class="help">
@@ -1600,16 +2466,19 @@ function incomeScreen() {
 
             </div>
 
+
         </div>
 
-        <div class="navigation">
+
+        <div class="nav">
 
             <button
                 class="btn secondary"
-                onclick="loanScreen()"
+                onclick="showLoanType()"
             >
                 ← Back
             </button>
+
 
             <button
                 class="btn primary"
@@ -1619,55 +2488,73 @@ function incomeScreen() {
             </button>
 
         </div>
+
     `;
+
 }
 
 
-function setIncome(value) {
+function updateIncome(value) {
 
-    answers.income = value;
+    answers.income =
+        value;
 
-    save();
+    saveAnswers();
+
 }
 
 
-function setDebt(value) {
+function updateDebt(value) {
 
-    answers.debt = value;
+    answers.debt =
+        value;
 
-    save();
+    saveAnswers();
+
 }
 
 
 function continueIncome() {
 
     if (!answers.income) {
-        alert("Please enter your annual household income.");
+
+        alert(
+            "Please enter your annual household income."
+        );
+
         return;
+
     }
+
 
     if (answers.debt === "") {
-        alert("Please enter your monthly debt payments. Enter 0 if you have none.");
+
+        alert(
+            "Please enter your monthly debt payments. Enter 0 if you have none."
+        );
+
         return;
+
     }
 
-    moneyScreen();
+
+    showMoney();
+
 }
 
 
-/* =========================================
+/* =========================================================
+   STEP 5
    MONEY
-========================================= */
+========================================================= */
 
-function moneyScreen() {
-
-    step = 5;
+function showMoney() {
 
     app.innerHTML = `
 
-        ${progress(step)}
+        ${progress(5)}
 
-        <div class="screen-title">
+        <div class="title">
 
             <div class="step">
                 💵 STEP 5
@@ -1684,7 +2571,9 @@ function moneyScreen() {
 
         </div>
 
-        <div class="card form-card">
+
+        <div class="card form">
+
 
             <div class="section">
 
@@ -1692,58 +2581,149 @@ function moneyScreen() {
                     💰 How much do you have saved?
                 </div>
 
+
                 <div class="options">
 
-                    ${option("💵","Under $5,000","under5",answers.savings==="under5","savings('under5')")}
 
-                    ${option("💵","$5,000 to $9,999","5to10",answers.savings==="5to10","savings('5to10')")}
+                    ${option(
+                        "💵",
+                        "Under $5,000",
+                        "under5",
+                        answers.savings === "under5",
+                        "selectSavings('under5')"
+                    )}
 
-                    ${option("💰","$10,000 to $19,999","10to20",answers.savings==="10to20","savings('10to20')")}
 
-                    ${option("💰","$20,000 to $39,999","20to40",answers.savings==="20to40","savings('20to40')")}
+                    ${option(
+                        "💵",
+                        "$5,000 to $9,999",
+                        "5to10",
+                        answers.savings === "5to10",
+                        "selectSavings('5to10')"
+                    )}
 
-                    ${option("💎","$40,000 to $74,999","40to75",answers.savings==="40to75","savings('40to75')")}
 
-                    ${option("💎","$75,000+","75plus",answers.savings==="75plus","savings('75plus')")}
+                    ${option(
+                        "💰",
+                        "$10,000 to $19,999",
+                        "10to20",
+                        answers.savings === "10to20",
+                        "selectSavings('10to20')"
+                    )}
 
-                    ${option("🤔","I'm not sure","unknown",answers.savings==="unknown","savings('unknown')")}
+
+                    ${option(
+                        "💰",
+                        "$20,000 to $39,999",
+                        "20to40",
+                        answers.savings === "20to40",
+                        "selectSavings('20to40')"
+                    )}
+
+
+                    ${option(
+                        "💎",
+                        "$40,000 to $74,999",
+                        "40to75",
+                        answers.savings === "40to75",
+                        "selectSavings('40to75')"
+                    )}
+
+
+                    ${option(
+                        "💎",
+                        "$75,000+",
+                        "75plus",
+                        answers.savings === "75plus",
+                        "selectSavings('75plus')"
+                    )}
+
+
+                    ${option(
+                        "🤔",
+                        "I'm not sure",
+                        "unknown",
+                        answers.savings === "unknown",
+                        "selectSavings('unknown')"
+                    )}
 
                 </div>
 
             </div>
+
 
             <div class="section">
 
                 <div class="section-title">
-                    🏦 How much are you planning to put toward the purchase?
+                    🏦 How much are you planning
+                    to put toward the purchase?
                 </div>
+
 
                 <div class="options">
 
-                    ${option("💵","Under $10,000","under10",answers.downPayment==="under10","downPayment('under10')")}
 
-                    ${option("💰","$10,000 to $24,999","10to25",answers.downPayment==="10to25","downPayment('10to25')")}
+                    ${option(
+                        "💵",
+                        "Under $10,000",
+                        "under10",
+                        answers.downPayment === "under10",
+                        "selectDownPayment('under10')"
+                    )}
 
-                    ${option("💰","$25,000 to $49,999","25to50",answers.downPayment==="25to50","downPayment('25to50')")}
 
-                    ${option("💎","$50,000+","50plus",answers.downPayment==="50plus","downPayment('50plus')")}
+                    ${option(
+                        "💰",
+                        "$10,000 to $24,999",
+                        "10to25",
+                        answers.downPayment === "10to25",
+                        "selectDownPayment('10to25')"
+                    )}
 
-                    ${option("🤔","I'm not sure","unknown",answers.downPayment==="unknown","downPayment('unknown')")}
+
+                    ${option(
+                        "💰",
+                        "$25,000 to $49,999",
+                        "25to50",
+                        answers.downPayment === "25to50",
+                        "selectDownPayment('25to50')"
+                    )}
+
+
+                    ${option(
+                        "💎",
+                        "$50,000+",
+                        "50plus",
+                        answers.downPayment === "50plus",
+                        "selectDownPayment('50plus')"
+                    )}
+
+
+                    ${option(
+                        "🤔",
+                        "I'm not sure",
+                        "unknown",
+                        answers.downPayment === "unknown",
+                        "selectDownPayment('unknown')"
+                    )}
 
                 </div>
 
             </div>
 
+
         </div>
 
-        <div class="navigation">
+
+        <div class="nav">
 
             <button
                 class="btn secondary"
-                onclick="incomeScreen()"
+                onclick="showIncome()"
             >
                 ← Back
             </button>
+
 
             <button
                 class="btn primary"
@@ -1753,59 +2733,77 @@ function moneyScreen() {
             </button>
 
         </div>
+
     `;
+
 }
 
 
-function savings(value) {
+function selectSavings(value) {
 
-    answers.savings = value;
+    answers.savings =
+        value;
 
-    save();
+    saveAnswers();
 
-    moneyScreen();
+    showMoney();
+
 }
 
 
-function downPayment(value) {
+function selectDownPayment(value) {
 
-    answers.downPayment = value;
+    answers.downPayment =
+        value;
 
-    save();
+    saveAnswers();
 
-    moneyScreen();
+    showMoney();
+
 }
 
 
 function continueMoney() {
 
     if (!answers.savings) {
-        alert("Please select your savings range.");
+
+        alert(
+            "Please select your savings range."
+        );
+
         return;
+
     }
+
 
     if (!answers.downPayment) {
-        alert("Please select your down payment range.");
+
+        alert(
+            "Please select your down payment range."
+        );
+
         return;
+
     }
 
-    comfortScreen();
+
+    showComfortZone();
+
 }
 
 
-/* =========================================
-   COMFORT
-========================================= */
+/* =========================================================
+   STEP 6
+   COMFORT ZONE
+========================================================= */
 
-function comfortScreen() {
-
-    step = 6;
+function showComfortZone() {
 
     app.innerHTML = `
 
-        ${progress(step)}
+        ${progress(6)}
 
-        <div class="screen-title">
+        <div class="title">
 
             <div class="step">
                 ❤️ STEP 6
@@ -1822,7 +2820,9 @@ function comfortScreen() {
 
         </div>
 
-        <div class="card form-card">
+
+        <div class="card form">
+
 
             <div class="section">
 
@@ -1830,25 +2830,76 @@ function comfortScreen() {
                     🏠 Comfortable monthly housing payment
                 </div>
 
+
                 <div class="options">
 
-                    ${option("🏠","Under $1,500","under1500",answers.comfortablePayment==="under1500","comfort('under1500')")}
 
-                    ${option("🏠","$1,500 to $1,999","1500to1999",answers.comfortablePayment==="1500to1999","comfort('1500to1999')")}
+                    ${option(
+                        "🏠",
+                        "Under $1,500",
+                        "under1500",
+                        answers.comfortablePayment === "under1500",
+                        "selectComfort('under1500')"
+                    )}
 
-                    ${option("🏡","$2,000 to $2,499","2000to2499",answers.comfortablePayment==="2000to2499","comfort('2000to2499')")}
 
-                    ${option("🏡","$2,500 to $2,999","2500to2999",answers.comfortablePayment==="2500to2999","comfort('2500to2999')")}
+                    ${option(
+                        "🏠",
+                        "$1,500 to $1,999",
+                        "1500to1999",
+                        answers.comfortablePayment === "1500to1999",
+                        "selectComfort('1500to1999')"
+                    )}
 
-                    ${option("🏠","$3,000 to $3,499","3000to3499",answers.comfortablePayment==="3000to3499","comfort('3000to3499')")}
 
-                    ${option("💎","$3,500+","3500plus",answers.comfortablePayment==="3500plus","comfort('3500plus')")}
+                    ${option(
+                        "🏡",
+                        "$2,000 to $2,499",
+                        "2000to2499",
+                        answers.comfortablePayment === "2000to2499",
+                        "selectComfort('2000to2499')"
+                    )}
 
-                    ${option("🤔","I'm not sure","unknown",answers.comfortablePayment==="unknown","comfort('unknown')")}
+
+                    ${option(
+                        "🏡",
+                        "$2,500 to $2,999",
+                        "2500to2999",
+                        answers.comfortablePayment === "2500to2999",
+                        "selectComfort('2500to2999')"
+                    )}
+
+
+                    ${option(
+                        "🏠",
+                        "$3,000 to $3,499",
+                        "3000to3499",
+                        answers.comfortablePayment === "3000to3499",
+                        "selectComfort('3000to3499')"
+                    )}
+
+
+                    ${option(
+                        "💎",
+                        "$3,500+",
+                        "3500plus",
+                        answers.comfortablePayment === "3500plus",
+                        "selectComfort('3500plus')"
+                    )}
+
+
+                    ${option(
+                        "🤔",
+                        "I'm not sure",
+                        "unknown",
+                        answers.comfortablePayment === "unknown",
+                        "selectComfort('unknown')"
+                    )}
 
                 </div>
 
             </div>
+
 
             <div class="section">
 
@@ -1856,25 +2907,76 @@ function comfortScreen() {
                     📊 Approximate credit score
                 </div>
 
+
                 <div class="options">
 
-                    ${option("⭐","760+","760",answers.creditScore==="760","credit('760')")}
 
-                    ${option("⭐","740 to 759","740",answers.creditScore==="740","credit('740')")}
+                    ${option(
+                        "⭐",
+                        "760+",
+                        "760",
+                        answers.creditScore === "760",
+                        "selectCredit('760')"
+                    )}
 
-                    ${option("👍","700 to 739","700",answers.creditScore==="700","credit('700')")}
 
-                    ${option("👍","660 to 699","660",answers.creditScore==="660","credit('660')")}
+                    ${option(
+                        "⭐",
+                        "740 to 759",
+                        "740",
+                        answers.creditScore === "740",
+                        "selectCredit('740')"
+                    )}
 
-                    ${option("📈","620 to 659","620",answers.creditScore==="620","credit('620')")}
 
-                    ${option("⚠️","Below 620","below620",answers.creditScore==="below620","credit('below620')")}
+                    ${option(
+                        "👍",
+                        "700 to 739",
+                        "700",
+                        answers.creditScore === "700",
+                        "selectCredit('700')"
+                    )}
 
-                    ${option("🤔","I don't know","unknown",answers.creditScore==="unknown","credit('unknown')")}
+
+                    ${option(
+                        "👍",
+                        "660 to 699",
+                        "660",
+                        answers.creditScore === "660",
+                        "selectCredit('660')"
+                    )}
+
+
+                    ${option(
+                        "📈",
+                        "620 to 659",
+                        "620",
+                        answers.creditScore === "620",
+                        "selectCredit('620')"
+                    )}
+
+
+                    ${option(
+                        "⚠️",
+                        "Below 620",
+                        "below620",
+                        answers.creditScore === "below620",
+                        "selectCredit('below620')"
+                    )}
+
+
+                    ${option(
+                        "🤔",
+                        "I don't know",
+                        "unknown",
+                        answers.creditScore === "unknown",
+                        "selectCredit('unknown')"
+                    )}
 
                 </div>
 
             </div>
+
 
             <div class="section">
 
@@ -1882,32 +2984,71 @@ function comfortScreen() {
                     🛟 Emergency savings after buying
                 </div>
 
+
                 <div class="options">
 
-                    ${option("🪙","Less than $5,000","under5",answers.emergencySavings==="under5","emergency('under5')")}
 
-                    ${option("💵","$5,000 to $9,999","5to10",answers.emergencySavings==="5to10","emergency('5to10')")}
+                    ${option(
+                        "🪙",
+                        "Less than $5,000",
+                        "under5",
+                        answers.emergencySavings === "under5",
+                        "selectEmergency('under5')"
+                    )}
 
-                    ${option("💰","$10,000 to $19,999","10to20",answers.emergencySavings==="10to20","emergency('10to20')")}
 
-                    ${option("💎","$20,000+","20plus",answers.emergencySavings==="20plus","emergency('20plus')")}
+                    ${option(
+                        "💵",
+                        "$5,000 to $9,999",
+                        "5to10",
+                        answers.emergencySavings === "5to10",
+                        "selectEmergency('5to10')"
+                    )}
 
-                    ${option("🤔","I'm not sure","unknown",answers.emergencySavings==="unknown","emergency('unknown')")}
+
+                    ${option(
+                        "💰",
+                        "$10,000 to $19,999",
+                        "10to20",
+                        answers.emergencySavings === "10to20",
+                        "selectEmergency('10to20')"
+                    )}
+
+
+                    ${option(
+                        "💎",
+                        "$20,000+",
+                        "20plus",
+                        answers.emergencySavings === "20plus",
+                        "selectEmergency('20plus')"
+                    )}
+
+
+                    ${option(
+                        "🤔",
+                        "I'm not sure",
+                        "unknown",
+                        answers.emergencySavings === "unknown",
+                        "selectEmergency('unknown')"
+                    )}
 
                 </div>
 
             </div>
 
+
         </div>
 
-        <div class="navigation">
+
+        <div class="nav">
 
             <button
                 class="btn secondary"
-                onclick="moneyScreen()"
+                onclick="showMoney()"
             >
                 ← Back
             </button>
+
 
             <button
                 class="btn primary"
@@ -1917,74 +3058,100 @@ function comfortScreen() {
             </button>
 
         </div>
+
     `;
+
 }
 
 
-function comfort(value) {
+function selectComfort(value) {
 
-    answers.comfortablePayment = value;
+    answers.comfortablePayment =
+        value;
 
-    save();
+    saveAnswers();
 
-    comfortScreen();
+    showComfortZone();
+
 }
 
 
-function credit(value) {
+function selectCredit(value) {
 
-    answers.creditScore = value;
+    answers.creditScore =
+        value;
 
-    save();
+    saveAnswers();
 
-    comfortScreen();
+    showComfortZone();
+
 }
 
 
-function emergency(value) {
+function selectEmergency(value) {
 
-    answers.emergencySavings = value;
+    answers.emergencySavings =
+        value;
 
-    save();
+    saveAnswers();
 
-    comfortScreen();
+    showComfortZone();
+
 }
 
 
 function continueComfort() {
 
     if (!answers.comfortablePayment) {
-        alert("Please select your comfortable monthly payment.");
+
+        alert(
+            "Please select your comfortable monthly payment."
+        );
+
         return;
+
     }
+
 
     if (!answers.creditScore) {
-        alert("Please select your approximate credit score.");
+
+        alert(
+            "Please select your approximate credit score."
+        );
+
         return;
+
     }
+
 
     if (!answers.emergencySavings) {
-        alert("Please select your emergency savings.");
+
+        alert(
+            "Please select your emergency savings."
+        );
+
         return;
+
     }
 
-    homeScreen();
+
+    showHomePlan();
+
 }
 
 
-/* =========================================
-   HOME
-========================================= */
+/* =========================================================
+   STEP 7
+   HOME PLAN
+========================================================= */
 
-function homeScreen() {
-
-    step = 7;
+function showHomePlan() {
 
     app.innerHTML = `
 
-        ${progress(step)}
+        ${progress(7)}
 
-        <div class="screen-title">
+        <div class="title">
 
             <div class="step">
                 🏡 STEP 7
@@ -1995,53 +3162,117 @@ function homeScreen() {
             </h2>
 
             <p>
-                Help us understand what you're trying
-                to accomplish with the purchase.
+                Help us understand what you're
+                trying to accomplish with the purchase.
             </p>
 
         </div>
 
-        <div class="card form-card">
+
+        <div class="card form">
+
 
             <div class="section">
 
                 <div class="section-title">
-                    🏠 What type of property are you looking for?
+                    🏠 What type of property
+                    are you looking for?
                 </div>
+
 
                 <div class="options">
 
-                    ${option("🏡","Single Family Home","single",answers.propertyType==="single","propertyType('single')")}
 
-                    ${option("🏘️","Multi Family Home","multi",answers.propertyType==="multi","propertyType('multi')")}
+                    ${option(
+                        "🏡",
+                        "Single Family Home",
+                        "single",
+                        answers.propertyType === "single",
+                        "selectPropertyType('single')"
+                    )}
 
-                    ${option("🏢","Condo","condo",answers.propertyType==="condo","propertyType('condo')")}
 
-                    ${option("🌳","Land","land",answers.propertyType==="land","propertyType('land')")}
+                    ${option(
+                        "🏘️",
+                        "Multi Family Home",
+                        "multi",
+                        answers.propertyType === "multi",
+                        "selectPropertyType('multi')"
+                    )}
+
+
+                    ${option(
+                        "🏢",
+                        "Condo",
+                        "condo",
+                        answers.propertyType === "condo",
+                        "selectPropertyType('condo')"
+                    )}
+
+
+                    ${option(
+                        "🌳",
+                        "Land",
+                        "land",
+                        answers.propertyType === "land",
+                        "selectPropertyType('land')"
+                    )}
 
                 </div>
 
             </div>
 
+
             <div class="section">
 
                 <div class="section-title">
-                    🎯 What are you planning to use the property for?
+                    🎯 What are you planning
+                    to use the property for?
                 </div>
+
 
                 <div class="options">
 
-                    ${option("🏠","My primary home","primary",answers.purchasePurpose==="primary","purpose('primary')")}
 
-                    ${option("💰","Investment property","investment",answers.purchasePurpose==="investment","purpose('investment')")}
+                    ${option(
+                        "🏠",
+                        "My primary home",
+                        "primary",
+                        answers.purchasePurpose === "primary",
+                        "selectPurpose('primary')"
+                    )}
 
-                    ${option("🌴","Second or vacation home","vacation",answers.purchasePurpose==="vacation","purpose('vacation')")}
 
-                    ${option("🏗️","Land to build on","build",answers.purchasePurpose==="build","purpose('build')")}
+                    ${option(
+                        "💰",
+                        "Investment property",
+                        "investment",
+                        answers.purchasePurpose === "investment",
+                        "selectPurpose('investment')"
+                    )}
+
+
+                    ${option(
+                        "🌴",
+                        "Second or vacation home",
+                        "vacation",
+                        answers.purchasePurpose === "vacation",
+                        "selectPurpose('vacation')"
+                    )}
+
+
+                    ${option(
+                        "🏗️",
+                        "Land to build on",
+                        "build",
+                        answers.purchasePurpose === "build",
+                        "selectPurpose('build')"
+                    )}
 
                 </div>
 
             </div>
+
 
             <div class="section">
 
@@ -2049,38 +3280,87 @@ function homeScreen() {
                     ⏰ When are you planning to buy?
                 </div>
 
+
                 <div class="options">
 
-                    ${option("🚀","Within 3 months","3months",answers.timeline==="3months","timeline('3months')")}
 
-                    ${option("📅","3 to 6 months","6months",answers.timeline==="6months","timeline('6months')")}
+                    ${option(
+                        "🚀",
+                        "Within 3 months",
+                        "3months",
+                        answers.timeline === "3months",
+                        "selectTimeline('3months')"
+                    )}
 
-                    ${option("🗓️","6 to 12 months","12months",answers.timeline==="12months","timeline('12months')")}
 
-                    ${option("🌱","1 to 2 years","2years",answers.timeline==="2years","timeline('2years')")}
+                    ${option(
+                        "📅",
+                        "3 to 6 months",
+                        "6months",
+                        answers.timeline === "6months",
+                        "selectTimeline('6months')"
+                    )}
 
-                    ${option("🔭","More than 2 years","more2",answers.timeline==="more2","timeline('more2')")}
 
-                    ${option("👀","I'm just exploring","exploring",answers.timeline==="exploring","timeline('exploring')")}
+                    ${option(
+                        "🗓️",
+                        "6 to 12 months",
+                        "12months",
+                        answers.timeline === "12months",
+                        "selectTimeline('12months')"
+                    )}
+
+
+                    ${option(
+                        "🌱",
+                        "1 to 2 years",
+                        "2years",
+                        answers.timeline === "2years",
+                        "selectTimeline('2years')"
+                    )}
+
+
+                    ${option(
+                        "🔭",
+                        "More than 2 years",
+                        "more2",
+                        answers.timeline === "more2",
+                        "selectTimeline('more2')"
+                    )}
+
+
+                    ${option(
+                        "👀",
+                        "I'm just exploring",
+                        "exploring",
+                        answers.timeline === "exploring",
+                        "selectTimeline('exploring')"
+                    )}
 
                 </div>
 
             </div>
 
+
             <div class="section">
 
                 <div class="section-title">
-                    💵 Do you have a home price you're currently targeting?
+
+                    💵 Do you have a home price
+                    you're currently targeting?
+
                 </div>
+
 
                 <input
                     id="targetPrice"
                     type="number"
                     min="0"
-                    value="${safe(answers.targetPrice)}"
+                    value="${escapeHTML(answers.targetPrice)}"
                     placeholder="Example: 300000"
-                    oninput="targetPrice(this.value)"
+                    oninput="updateTargetPrice(this.value)"
                 >
+
 
                 <div class="help">
                     Optional. You can change this later.
@@ -2088,213 +3368,349 @@ function homeScreen() {
 
             </div>
 
+
             <div class="section">
 
                 <div class="section-title">
                     ❤️ What matters most to you?
                 </div>
 
-                <div class="help" style="margin-bottom:12px;">
+
+                <div class="help"
+                     style="margin-bottom:12px;">
+
                     Choose as many as you want.
+
                 </div>
+
 
                 <div class="options">
 
-                    ${priority("💵","Lowest monthly payment","payment")}
 
-                    ${priority("💰","Lowest upfront cost","upfront")}
+                    ${priority(
+                        "💵",
+                        "Lowest monthly payment",
+                        "payment"
+                    )}
 
-                    ${priority("🏡","Larger home","larger")}
 
-                    ${priority("📍","Better neighborhood","neighborhood")}
+                    ${priority(
+                        "💰",
+                        "Lowest upfront cost",
+                        "upfront"
+                    )}
 
-                    ${priority("🚗","Shorter commute","commute")}
 
-                    ${priority("📈","Building equity","equity")}
+                    ${priority(
+                        "🏡",
+                        "Larger home",
+                        "larger"
+                    )}
 
-                    ${priority("💎","Investment potential","investment")}
 
-                    ${priority("👨‍👩‍👧‍👦","More space for family","family")}
+                    ${priority(
+                        "📍",
+                        "Better neighborhood",
+                        "neighborhood"
+                    )}
 
-                    ${priority("🎓","Schools","schools")}
 
-                    ${priority("🌳","Outdoor space","outdoor")}
+                    ${priority(
+                        "🚗",
+                        "Shorter commute",
+                        "commute"
+                    )}
 
-                    ${priority("❤️","Being close to family","familyclose")}
+
+                    ${priority(
+                        "📈",
+                        "Building equity",
+                        "equity"
+                    )}
+
+
+                    ${priority(
+                        "💎",
+                        "Investment potential",
+                        "investment"
+                    )}
+
+
+                    ${priority(
+                        "👨‍👩‍👧‍👦",
+                        "More space for family",
+                        "family"
+                    )}
+
+
+                    ${priority(
+                        "🎓",
+                        "Schools",
+                        "schools"
+                    )}
+
+
+                    ${priority(
+                        "🌳",
+                        "Outdoor space",
+                        "outdoor"
+                    )}
+
+
+                    ${priority(
+                        "❤️",
+                        "Being close to family",
+                        "familyclose"
+                    )}
 
                 </div>
 
             </div>
 
+
         </div>
 
-        <div class="navigation">
+
+        <div class="nav">
 
             <button
                 class="btn secondary"
-                onclick="comfortScreen()"
+                onclick="showComfortZone()"
             >
                 ← Back
             </button>
 
+
             <button
                 class="btn primary"
-                onclick="continueHome()"
+                onclick="continueHomePlan()"
             >
                 Review My Answers →
             </button>
 
         </div>
+
     `;
+
 }
 
 
-function propertyType(value) {
+/* =========================================================
+   HOME PLAN FUNCTIONS
+========================================================= */
 
-    preservePrice();
-
-    answers.propertyType = value;
-
-    save();
-
-    homeScreen();
-}
-
-
-function purpose(value) {
-
-    preservePrice();
-
-    answers.purchasePurpose = value;
-
-    save();
-
-    homeScreen();
-}
-
-
-function timeline(value) {
-
-    preservePrice();
-
-    answers.timeline = value;
-
-    save();
-
-    homeScreen();
-}
-
-
-function targetPrice(value) {
-
-    answers.targetPrice = value;
-
-    save();
-}
-
-
-function preservePrice() {
+function preserveTargetPrice() {
 
     var input =
-        document.getElementById("targetPrice");
+        document.getElementById(
+            "targetPrice"
+        );
 
     if (input) {
-        answers.targetPrice = input.value;
+
+        answers.targetPrice =
+            input.value;
+
     }
+
 }
 
 
-function priority(emoji,title,value) {
+function updateTargetPrice(value) {
+
+    answers.targetPrice =
+        value;
+
+    saveAnswers();
+
+}
+
+
+function selectPropertyType(value) {
+
+    preserveTargetPrice();
+
+    answers.propertyType =
+        value;
+
+    saveAnswers();
+
+    showHomePlan();
+
+}
+
+
+function selectPurpose(value) {
+
+    preserveTargetPrice();
+
+    answers.purchasePurpose =
+        value;
+
+    saveAnswers();
+
+    showHomePlan();
+
+}
+
+
+function selectTimeline(value) {
+
+    preserveTargetPrice();
+
+    answers.timeline =
+        value;
+
+    saveAnswers();
+
+    showHomePlan();
+
+}
+
+
+/* =========================================================
+   PRIORITIES
+========================================================= */
+
+function priority(
+    icon,
+    title,
+    value
+) {
 
     var selected =
-        answers.priorities.indexOf(value) !== -1;
+        answers.priorities.indexOf(
+            value
+        ) !== -1;
+
 
     return `
+
         <button
             type="button"
             class="option ${selected ? "selected" : ""}"
             onclick="togglePriority('${value}')"
         >
 
-            <div class="option-icon">
-                ${emoji}
+            <div class="icon">
+                ${icon}
             </div>
 
-            <span class="option-title">
+            <strong>
                 ${title}
-            </span>
+            </strong>
 
         </button>
+
     `;
+
 }
 
 
 function togglePriority(value) {
 
-    preservePrice();
+    preserveTargetPrice();
+
 
     var index =
-        answers.priorities.indexOf(value);
+        answers.priorities.indexOf(
+            value
+        );
+
 
     if (index === -1) {
 
-        answers.priorities.push(value);
+        answers.priorities.push(
+            value
+        );
 
     } else {
 
-        answers.priorities.splice(index,1);
+        answers.priorities.splice(
+            index,
+            1
+        );
 
     }
 
-    save();
 
-    homeScreen();
+    saveAnswers();
+
+    showHomePlan();
+
 }
 
 
-function continueHome() {
+function continueHomePlan() {
 
-    preservePrice();
+    preserveTargetPrice();
 
-    save();
+    saveAnswers();
+
 
     if (!answers.propertyType) {
-        alert("Please select a property type.");
+
+        alert(
+            "Please select a property type."
+        );
+
         return;
+
     }
+
 
     if (!answers.purchasePurpose) {
-        alert("Please select what you plan to use the property for.");
+
+        alert(
+            "Please select what you plan to use the property for."
+        );
+
         return;
+
     }
+
 
     if (!answers.timeline) {
-        alert("Please select your purchase timeline.");
+
+        alert(
+            "Please select your purchase timeline."
+        );
+
         return;
+
     }
 
-    if (answers.priorities.length === 0) {
-        alert("Please select at least one priority.");
+
+    if (
+        answers.priorities.length === 0
+    ) {
+
+        alert(
+            "Please select at least one priority."
+        );
+
         return;
+
     }
 
-    reviewScreen();
+
+    showReview();
+
 }
 
 
-/* =========================================
+/* =========================================================
+   STEP 8
    REVIEW
-========================================= */
+========================================================= */
 
-function reviewScreen() {
-
-    step = 8;
+function showReview() {
 
     app.innerHTML = `
 
-        ${progress(step)}
+        ${progress(8)}
 
-        <div class="screen-title">
+        <div class="title">
 
             <div class="step">
                 ✅ STEP 8
@@ -2305,362 +3721,651 @@ function reviewScreen() {
             </h2>
 
             <p>
-                Review your answers before entering HomeBuy AI.
+                Review your answers before entering
+                HomeBuy AI.
             </p>
 
         </div>
 
+
         ${reviewCard(
             "👋 About You",
             [
-                ["Homeownership", homeStatusText()],
-                ["Military", answers.military === "yes" ? "Yes 🇺🇸" : "No"],
-                ["Military Status", militaryText()]
+                [
+                    "Homeownership",
+                    homeStatusText()
+                ],
+                [
+                    "Military",
+                    answers.military === "yes"
+                        ?
+                        "Yes 🇺🇸"
+                        :
+                        "No"
+                ],
+                [
+                    "Military Status",
+                    militaryStatusText()
+                ]
             ],
-            1
+            "showAboutYou()"
         )}
+
 
         ${reviewCard(
             "📍 Location",
             [
-                ["State", answers.state],
-                ["Location", answers.location]
+                [
+                    "State",
+                    answers.state
+                ],
+                [
+                    "Location",
+                    answers.location
+                ]
             ],
-            2
+            "showLocation()"
         )}
+
 
         ${reviewCard(
             "💳 Financing",
             [
-                ["Loan Type", loanText()]
+                [
+                    "Loan Type",
+                    loanTypeText()
+                ]
             ],
-            3
+            "showLoanType()"
         )}
+
 
         ${reviewCard(
             "💰 Finances",
             [
-                ["Annual Income", "$" + Number(answers.income || 0).toLocaleString()],
-                ["Monthly Debt", "$" + Number(answers.debt || 0).toLocaleString()],
-                ["Savings", savingsText()],
-                ["Down Payment", downPaymentText()]
+                [
+                    "Annual Income",
+                    "$" +
+                    Number(
+                        answers.income || 0
+                    ).toLocaleString()
+                ],
+                [
+                    "Monthly Debt",
+                    "$" +
+                    Number(
+                        answers.debt || 0
+                    ).toLocaleString()
+                ],
+                [
+                    "Savings",
+                    savingsText()
+                ],
+                [
+                    "Down Payment",
+                    downPaymentText()
+                ]
             ],
-            4
+            "showIncome()"
         )}
+
 
         ${reviewCard(
             "❤️ Comfort Zone",
             [
-                ["Comfortable Payment", comfortText()],
-                ["Credit Score", creditText()],
-                ["Emergency Savings", emergencyText()]
+                [
+                    "Comfortable Payment",
+                    comfortText()
+                ],
+                [
+                    "Credit Score",
+                    creditText()
+                ],
+                [
+                    "Emergency Savings",
+                    emergencyText()
+                ]
             ],
-            6
+            "showComfortZone()"
         )}
+
 
         ${reviewCard(
             "🏡 Home Plan",
             [
-                ["Property", propertyText()],
-                ["Purpose", purposeText()],
-                ["Timeline", timelineText()],
-                ["Target Price", answers.targetPrice ? "$" + Number(answers.targetPrice).toLocaleString() : "Not provided"],
-                ["Priorities", answers.priorities.join(", ")]
+                [
+                    "Property",
+                    propertyText()
+                ],
+                [
+                    "Purpose",
+                    purposeText()
+                ],
+                [
+                    "Timeline",
+                    timelineText()
+                ],
+                [
+                    "Target Price",
+                    answers.targetPrice
+                    ?
+                    "$" +
+                    Number(
+                        answers.targetPrice
+                    ).toLocaleString()
+                    :
+                    "Not provided"
+                ],
+                [
+                    "Priorities",
+                    answers.priorities.join(
+                        ", "
+                    )
+                ]
             ],
-            7
+            "showHomePlan()"
         )}
 
-        <div class="navigation">
+
+        <div class="nav">
 
             <button
                 class="btn secondary"
-                onclick="homeScreen()"
+                onclick="showHomePlan()"
             >
                 ← Back
             </button>
 
+
             <button
                 class="btn primary"
-                onclick="dashboard()"
+                onclick="showDashboard()"
             >
                 🤖 Enter HomeBuy AI
             </button>
 
         </div>
+
     `;
+
 }
 
 
-function reviewCard(title,rows,editStep) {
+/* =========================================================
+   REVIEW CARD
+========================================================= */
 
-    var html = "";
+function reviewCard(
+    title,
+    rows,
+    editFunction
+) {
 
-    for (var i = 0; i < rows.length; i++) {
+    var content = "";
+
+
+    for (
+        var i = 0;
+        i < rows.length;
+        i++
+    ) {
 
         if (!rows[i][1]) {
+
             continue;
+
         }
 
-        html += `
-            <div class="review-row">
-                <span>${safe(rows[i][0])}</span>
-                <strong>${safe(rows[i][1])}</strong>
+
+        content += `
+
+            <div class="row">
+
+                <span>
+                    ${escapeHTML(
+                        rows[i][0]
+                    )}
+                </span>
+
+                <strong>
+                    ${escapeHTML(
+                        rows[i][1]
+                    )}
+                </strong>
+
             </div>
+
         `;
+
     }
 
+
     return `
+
         <div class="card review">
 
-            <div class="review-header">
+            <div class="review-head">
 
                 <strong>
                     ${title}
                 </strong>
 
+
                 <button
                     class="edit"
-                    onclick="edit(${editStep})"
+                    onclick="${editFunction}"
                 >
                     ✏️ Edit
                 </button>
 
             </div>
 
+
             <div class="review-body">
-                ${html}
+
+                ${content}
+
             </div>
 
         </div>
+
     `;
+
 }
 
 
-/* =========================================
-   TEXT
-========================================= */
+/* =========================================================
+   TEXT CONVERSION
+========================================================= */
 
 function homeStatusText() {
 
     var map = {
-        first: "First time buyer",
-        previous: "Previously owned a home",
-        multiple: "Own multiple properties"
+
+        first:
+            "First time buyer",
+
+        previous:
+            "Previously owned a home",
+
+        multiple:
+            "Own multiple properties"
+
     };
 
-    return map[answers.homeStatus] || "";
+
+    return (
+        map[
+            answers.homeStatus
+        ] || ""
+    );
+
 }
 
 
-function militaryText() {
+function militaryStatusText() {
 
     var map = {
-        active: "Active Duty",
-        reserve: "Reserve",
-        guard: "National Guard",
-        veteran: "Veteran",
-        retired: "Retired Military"
+
+        active:
+            "Active Duty",
+
+        reserve:
+            "Reserve",
+
+        guard:
+            "National Guard",
+
+        veteran:
+            "Veteran",
+
+        retired:
+            "Retired Military"
+
     };
 
-    return map[answers.militaryStatus] || "";
+
+    return (
+        map[
+            answers.militaryStatus
+        ] || ""
+    );
+
 }
 
 
-function loanText() {
+function loanTypeText() {
 
     var map = {
-        VA: "VA Loan 🪖",
-        FHA: "FHA Loan",
-        Conventional: "Conventional Loan",
-        USDA: "USDA Loan",
-        Cash: "Cash",
-        "Not Sure": "I'm Not Sure"
+
+        VA:
+            "VA Loan 🪖",
+
+        FHA:
+            "FHA Loan",
+
+        Conventional:
+            "Conventional Loan",
+
+        USDA:
+            "USDA Loan",
+
+        Cash:
+            "Cash",
+
+        "Not Sure":
+            "I'm Not Sure"
+
     };
 
-    return map[answers.loanType] || "";
+
+    return (
+        map[
+            answers.loanType
+        ] || ""
+    );
+
 }
 
 
 function savingsText() {
 
     var map = {
-        under5: "Under $5,000",
-        5to10: "$5,000 to $9,999",
-        10to20: "$10,000 to $19,999",
-        20to40: "$20,000 to $39,999",
-        40to75: "$40,000 to $74,999",
-        75plus: "$75,000+",
-        unknown: "I'm not sure"
+
+        under5:
+            "Under $5,000",
+
+        5to10:
+            "$5,000 to $9,999",
+
+        10to20:
+            "$10,000 to $19,999",
+
+        20to40:
+            "$20,000 to $39,999",
+
+        40to75:
+            "$40,000 to $74,999",
+
+        75plus:
+            "$75,000+",
+
+        unknown:
+            "I'm not sure"
+
     };
 
-    return map[answers.savings] || "";
+
+    return (
+        map[
+            answers.savings
+        ] || ""
+    );
+
 }
 
 
 function downPaymentText() {
 
     var map = {
-        under10: "Under $10,000",
-        10to25: "$10,000 to $24,999",
-        25to50: "$25,000 to $49,999",
-        50plus: "$50,000+",
-        unknown: "I'm not sure"
+
+        under10:
+            "Under $10,000",
+
+        10to25:
+            "$10,000 to $24,999",
+
+        25to50:
+            "$25,000 to $49,999",
+
+        50plus:
+            "$50,000+",
+
+        unknown:
+            "I'm not sure"
+
     };
 
-    return map[answers.downPayment] || "";
+
+    return (
+        map[
+            answers.downPayment
+        ] || ""
+    );
+
 }
 
 
 function comfortText() {
 
     var map = {
-        under1500: "Under $1,500",
-        1500to1999: "$1,500 to $1,999",
-        2000to2499: "$2,000 to $2,499",
-        2500to2999: "$2,500 to $2,999",
-        3000to3499: "$3,000 to $3,499",
-        3500plus: "$3,500+",
-        unknown: "I'm not sure"
+
+        under1500:
+            "Under $1,500",
+
+        1500to1999:
+            "$1,500 to $1,999",
+
+        2000to2499:
+            "$2,000 to $2,499",
+
+        2500to2999:
+            "$2,500 to $2,999",
+
+        3000to3499:
+            "$3,000 to $3,499",
+
+        3500plus:
+            "$3,500+",
+
+        unknown:
+            "I'm not sure"
+
     };
 
-    return map[answers.comfortablePayment] || "";
+
+    return (
+        map[
+            answers.comfortablePayment
+        ] || ""
+    );
+
 }
 
 
 function creditText() {
 
     var map = {
-        760: "760+",
-        740: "740 to 759",
-        700: "700 to 739",
-        660: "660 to 699",
-        620: "620 to 659",
-        below620: "Below 620",
-        unknown: "I don't know"
+
+        760:
+            "760+",
+
+        740:
+            "740 to 759",
+
+        700:
+            "700 to 739",
+
+        660:
+            "660 to 699",
+
+        620:
+            "620 to 659",
+
+        below620:
+            "Below 620",
+
+        unknown:
+            "I don't know"
+
     };
 
-    return map[answers.creditScore] || "";
+
+    return (
+        map[
+            answers.creditScore
+        ] || ""
+    );
+
 }
 
 
 function emergencyText() {
 
     var map = {
-        under5: "Less than $5,000",
-        5to10: "$5,000 to $9,999",
-        10to20: "$10,000 to $19,999",
-        20plus: "$20,000+",
-        unknown: "I'm not sure"
+
+        under5:
+            "Less than $5,000",
+
+        5to10:
+            "$5,000 to $9,999",
+
+        10to20:
+            "$10,000 to $19,999",
+
+        20plus:
+            "$20,000+",
+
+        unknown:
+            "I'm not sure"
+
     };
 
-    return map[answers.emergencySavings] || "";
+
+    return (
+        map[
+            answers.emergencySavings
+        ] || ""
+    );
+
 }
 
 
 function propertyText() {
 
     var map = {
-        single: "Single Family Home",
-        multi: "Multi Family Home",
-        condo: "Condo",
-        land: "Land"
+
+        single:
+            "Single Family Home",
+
+        multi:
+            "Multi Family Home",
+
+        condo:
+            "Condo",
+
+        land:
+            "Land"
+
     };
 
-    return map[answers.propertyType] || "";
+
+    return (
+        map[
+            answers.propertyType
+        ] || ""
+    );
+
 }
 
 
 function purposeText() {
 
     var map = {
-        primary: "Primary Home",
-        investment: "Investment Property",
-        vacation: "Second or Vacation Home",
-        build: "Land to Build On"
+
+        primary:
+            "Primary Home",
+
+        investment:
+            "Investment Property",
+
+        vacation:
+            "Second or Vacation Home",
+
+        build:
+            "Land to Build On"
+
     };
 
-    return map[answers.purchasePurpose] || "";
+
+    return (
+        map[
+            answers.purchasePurpose
+        ] || ""
+    );
+
 }
 
 
 function timelineText() {
 
     var map = {
-        3months: "Within 3 months",
-        6months: "3 to 6 months",
-        12months: "6 to 12 months",
-        2years: "1 to 2 years",
-        more2: "More than 2 years",
-        exploring: "Just exploring"
+
+        3months:
+            "Within 3 months",
+
+        6months:
+            "3 to 6 months",
+
+        12months:
+            "6 to 12 months",
+
+        2years:
+            "1 to 2 years",
+
+        more2:
+            "More than 2 years",
+
+        exploring:
+            "Just exploring"
+
     };
 
-    return map[answers.timeline] || "";
+
+    return (
+        map[
+            answers.timeline
+        ] || ""
+    );
+
 }
 
 
-/* =========================================
-   EDIT
-========================================= */
-
-function edit(number) {
-
-    if (number === 1) {
-        aboutYou();
-    }
-
-    if (number === 2) {
-        locationScreen();
-    }
-
-    if (number === 3) {
-        loanScreen();
-    }
-
-    if (number === 4) {
-        incomeScreen();
-    }
-
-    if (number === 6) {
-        comfortScreen();
-    }
-
-    if (number === 7) {
-        homeScreen();
-    }
-}
-
-
-/* =========================================
+/* =========================================================
    DASHBOARD
-========================================= */
+========================================================= */
 
-function dashboard() {
-
-    step = 9;
+function showDashboard() {
 
     app.innerHTML = `
 
-        <div class="dashboard-header">
+        <div class="dash-head">
 
             <h2>
                 👋 Welcome to HomeBuy AI
             </h2>
 
             <p>
-                Your information is saved. Now let's start
-                making sense of your homebuying journey.
+
+                Your information is saved.
+
+                Now let's start making sense
+                of your homebuying journey.
+
             </p>
 
         </div>
 
-        <div class="dashboard-grid">
+
+        <div class="dash-grid">
+
 
             <div
-                class="dashboard-card"
-                onclick="affordability()"
+                class="dash-card"
+                onclick="showAffordability()"
             >
 
-                <div class="dashboard-icon blue-bg">
+                <div class="dash-icon blue-bg">
                     🧮
                 </div>
 
@@ -2669,24 +4374,30 @@ function dashboard() {
                 </h3>
 
                 <p>
-                    See what a home could really cost each month,
-                    not just the mortgage payment.
+
+                    See what a home could really
+                    cost each month, not just
+                    the mortgage payment.
+
                 </p>
 
-                <div class="card-link">
+                <div class="link">
                     Analyze affordability →
                 </div>
 
             </div>
 
 
-            <div class="dashboard-card coming">
+            <div
+                class="dash-card coming"
+                onclick="comingSoon('Find a Home')"
+            >
 
                 <div class="badge">
                     COMING SOON
                 </div>
 
-                <div class="dashboard-icon green-bg">
+                <div class="dash-icon green-bg">
                     🏠
                 </div>
 
@@ -2695,24 +4406,30 @@ function dashboard() {
                 </h3>
 
                 <p>
-                    Search for homes that fit your financial
-                    comfort zone and priorities.
+
+                    Search for homes that fit
+                    your financial comfort zone
+                    and priorities.
+
                 </p>
 
-                <div class="card-link">
+                <div class="link">
                     Explore homes →
                 </div>
 
             </div>
 
 
-            <div class="dashboard-card coming">
+            <div
+                class="dash-card coming"
+                onclick="comingSoon('Find a Professional')"
+            >
 
                 <div class="badge">
                     COMING SOON
                 </div>
 
-                <div class="dashboard-icon purple-bg">
+                <div class="dash-icon purple-bg">
                     🤝
                 </div>
 
@@ -2721,24 +4438,30 @@ function dashboard() {
                 </h3>
 
                 <p>
-                    Find lenders, agents, inspectors, insurance
+
+                    Find lenders, agents,
+                    inspectors, insurance
                     professionals, and more.
+
                 </p>
 
-                <div class="card-link">
+                <div class="link">
                     Find help →
                 </div>
 
             </div>
 
 
-            <div class="dashboard-card coming">
+            <div
+                class="dash-card coming"
+                onclick="comingSoon('Homebuying Programs')"
+            >
 
                 <div class="badge">
                     COMING SOON
                 </div>
 
-                <div class="dashboard-icon orange-bg">
+                <div class="dash-icon orange-bg">
                     💰
                 </div>
 
@@ -2747,11 +4470,14 @@ function dashboard() {
                 </h3>
 
                 <p>
-                    Discover grants, assistance programs,
-                    veteran resources, and other opportunities.
+
+                    Discover grants, assistance
+                    programs, veteran resources,
+                    and other opportunities.
+
                 </p>
 
-                <div class="card-link">
+                <div class="link">
                     Find programs →
                 </div>
 
@@ -2759,11 +4485,11 @@ function dashboard() {
 
 
             <div
-                class="dashboard-card"
-                onclick="challenge()"
+                class="dash-card"
+                onclick="showChallenge()"
             >
 
-                <div class="dashboard-icon yellow-bg">
+                <div class="dash-icon yellow-bg">
                     🔍
                 </div>
 
@@ -2772,24 +4498,30 @@ function dashboard() {
                 </h3>
 
                 <p>
-                    Thinking about buying a specific home?
-                    Let HomeBuy AI challenge the numbers.
+
+                    Thinking about buying a specific
+                    home? Let HomeBuy AI challenge
+                    the numbers.
+
                 </p>
 
-                <div class="card-link">
+                <div class="link">
                     Challenge this home →
                 </div>
 
             </div>
 
 
-            <div class="dashboard-card coming">
+            <div
+                class="dash-card coming"
+                onclick="comingSoon('My Homebuying Plan')"
+            >
 
                 <div class="badge">
                     COMING SOON
                 </div>
 
-                <div class="dashboard-icon purple-bg">
+                <div class="dash-icon purple-bg">
                     🗺️
                 </div>
 
@@ -2798,73 +4530,131 @@ function dashboard() {
                 </h3>
 
                 <p>
-                    Build a personalized roadmap from where
-                    you are today to closing day.
+
+                    Build a personalized roadmap
+                    from where you are today
+                    to closing day.
+
                 </p>
 
-                <div class="card-link">
+                <div class="link">
                     View my plan →
                 </div>
 
             </div>
 
+
         </div>
 
-        <div style="text-align:center;margin-top:22px;">
+
+        <div
+            style="
+                text-align:center;
+                margin-top:22px;
+            "
+        >
 
             <button
                 class="btn secondary"
                 onclick="startOver()"
             >
+
                 🔄 Start Over
+
             </button>
 
         </div>
+
     `;
+
 }
 
 
-/* =========================================
-   AFFORDABILITY
-========================================= */
+/* =========================================================
+   COMING SOON
+========================================================= */
 
-function affordability() {
+function comingSoon(name) {
+
+    alert(
+        name +
+        " is part of the HomeBuy AI roadmap and will be coming soon."
+    );
+
+}
+
+
+/* =========================================================
+   AFFORDABILITY
+========================================================= */
+
+function showAffordability() {
 
     var income =
-        Number(answers.income || 0);
+        Number(
+            answers.income || 0
+        );
+
 
     var debt =
-        Number(answers.debt || 0);
+        Number(
+            answers.debt || 0
+        );
+
 
     var monthlyIncome =
         income / 12;
 
-    var housingEstimate =
-        monthlyIncome * .28;
 
-    var priceEstimate =
-        housingEstimate * 12 * 4.5;
+    var housingEstimate =
+        monthlyIncome * 0.28;
+
+
+    var priceEstimate;
+
 
     if (answers.targetPrice) {
+
         priceEstimate =
-            Number(answers.targetPrice);
+            Number(
+                answers.targetPrice
+            );
+
+    } else {
+
+        priceEstimate =
+            housingEstimate *
+            12 *
+            4.5;
+
     }
 
-    var risk = "🟢 Comfortable";
-    var riskClass = "green-risk";
+
+    var risk =
+        "🟢 Comfortable";
+
+
+    var riskClass =
+        "risk-green";
+
 
     if (
-        answers.emergencySavings === "under5"
+        answers.emergencySavings ===
+        "under5"
     ) {
 
-        risk = "🟡 Needs Attention";
-        riskClass = "yellow-risk";
+        risk =
+            "🟡 Needs Attention";
+
+        riskClass =
+            "risk-yellow";
 
     }
+
 
     app.innerHTML = `
 
-        <div class="screen-title">
+        <div class="title">
 
             <div class="step">
                 🧮 AFFORDABILITY
@@ -2881,103 +4671,165 @@ function affordability() {
 
         </div>
 
-        <div class="card affordability">
+
+        <div class="card afford">
+
 
             <div class="center muted">
-                🎯 ESTIMATED HOME PRICE TO EXPLORE
+
+                🎯 ESTIMATED HOME PRICE
+                TO EXPLORE
+
             </div>
 
-            <div class="big-number">
-                $${Math.round(priceEstimate).toLocaleString()}
+
+            <div class="big center">
+
+                $${Math.round(
+                    priceEstimate
+                ).toLocaleString()}
+
             </div>
+
 
             <div class="center muted">
+
                 HomeBuy AI planning estimate
+
             </div>
+
 
             <div class="metrics">
 
-                <div class="metric">
-                    <small>Monthly income</small>
-                    <strong>
-                        $${Math.round(monthlyIncome).toLocaleString()}
-                    </strong>
-                </div>
 
-                <div class="metric">
-                    <small>Monthly debt</small>
-                    <strong>
-                        $${debt.toLocaleString()}
-                    </strong>
-                </div>
+                ${metric(
+                    "Monthly income",
+                    "$" +
+                    Math.round(
+                        monthlyIncome
+                    ).toLocaleString()
+                )}
 
-                <div class="metric">
-                    <small>Housing estimate</small>
-                    <strong>
-                        $${Math.round(housingEstimate).toLocaleString()}
-                    </strong>
-                </div>
+
+                ${metric(
+                    "Monthly debt",
+                    "$" +
+                    debt.toLocaleString()
+                )}
+
+
+                ${metric(
+                    "Housing estimate",
+                    "$" +
+                    Math.round(
+                        housingEstimate
+                    ).toLocaleString()
+                )}
+
 
             </div>
+
 
             <div class="risk ${riskClass}">
+
                 ${risk}
+
             </div>
 
-            <div class="ai-box">
 
-                <div class="ai-title">
+            <div class="ai">
+
+                <strong>
                     🤖 HomeBuy AI says
-                </div>
+                </strong>
+
 
                 <p>
-                    The goal isn't to find the biggest home
-                    you might qualify for. The goal is to find
-                    a home you can actually enjoy living in
-                    without constantly worrying about the payment.
+
+                    The goal isn't to find the biggest
+                    home you might qualify for.
+
+                    The goal is to find a home you can
+                    actually enjoy living in without
+                    constantly worrying about the payment.
+
                 </p>
 
+
                 <p>
-                    As HomeBuy AI develops, this section will
-                    include taxes, insurance, HOA fees,
-                    maintenance, utilities, debt, cash reserves,
-                    loan details, and other costs.
+
+                    As HomeBuy AI develops, this section
+                    will include taxes, insurance, HOA fees,
+                    maintenance, utilities, debt, cash
+                    reserves, loan details, and other costs.
+
                 </p>
 
             </div>
+
 
         </div>
 
-        <div class="navigation">
+
+        <div class="nav">
+
 
             <button
                 class="btn secondary"
-                onclick="dashboard()"
+                onclick="showDashboard()"
             >
                 ← Dashboard
             </button>
 
+
             <button
                 class="btn primary"
-                onclick="challenge()"
+                onclick="showChallenge()"
             >
                 🔍 Challenge a Home →
             </button>
 
+
         </div>
+
     `;
+
 }
 
 
-/* =========================================
-   CHALLENGE
-========================================= */
+function metric(
+    title,
+    value
+) {
 
-function challenge() {
+    return `
+
+        <div class="metric">
+
+            <small>
+                ${title}
+            </small>
+
+            <strong>
+                ${value}
+            </strong>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   CHALLENGE MY DECISION
+========================================================= */
+
+function showChallenge() {
 
     app.innerHTML = `
 
-        <div class="screen-title">
+        <div class="title">
 
             <div class="step">
                 🔍 CHALLENGE MY DECISION
@@ -2988,13 +4840,17 @@ function challenge() {
             </h2>
 
             <p>
+
                 Enter the price and we'll help you
                 think through the financial impact.
+
             </p>
 
         </div>
 
-        <div class="card form-card">
+
+        <div class="card form">
+
 
             <div class="input-group">
 
@@ -3011,58 +4867,94 @@ function challenge() {
 
             </div>
 
+
             <button
                 class="btn primary"
                 style="width:100%;"
-                onclick="analyze()"
+                onclick="analyzeHome()"
             >
+
                 🤖 Analyze This Home
+
             </button>
+
 
         </div>
 
-        <div class="navigation">
+
+        <div class="nav">
 
             <button
                 class="btn secondary"
-                onclick="dashboard()"
+                onclick="showDashboard()"
             >
                 ← Dashboard
             </button>
 
         </div>
+
     `;
+
 }
 
 
-function analyze() {
+/* =========================================================
+   ANALYZE HOME
+========================================================= */
+
+function analyzeHome() {
 
     var input =
-        document.getElementById("challengePrice");
+        document.getElementById(
+            "challengePrice"
+        );
+
 
     var price =
-        Number(input.value);
+        Number(
+            input.value
+        );
 
-    if (!price || price <= 0) {
 
-        alert("Please enter a valid home price.");
+    if (
+        !price ||
+        price <= 0
+    ) {
+
+        alert(
+            "Please enter a valid home price."
+        );
 
         return;
+
     }
 
+
+    /*
+        These are simple prototype estimates.
+        They are NOT actual mortgage calculations.
+    */
+
+
     var mortgage =
-        price * .005;
+        price * 0.005;
+
 
     var taxes =
-        price * .0012;
+        price * 0.0012;
+
 
     var insurance =
-        price * .00035;
+        price * 0.00035;
+
 
     var maintenance =
-        price * .00083;
+        price * 0.00083;
 
-    var utilities = 250;
+
+    var utilities =
+        250;
+
 
     var total =
         mortgage +
@@ -3071,21 +4963,32 @@ function analyze() {
         maintenance +
         utilities;
 
-    var risk = "🟢 Looks Reasonable";
-    var riskClass = "green-risk";
+
+    var risk =
+        "🟢 Looks Reasonable";
+
+
+    var riskClass =
+        "risk-green";
+
 
     if (
-        answers.emergencySavings === "under5"
+        answers.emergencySavings ===
+        "under5"
     ) {
 
-        risk = "🟡 This May Be a Stretch";
-        riskClass = "yellow-risk";
+        risk =
+            "🟡 This May Be a Stretch";
+
+        riskClass =
+            "risk-yellow";
 
     }
 
+
     app.innerHTML = `
 
-        <div class="screen-title">
+        <div class="title">
 
             <div class="step">
                 🤖 HOME ANALYSIS
@@ -3096,118 +4999,155 @@ function analyze() {
             </h2>
 
             <p>
-                Purchase price is only one part of owning a home.
+
+                Purchase price is only one part
+                of owning a home.
+
             </p>
 
         </div>
 
-        <div class="card affordability">
+
+        <div class="card afford">
+
 
             <div class="center muted">
                 🏠 HOME PRICE
             </div>
 
-            <div class="big-number">
+
+            <div class="big center">
+
                 $${price.toLocaleString()}
+
             </div>
+
 
             <div class="metrics">
 
-                <div class="metric">
-                    <small>Mortgage estimate</small>
-                    <strong>
-                        $${Math.round(mortgage).toLocaleString()}
-                    </strong>
-                </div>
 
-                <div class="metric">
-                    <small>Taxes</small>
-                    <strong>
-                        $${Math.round(taxes).toLocaleString()}
-                    </strong>
-                </div>
+                ${metric(
+                    "Mortgage estimate",
+                    "$" +
+                    Math.round(
+                        mortgage
+                    ).toLocaleString()
+                )}
 
-                <div class="metric">
-                    <small>Insurance</small>
-                    <strong>
-                        $${Math.round(insurance).toLocaleString()}
-                    </strong>
-                </div>
 
-                <div class="metric">
-                    <small>Maintenance</small>
-                    <strong>
-                        $${Math.round(maintenance).toLocaleString()}
-                    </strong>
-                </div>
+                ${metric(
+                    "Taxes",
+                    "$" +
+                    Math.round(
+                        taxes
+                    ).toLocaleString()
+                )}
 
-                <div class="metric">
-                    <small>Utilities</small>
-                    <strong>
-                        $${utilities.toLocaleString()}
-                    </strong>
-                </div>
 
-                <div class="metric">
-                    <small>Estimated monthly total</small>
-                    <strong>
-                        $${Math.round(total).toLocaleString()}
-                    </strong>
-                </div>
+                ${metric(
+                    "Insurance",
+                    "$" +
+                    Math.round(
+                        insurance
+                    ).toLocaleString()
+                )}
+
+
+                ${metric(
+                    "Maintenance",
+                    "$" +
+                    Math.round(
+                        maintenance
+                    ).toLocaleString()
+                )}
+
+
+                ${metric(
+                    "Utilities",
+                    "$250"
+                )}
+
+
+                ${metric(
+                    "Estimated monthly total",
+                    "$" +
+                    Math.round(
+                        total
+                    ).toLocaleString()
+                )}
+
 
             </div>
+
 
             <div class="risk ${riskClass}">
+
                 ${risk}
+
             </div>
 
-            <div class="ai-box">
 
-                <div class="ai-title">
+            <div class="ai">
+
+                <strong>
                     🔥 Challenge the purchase
-                </div>
+                </strong>
+
 
                 <p>
+
                     Can you comfortably handle the payment,
                     taxes, insurance, maintenance, utilities,
                     and unexpected repairs while still having
                     money left for the rest of your life?
+
                 </p>
 
+
                 <p>
+
                     You can still choose to pursue this home.
+
                     Our job is to make sure you understand
                     the financial tradeoff before you do.
+
                 </p>
 
             </div>
 
+
         </div>
 
-        <div class="navigation">
+
+        <div class="nav">
+
 
             <button
                 class="btn secondary"
-                onclick="dashboard()"
+                onclick="showDashboard()"
             >
                 ← Dashboard
             </button>
 
+
             <button
                 class="btn primary"
-                onclick="challenge()"
+                onclick="showChallenge()"
             >
                 🔄 Analyze Another Home
             </button>
 
+
         </div>
+
     `;
+
 }
 
 
-/* =========================================
+/* =========================================================
    START OVER
-========================================= */
+========================================================= */
 
 function startOver() {
 
@@ -3216,42 +5156,68 @@ function startOver() {
             "Are you sure you want to start over? Your saved answers will be cleared."
         );
 
+
     if (!confirmed) {
+
         return;
+
     }
+
 
     localStorage.removeItem(
         "homebuyAIAnswers"
     );
 
+
     answers = {
+
         homeStatus: "",
+
         military: "",
+
         militaryStatus: "",
+
         state: "",
+
         location: "",
+
         loanType: "",
+
         income: "",
+
         debt: "",
+
         savings: "",
+
         downPayment: "",
+
         creditScore: "",
+
         comfortablePayment: "",
+
         emergencySavings: "",
+
         propertyType: "",
+
         purchasePurpose: "",
+
         timeline: "",
+
         targetPrice: "",
+
         priorities: []
+
     };
 
+
     welcome();
+
 }
 
 
-/* =========================================
-   START APP
-========================================= */
+/* =========================================================
+   START WEBSITE
+========================================================= */
 
 welcome();
 
