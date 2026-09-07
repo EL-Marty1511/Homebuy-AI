@@ -1,174 +1,914 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HomeBuy AI</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HomeBuy AI</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+* {
+  box-sizing: border-box;
+}
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f7f9;
-      color: #102a43;
-    }
+body {
+  margin: 0;
+  background: #f4f7f9;
+  font-family: Arial, sans-serif;
+  color: #102a43;
+}
 
-    .app {
-      max-width: 480px;
-      margin: 0 auto;
-      min-height: 100vh;
-      background: white;
-      padding: 28px 22px;
-    }
+.app {
+  max-width: 480px;
+  margin: auto;
+  min-height: 100vh;
+  background: white;
+  padding: 22px;
+}
 
-    .logo {
-      font-size: 22px;
-      font-weight: bold;
-      margin-bottom: 55px;
-    }
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
 
-    .logo span {
-      color: #2f9e44;
-    }
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+}
 
-    .house {
-      font-size: 70px;
-      text-align: center;
-      margin-bottom: 20px;
-    }
+.logo span {
+  color: #2f9e44;
+}
 
-    h1 {
-      font-size: 34px;
-      line-height: 1.1;
-      text-align: center;
-      margin-bottom: 18px;
-    }
+.progress {
+  color: #829ab1;
+  font-size: 13px;
+}
 
-    .intro {
-      text-align: center;
-      color: #627d98;
-      font-size: 17px;
-      line-height: 1.5;
-    }
+.advisor {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 25px;
+}
 
-    .promise {
-      margin-top: 35px;
-    }
+.avatar {
+  min-width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #102a43;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
 
-    .item {
-      padding: 15px;
-      margin-bottom: 12px;
-      background: #f5f8fb;
-      border-radius: 14px;
-    }
+.message {
+  background: #f5f8fb;
+  border-radius: 16px;
+  padding: 15px;
+  line-height: 1.5;
+}
 
-    .item strong {
-      display: block;
-      margin-bottom: 5px;
-    }
+h1 {
+  font-size: 29px;
+  line-height: 1.15;
+}
 
-    .item p {
-      margin: 0;
-      color: #627d98;
-      font-size: 14px;
-    }
+h2 {
+  font-size: 24px;
+}
 
-    button {
-      width: 100%;
-      border: none;
-      border-radius: 14px;
-      padding: 17px;
-      font-size: 17px;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 25px;
-    }
+.subtitle {
+  color: #627d98;
+  line-height: 1.5;
+}
 
-    .primary {
-      background: #102a43;
-      color: white;
-    }
+.option {
+  width: 100%;
+  background: white;
+  border: 1px solid #d9e2ec;
+  border-radius: 15px;
+  padding: 16px;
+  margin-top: 11px;
+  text-align: left;
+  font-size: 16px;
+  cursor: pointer;
+}
 
-    .small {
-      text-align: center;
-      color: #829ab1;
-      font-size: 12px;
-      margin-top: 16px;
-    }
-  </style>
+.option:hover {
+  border-color: #2f9e44;
+}
+
+.option.selected {
+  border: 2px solid #2f9e44;
+  background: #f0fff4;
+}
+
+.primary {
+  width: 100%;
+  border: none;
+  border-radius: 14px;
+  padding: 17px;
+  background: #102a43;
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.secondary {
+  width: 100%;
+  border: 1px solid #102a43;
+  border-radius: 14px;
+  padding: 15px;
+  background: white;
+  color: #102a43;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 12px;
+  cursor: pointer;
+}
+
+input, select {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #d9e2ec;
+  border-radius: 12px;
+  font-size: 16px;
+  margin-top: 8px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-top: 18px;
+}
+
+.card {
+  background: #f5f8fb;
+  border-radius: 17px;
+  padding: 18px;
+  margin-top: 15px;
+}
+
+.green {
+  background: #f0fff4;
+}
+
+.yellow {
+  background: #fff8e6;
+}
+
+.red {
+  background: #fff1f1;
+}
+
+.big {
+  font-size: 28px;
+  font-weight: bold;
+  margin-top: 6px;
+}
+
+.chat {
+  margin-top: 20px;
+}
+
+.user-message {
+  background: #102a43;
+  color: white;
+  border-radius: 16px;
+  padding: 13px 15px;
+  margin: 12px 0 12px auto;
+  max-width: 85%;
+}
+
+.ai-message {
+  background: #f5f8fb;
+  border-radius: 16px;
+  padding: 13px 15px;
+  max-width: 90%;
+}
+
+.hidden {
+  display: none;
+}
+
+.disclaimer {
+  color: #829ab1;
+  font-size: 11px;
+  text-align: center;
+  margin-top: 20px;
+  line-height: 1.4;
+}
+</style>
 </head>
 
 <body>
 
 <div class="app">
 
-  <div class="logo">
-    HomeBuy <span>AI</span>
-  </div>
+<div class="header">
+  <div class="logo">HomeBuy <span>AI</span></div>
+  <div class="progress" id="progress"></div>
+</div>
 
-  <div class="house">
-    🏠
-  </div>
-
-  <h1>Your Home Journey Starts Here.</h1>
-
-  <p class="intro">
-    Buying a home shouldn't feel like guessing.
-    HomeBuy AI helps you understand what you can
-    realistically afford and make a more informed decision.
-  </p>
-
-  <div class="promise">
-
-    <div class="item">
-      <strong>🏠 Know Your Number</strong>
-      <p>
-        Understand what you can comfortably afford,
-        not just what you may qualify for.
-      </p>
-    </div>
-
-    <div class="item">
-      <strong>💰 Find Opportunities</strong>
-      <p>
-        Discover programs, benefits and assistance
-        you may be able to take advantage of.
-      </p>
-    </div>
-
-    <div class="item">
-      <strong>🤝 Stay In Control</strong>
-      <p>
-        HomeBuy AI provides guidance.
-        You make the decision.
-      </p>
-    </div>
-
-  </div>
-
-  <button class="primary" onclick="startAdvisor()">
-    Let's Get Started →
-  </button>
-
-  <div class="small">
-    AI can help. You make the decision.
-  </div>
+<div id="app"></div>
 
 </div>
 
 <script>
 
-function startAdvisor() {
+const data = {
+  situation: "",
+  military: "",
+  service: "",
+  state: "",
+  city: "",
+  income: 0,
+  debt: 0,
+  savings: 0,
+  downPayment: 0,
+  reserve: 0,
+  credit: "",
+  payment: "",
+  property: "",
+  targetPrice: 0
+};
 
-  alert(
-    "Hey! I'm your HomeBuy AI Advisor. Before we start looking at homes, I want to learn a little about you."
-  );
+let step = 0;
+
+const app = document.getElementById("app");
+const progress = document.getElementById("progress");
+
+function advisor(text) {
+  return `
+    <div class="advisor">
+      <div class="avatar">🏠</div>
+      <div class="message">${text}</div>
+    </div>
+  `;
+}
+
+function option(text, value, field) {
+  return `
+    <button class="option"
+      onclick="choose('${field}', '${value}')">
+      ${text}
+    </button>
+  `;
+}
+
+function choose(field, value) {
+
+  data[field] = value;
+
+  document.querySelectorAll(".option").forEach(button => {
+    button.classList.remove("selected");
+  });
+
+  event.target.classList.add("selected");
+
+  setTimeout(() => {
+    next();
+  }, 250);
+}
+
+function next() {
+
+  step++;
+
+  if (step === 1) situation();
+  else if (step === 2) military();
+  else if (step === 3) location();
+  else if (step === 4) finances();
+  else if (step === 5) lifestyle();
+  else if (step === 6) property();
+  else if (step === 7) results();
+}
+
+function start() {
+
+  step = 1;
+  situation();
 
 }
+
+function situation() {
+
+  progress.innerText = "1 of 6";
+
+  app.innerHTML = `
+
+    ${advisor(`
+      Hey! I'm your HomeBuy AI Advisor. 👋
+      <br><br>
+      Before we start talking about houses, I want to understand
+      <strong>you</strong>.
+      <br><br>
+      I'm not here to tell you what you want to hear.
+      I'm here to help you understand what you actually need to know.
+    `)}
+
+    <h2>Have you owned a home before?</h2>
+
+    ${option("🏠 I'm a first-time homebuyer", "first", "situation")}
+
+    ${option("🏡 I currently own a home", "owner", "situation")}
+
+    ${option("🏘️ I own multiple properties", "multi", "situation")}
+
+    ${option("💰 I'm buying primarily as an investment", "invest", "situation")}
+
+    ${option("🤷 I'm not sure yet", "unsure", "situation")}
+
+  `;
+
+}
+
+function military() {
+
+  progress.innerText = "2 of 6";
+
+  app.innerHTML = `
+
+    ${advisor(`
+      Got it. Now I want to check something that could
+      potentially make a big difference in your homebuying options.
+    `)}
+
+    <h2>Do you have military service?</h2>
+
+    <p class="subtitle">
+      We ask because certain military benefits may be available
+      depending on your situation.
+    </p>
+
+    ${option("🇺🇸 Yes", "yes", "military")}
+
+    ${option("No", "no", "military")}
+
+    ${option("I'm not sure", "unsure", "military")}
+
+  `;
+
+}
+
+function location() {
+
+  progress.innerText = "3 of 6";
+
+  let militaryMessage = "";
+
+  if (data.military === "yes") {
+
+    militaryMessage = `
+      <br><br>
+      Since you told me you have military service, I'll make sure
+      we keep potential military-related benefits in mind as we
+      build your profile.
+    `;
+
+  }
+
+  app.innerHTML = `
+
+    ${advisor(`
+      Perfect. I have a better picture of you now.
+      ${militaryMessage}
+      <br><br>
+      Next, tell me where you're thinking about buying.
+    `)}
+
+    <h2>Where are you looking?</h2>
+
+    <label>State</label>
+    <input id="state" placeholder="Example: Illinois">
+
+    <label>City or ZIP code</label>
+    <input id="city" placeholder="Example: 60085">
+
+    <button class="primary" onclick="saveLocation()">
+      Continue →
+    </button>
+
+  `;
+
+}
+
+function saveLocation() {
+
+  data.state = document.getElementById("state").value;
+  data.city = document.getElementById("city").value;
+
+  if (!data.state || !data.city) {
+
+    alert("Tell me the state and city or ZIP so I can continue.");
+
+    return;
+  }
+
+  next();
+
+}
+
+function finances() {
+
+  progress.innerText = "4 of 6";
+
+  app.innerHTML = `
+
+    ${advisor(`
+      Alright, now we're getting to the important part.
+      <br><br>
+      I don't just want to know what a lender might approve you for.
+      <strong>I want to understand what your life can comfortably handle.</strong>
+    `)}
+
+    <h2>Let's look at your financial picture.</h2>
+
+    <label>Annual household gross income</label>
+    <input id="income" type="number" placeholder="82000">
+
+    <label>Monthly debt payments</label>
+    <input id="debt" type="number" placeholder="1250">
+
+    <label>Total savings</label>
+    <input id="savings" type="number" placeholder="40000">
+
+    <label>Money you could use toward the purchase</label>
+    <input id="down" type="number" placeholder="20000">
+
+    <label>Savings you want to keep after closing</label>
+    <input id="reserve" type="number" placeholder="10000">
+
+    <label>Credit score range</label>
+
+    <select id="credit">
+      <option value="">Select one</option>
+      <option>Below 580</option>
+      <option>580-639</option>
+      <option>640-679</option>
+      <option>680-739</option>
+      <option>740+</option>
+      <option>I don't know</option>
+    </select>
+
+    <button class="primary" onclick="saveFinances()">
+      Continue →
+    </button>
+
+  `;
+
+}
+
+function saveFinances() {
+
+  data.income = Number(document.getElementById("income").value) || 0;
+  data.debt = Number(document.getElementById("debt").value) || 0;
+  data.savings = Number(document.getElementById("savings").value) || 0;
+  data.downPayment = Number(document.getElementById("down").value) || 0;
+  data.reserve = Number(document.getElementById("reserve").value) || 0;
+  data.credit = document.getElementById("credit").value;
+
+  if (data.income <= 0) {
+
+    alert("I need your income before I can give you a responsible estimate.");
+
+    return;
+  }
+
+  next();
+
+}
+
+function lifestyle() {
+
+  progress.innerText = "5 of 6";
+
+  app.innerHTML = `
+
+    ${advisor(`
+      Here's something a lot of homebuying calculators don't ask.
+      <br><br>
+      <strong>What do you want your life to look like after you buy the house?</strong>
+      <br><br>
+      Because two people can make the same amount of money
+      and have completely different definitions of "affordable."
+    `)}
+
+    <h2>What matters to you financially?</h2>
+
+    ${option("💰 Building savings", "savings", "priority")}
+
+    ${option("✈️ Traveling", "travel", "priority")}
+
+    ${option("📈 Investing", "investing", "priority")}
+
+    ${option("💳 Paying off debt", "debt", "priority")}
+
+    ${option("🏢 Starting a business", "business", "priority")}
+
+    ${option("🏠 Buying another property someday", "property", "priority")}
+
+    <button class="secondary" onclick="next()">
+      I've answered enough — continue
+    </button>
+
+  `;
+
+}
+
+function property() {
+
+  progress.innerText = "6 of 6";
+
+  app.innerHTML = `
+
+    ${advisor(`
+      We're almost there.
+      <br><br>
+      Now tell me what you're actually trying to buy.
+      <br><br>
+      And remember: the number you <em>want</em> to spend
+      isn't necessarily the number I will recommend.
+    `)}
+
+    <h2>What are you looking for?</h2>
+
+    <label>Property type</label>
+
+    <select id="property">
+      <option>Single-family home</option>
+      <option>Condo</option>
+      <option>Townhome</option>
+      <option>2-unit property</option>
+      <option>3-4 unit property</option>
+      <option>Land / Build</option>
+    </select>
+
+    <label>Maximum price you're considering</label>
+
+    <input id="target" type="number" placeholder="500000">
+
+    <button class="primary" onclick="saveProperty()">
+      Let's See What Makes Sense →
+    </button>
+
+  `;
+
+}
+
+function saveProperty() {
+
+  data.property = document.getElementById("property").value;
+  data.targetPrice =
+    Number(document.getElementById("target").value) || 0;
+
+  next();
+
+}
+
+function results() {
+
+  progress.innerText = "Your Results";
+
+  const monthlyIncome = data.income / 12;
+
+  /*
+    IMPORTANT:
+    This is only prototype logic.
+    We will replace this with a properly designed
+    HomeBuy AI affordability engine later.
+  */
+
+  let comfortablePayment =
+    Math.min(monthlyIncome * 0.25,
+    Math.max(1200, monthlyIncome * 0.28 - data.debt * 0.25));
+
+  let estimatedLoan =
+    comfortablePayment * 145;
+
+  let comfortablePrice =
+    Math.round((estimatedLoan + data.downPayment) / 5000) * 5000;
+
+  let stretchPrice =
+    Math.round(comfortablePrice * 1.15 / 5000) * 5000;
+
+  let targetMessage = "";
+
+  if (data.targetPrice > 0) {
+
+    if (data.targetPrice <= comfortablePrice) {
+
+      targetMessage = `
+        <div class="card green">
+          <strong>🟢 Your target looks reasonable based on this prototype.</strong>
+          <br><br>
+          That doesn't mean you should automatically buy it.
+          We still need to evaluate the actual property,
+          taxes, insurance, HOA, maintenance and other costs.
+        </div>
+      `;
+
+    } else if (data.targetPrice <= stretchPrice) {
+
+      targetMessage = `
+        <div class="card yellow">
+          <strong>🟡 I'd slow down here.</strong>
+          <br><br>
+          Your target is above your comfortable range.
+          It may be possible, but I would want to stress-test
+          the actual home before telling you this is a good idea.
+        </div>
+      `;
+
+    } else {
+
+      targetMessage = `
+        <div class="card red">
+          <strong>🔴 I'd pump the brakes.</strong>
+          <br><br>
+          You may potentially qualify for this price,
+          but based on the information you gave me,
+          I don't think we should confuse "possible"
+          with "comfortable."
+        </div>
+      `;
+
+    }
+
+  }
+
+  app.innerHTML = `
+
+    ${advisor(`
+      Alright. I've got enough information to give you
+      an initial picture.
+      <br><br>
+      And I'm going to be honest with you.
+      <strong>I'm not going to tell you that you can afford
+      something just because a lender might approve it.</strong>
+    `)}
+
+    <h1>Your Homebuying Profile</h1>
+
+    <div class="card green">
+
+      <strong>🟢 Comfortable Range</strong>
+
+      <div class="big">
+        $${Math.max(0, comfortablePrice - 25000).toLocaleString()}
+        -
+        $${comfortablePrice.toLocaleString()}
+      </div>
+
+      <p>
+        This is the initial range I'd want you to explore first.
+      </p>
+
+    </div>
+
+    <div class="card yellow">
+
+      <strong>🟡 Stretch Range</strong>
+
+      <div class="big">
+        $${(comfortablePrice + 5000).toLocaleString()}
+        -
+        $${stretchPrice.toLocaleString()}
+      </div>
+
+      <p>
+        Possible, but your financial flexibility starts getting tighter.
+      </p>
+
+    </div>
+
+    <div class="card red">
+
+      <strong>🔴 Above My Recommended Range</strong>
+
+      <div class="big">
+        $${(stretchPrice + 5000).toLocaleString()}+
+      </div>
+
+      <p>
+        I'd want you to seriously examine the tradeoffs
+        before moving forward.
+      </p>
+
+    </div>
+
+    ${targetMessage}
+
+    <button class="primary" onclick="askAdvisor()">
+      💬 Talk to My Advisor
+    </button>
+
+    <p class="disclaimer">
+      Prototype only. This is not a mortgage approval,
+      financial plan, or guarantee of eligibility.
+    </p>
+
+  `;
+
+}
+
+function askAdvisor() {
+
+  app.innerHTML = `
+
+    ${advisor(`
+      Okay. Now we're at my favorite part.
+      <br><br>
+      <strong>Ask me anything about your homebuying situation.</strong>
+      <br><br>
+      You can ask things like:
+      <br><br>
+      "Can I afford a $500,000 house?"
+      <br>
+      "What happens if my taxes are $700 a month?"
+      <br>
+      "Should I put more money down?"
+      <br>
+      "What should I ask my lender?"
+    `)}
+
+    <input id="question"
+      placeholder="Ask your HomeBuy AI Advisor...">
+
+    <button class="primary" onclick="answerQuestion()">
+      Ask Advisor →
+    </button>
+
+    <div id="conversation" class="chat"></div>
+
+    <button class="secondary" onclick="results()">
+      ← Back to My Results
+    </button>
+
+  `;
+
+}
+
+function answerQuestion() {
+
+  const input = document.getElementById("question");
+  const question = input.value.trim();
+
+  if (!question) return;
+
+  const conversation =
+    document.getElementById("conversation");
+
+  conversation.innerHTML += `
+    <div class="user-message">
+      ${question}
+    </div>
+  `;
+
+  let answer = "";
+
+  const q = question.toLowerCase();
+
+  if (q.includes("500") || q.includes("500,000")) {
+
+    answer = `
+      Based on the information you've given me,
+      I wouldn't automatically tell you that a $500,000 home
+      is affordable.
+      <br><br>
+      Your income, existing debt, down payment, taxes,
+      insurance, HOA and the amount of savings you keep
+      after closing all matter.
+      <br><br>
+      <strong>
+      If you want, the next thing we should do is stress-test
+      the actual $500,000 house.
+      </strong>
+    `;
+
+  } else if (q.includes("lender")) {
+
+    answer = `
+      Absolutely. Before you talk to a lender,
+      I'd want you to understand your comfortable payment first.
+      <br><br>
+      Then ask the lender to show you the complete monthly cost,
+      including principal, interest, taxes, insurance and HOA.
+      <br><br>
+      Don't only ask:
+      <strong>"How much can I qualify for?"</strong>
+      <br><br>
+      Ask:
+      <strong>"What would my complete monthly payment be?"</strong>
+    `;
+
+  } else if (q.includes("afford")) {
+
+    answer = `
+      That's exactly what I'm here to help you figure out.
+      <br><br>
+      But I don't want to give you a fake precise answer.
+      Your actual affordability depends on the property,
+      taxes, insurance, interest rate, debt and how much
+      financial breathing room you want.
+      <br><br>
+      That's why HomeBuy AI separates
+      <strong>qualification</strong> from
+      <strong>comfort.</strong>
+    `;
+
+  } else {
+
+    answer = `
+      That's a really good question.
+      <br><br>
+      In the full version of HomeBuy AI, I'd use your complete
+      buyer profile, current property information and verified
+      data to give you a more specific answer.
+      <br><br>
+      For this prototype, I don't want to pretend I know
+      something I don't have enough information to calculate.
+      <br><br>
+      <strong>That's actually one of the rules I want
+      HomeBuy AI to follow.</strong>
+    `;
+
+  }
+
+  conversation.innerHTML += `
+    <div class="ai-message">
+      🏠 <strong>HomeBuy AI:</strong><br><br>
+      ${answer}
+    </div>
+  `;
+
+  input.value = "";
+
+}
+
+app.innerHTML = `
+
+  <div style="text-align:center;padding-top:35px">
+
+    <div style="font-size:70px">🏠</div>
+
+    <h1>
+      Your Home Journey
+      <br>
+      Starts Here.
+    </h1>
+
+    <p class="subtitle">
+      HomeBuy AI helps you understand what home
+      actually makes sense for your life.
+    </p>
+
+    <div class="card" style="text-align:left">
+
+      <strong>🏠 Know Your Number</strong>
+      <p class="subtitle">
+        Understand what you can comfortably afford,
+        not just what you may qualify for.
+      </p>
+
+    </div>
+
+    <div class="card" style="text-align:left">
+
+      <strong>💰 Find Opportunities</strong>
+      <p class="subtitle">
+        Discover benefits and programs you may want
+        to investigate.
+      </p>
+
+    </div>
+
+    <div class="card" style="text-align:left">
+
+      <strong>🤝 Stay In Control</strong>
+      <p class="subtitle">
+        AI advises. You make the decision.
+      </p>
+
+    </div>
+
+    <button class="primary" onclick="start()">
+      Let's Get Started →
+    </button>
+
+    <p class="disclaimer">
+      HomeBuy AI is designed to help you make
+      informed decisions, not make decisions for you.
+    </p>
+
+  </div>
+
+`;
 
 </script>
 
