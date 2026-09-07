@@ -1,3040 +1,3261 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta charset="UTF-8">
+<title>HomeBuy AI</title>
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+<style>
 
-  <title>HomeBuy AI</title>
+:root {
+    --blue: #2563eb;
+    --blue-dark: #1d4ed8;
+    --blue-light: #eff6ff;
+    --purple: #7c3aed;
+    --purple-light: #f5f3ff;
+    --green: #16a34a;
+    --green-light: #f0fdf4;
+    --orange: #f97316;
+    --orange-light: #fff7ed;
+    --yellow: #eab308;
+    --yellow-light: #fefce8;
+    --red: #dc2626;
+    --red-light: #fef2f2;
+    --dark: #172033;
+    --text: #334155;
+    --muted: #64748b;
+    --border: #e2e8f0;
+    --background: #f6f8fc;
+    --white: #ffffff;
+}
 
+* {
+    box-sizing: border-box;
+}
 
-  <style>
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background:
+        radial-gradient(circle at top left, #eaf2ff, transparent 35%),
+        radial-gradient(circle at top right, #f4edff, transparent 30%),
+        var(--background);
+    color: var(--text);
+}
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+button,
+input,
+select {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.header {
+    background: rgba(255,255,255,.95);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.header-inner {
+    max-width: 1000px;
+    margin: auto;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    background: linear-gradient(135deg, var(--blue), var(--purple));
+    color: white;
+}
+
+.logo-text h1 {
+    margin: 0;
+    color: var(--dark);
+    font-size: 19px;
+}
+
+.logo-text p {
+    margin: 3px 0 0;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.ai-badge {
+    background: var(--purple-light);
+    color: var(--purple);
+    padding: 8px 13px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.main {
+    max-width: 900px;
+    margin: auto;
+    padding: 28px 18px 70px;
+}
+
+.progress-area {
+    margin-bottom: 25px;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--muted);
+    margin-bottom: 8px;
+}
+
+.progress-bar {
+    height: 8px;
+    background: #e5eaf2;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--blue), var(--purple));
+    border-radius: 20px;
+}
+
+.card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(15,23,42,.07);
+}
+
+.welcome {
+    text-align: center;
+    padding: 45px 25px;
+    position: relative;
+    overflow: hidden;
+}
+
+.house {
+    font-size: 70px;
+    margin-bottom: 10px;
+}
+
+.welcome h2 {
+    font-size: 42px;
+    margin: 0;
+    color: var(--dark);
+}
+
+.gradient {
+    background: linear-gradient(90deg, var(--blue), var(--purple));
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.welcome-description {
+    max-width: 650px;
+    margin: 15px auto;
+    line-height: 1.7;
+    color: var(--muted);
+    font-size: 16px;
+}
+
+.trust-box {
+    max-width: 700px;
+    margin: 25px auto;
+    padding: 20px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, var(--blue-light), var(--purple-light));
+    text-align: left;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 12px;
+    margin: 25px 0;
+}
+
+.feature {
+    padding: 18px 12px;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+}
+
+.feature-icon {
+    font-size: 28px;
+}
+
+.feature strong {
+    display: block;
+    margin-top: 7px;
+    color: var(--dark);
+}
+
+.feature span {
+    display: block;
+    margin-top: 5px;
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.btn {
+    border: none;
+    border-radius: 14px;
+    padding: 14px 22px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.primary {
+    background: linear-gradient(135deg, var(--blue), var(--purple));
+    color: white;
+    box-shadow: 0 8px 20px rgba(37,99,235,.2);
+}
+
+.primary:hover {
+    transform: translateY(-2px);
+}
+
+.secondary {
+    background: white;
+    color: var(--text);
+    border: 2px solid var(--border);
+}
+
+.screen-title {
+    margin-bottom: 22px;
+}
+
+.step {
+    display: inline-block;
+    background: var(--blue-light);
+    color: var(--blue);
+    border-radius: 30px;
+    padding: 7px 12px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.screen-title h2 {
+    margin: 0;
+    color: var(--dark);
+    font-size: 34px;
+}
+
+.screen-title p {
+    color: var(--muted);
+    line-height: 1.6;
+    margin-top: 8px;
+}
+
+.section {
+    margin-bottom: 25px;
+}
+
+.section-title {
+    color: var(--dark);
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.options {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 12px;
+}
+
+.option {
+    border: 2px solid var(--border);
+    background: white;
+    border-radius: 18px;
+    padding: 18px;
+    text-align: left;
+    min-height: 95px;
+    transition: .2s;
+}
+
+.option:hover {
+    border-color: #93c5fd;
+    box-shadow: 0 8px 20px rgba(15,23,42,.07);
+}
+
+.option.selected {
+    border-color: var(--blue);
+    background: var(--blue-light);
+}
+
+.option-icon {
+    font-size: 28px;
+    margin-bottom: 7px;
+}
+
+.option-title {
+    display: block;
+    font-weight: bold;
+    color: var(--dark);
+}
+
+.option-description {
+    display: block;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 5px;
+    line-height: 1.4;
+}
+
+.form-card {
+    padding: 24px;
+}
+
+label {
+    display: block;
+    color: var(--dark);
+    font-weight: bold;
+    margin-bottom: 9px;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid var(--border);
+    border-radius: 14px;
+    background: white;
+    color: var(--dark);
+    outline: none;
+}
+
+input:focus,
+select:focus {
+    border-color: var(--blue);
+}
+
+.help {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 6px;
+}
+
+.input-group {
+    margin-bottom: 22px;
+}
+
+.info {
+    background: var(--orange-light);
+    border: 1px solid #fed7aa;
+    padding: 17px;
+    border-radius: 17px;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.review {
+    margin-bottom: 14px;
+    overflow: hidden;
+}
+
+.review-header {
+    padding: 15px 18px;
+    background: #f8fafc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.review-header strong {
+    color: var(--dark);
+}
+
+.edit {
+    border: none;
+    background: var(--blue-light);
+    color: var(--blue);
+    padding: 7px 10px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.review-body {
+    padding: 17px 18px;
+}
+
+.review-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 6px 0;
+}
+
+.review-row span {
+    color: var(--muted);
+}
+
+.review-row strong {
+    color: var(--dark);
+    text-align: right;
+}
+
+.dashboard-header {
+    background: linear-gradient(135deg, #172033, #334c7a);
+    color: white;
+    padding: 30px;
+    border-radius: 25px;
+    margin-bottom: 18px;
+    position: relative;
+    overflow: hidden;
+}
+
+.dashboard-header h2 {
+    margin: 0;
+    font-size: 31px;
+}
+
+.dashboard-header p {
+    color: #dbe5f4;
+    line-height: 1.6;
+    max-width: 650px;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 14px;
+}
+
+.dashboard-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    padding: 22px;
+    transition: .2s;
+    position: relative;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(15,23,42,.1);
+}
+
+.dashboard-icon {
+    width: 55px;
+    height: 55px;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    margin-bottom: 14px;
+}
+
+.blue-bg {
+    background: var(--blue-light);
+}
+
+.green-bg {
+    background: var(--green-light);
+}
+
+.purple-bg {
+    background: var(--purple-light);
+}
+
+.orange-bg {
+    background: var(--orange-light);
+}
+
+.yellow-bg {
+    background: var(--yellow-light);
+}
+
+.dashboard-card h3 {
+    margin: 0;
+    color: var(--dark);
+}
+
+.dashboard-card p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.card-link {
+    color: var(--blue);
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.coming {
+    opacity: .75;
+}
+
+.badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #f1f5f9;
+    color: var(--muted);
+    padding: 6px 8px;
+    border-radius: 20px;
+    font-size: 9px;
+    font-weight: bold;
+}
+
+.affordability {
+    padding: 28px;
+}
+
+.big-number {
+    font-size: 55px;
+    font-weight: 900;
+    color: var(--dark);
+    text-align: center;
+}
+
+.center {
+    text-align: center;
+}
+
+.muted {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.metrics {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.metric {
+    background: #f8fafc;
+    border-radius: 16px;
+    padding: 15px;
+}
+
+.metric small {
+    display: block;
+    color: var(--muted);
+}
+
+.metric strong {
+    display: block;
+    margin-top: 6px;
+    color: var(--dark);
+}
+
+.ai-box {
+    background: linear-gradient(135deg, var(--purple-light), var(--blue-light));
+    border: 1px solid #ddd6fe;
+    border-radius: 18px;
+    padding: 20px;
+    margin-top: 20px;
+    line-height: 1.6;
+}
+
+.ai-title {
+    color: var(--purple);
+    font-weight: bold;
+}
+
+.risk {
+    text-align: center;
+    padding: 18px;
+    border-radius: 17px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.green-risk {
+    background: var(--green-light);
+    color: var(--green);
+}
+
+.yellow-risk {
+    background: var(--yellow-light);
+    color: #a16207;
+}
+
+.red-risk {
+    background: var(--red-light);
+    color: var(--red);
+}
+
+@media(max-width:700px) {
+
+    .main {
+        padding: 18px 12px 50px;
     }
 
-
-    body {
-
-      font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
-      background: #eef3f7;
-
-      color: #102a43;
-
-      min-height: 100vh;
-
+    .ai-badge {
+        display: none;
     }
-
-
-    .app {
-
-      width: 100%;
-
-      max-width: 520px;
-
-      min-height: 100vh;
-
-      margin: auto;
-
-      background: #ffffff;
-
-      position: relative;
-
-      overflow: hidden;
-
-      box-shadow:
-        0 0 40px
-        rgba(16, 42, 67, 0.08);
-
-    }
-
-
-    .header {
-
-      padding:
-        22px
-        24px
-        10px;
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: space-between;
-
-    }
-
-
-    .logo {
-
-      display: flex;
-
-      align-items: center;
-
-      gap: 9px;
-
-      font-size: 21px;
-
-      font-weight: 800;
-
-      color: #073b5c;
-
-    }
-
-
-    .logo-icon {
-
-      width: 34px;
-
-      height: 34px;
-
-      background:
-        linear-gradient(
-          135deg,
-          #0b567f,
-          #13a89e
-        );
-
-      color: white;
-
-      border-radius: 10px;
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: center;
-
-    }
-
-
-    .logo span {
-
-      color: #12a69c;
-
-    }
-
-
-    .tagline {
-
-      font-size: 10px;
-
-      color: #72849a;
-
-      text-align: right;
-
-      line-height: 1.3;
-
-    }
-
-
-    .progress-section {
-
-      padding:
-        8px
-        24px
-        18px;
-
-    }
-
-
-    .progress-top {
-
-      display: flex;
-
-      justify-content: space-between;
-
-      margin-bottom: 8px;
-
-    }
-
-
-    .progress-label {
-
-      font-size: 12px;
-
-      font-weight: 700;
-
-      color: #718096;
-
-    }
-
-
-    .progress-number {
-
-      font-size: 12px;
-
-      font-weight: 700;
-
-      color: #0b8d88;
-
-    }
-
-
-    .progress {
-
-      height: 7px;
-
-      background: #e7edf2;
-
-      border-radius: 20px;
-
-      overflow: hidden;
-
-    }
-
-
-    .progress-bar {
-
-      height: 100%;
-
-      background:
-        linear-gradient(
-          90deg,
-          #0c567e,
-          #13aaa0
-        );
-
-      border-radius: 20px;
-
-      transition:
-        width 0.4s ease;
-
-    }
-
-
-    .content {
-
-      padding:
-        12px
-        24px
-        30px;
-
-    }
-
-
-    .screen {
-
-      animation:
-        fadeIn 0.3s ease;
-
-    }
-
-
-    @keyframes fadeIn {
-
-      from {
-
-        opacity: 0;
-
-        transform:
-          translateY(8px);
-
-      }
-
-      to {
-
-        opacity: 1;
-
-        transform:
-          translateY(0);
-
-      }
-
-    }
-
-
-    .eyebrow {
-
-      display: inline-flex;
-
-      background: #e9f8f6;
-
-      color: #087f79;
-
-      padding:
-        8px
-        12px;
-
-      border-radius: 30px;
-
-      font-size: 11px;
-
-      font-weight: 800;
-
-      text-transform: uppercase;
-
-      margin-bottom: 18px;
-
-    }
-
-
-    h1 {
-
-      font-size: 36px;
-
-      line-height: 1.08;
-
-      letter-spacing: -1.3px;
-
-      margin-bottom: 17px;
-
-    }
-
-
-    h2 {
-
-      font-size: 29px;
-
-      line-height: 1.12;
-
-      letter-spacing: -0.8px;
-
-      margin-bottom: 12px;
-
-    }
-
-
-    .subtitle {
-
-      color: #607286;
-
-      font-size: 16px;
-
-      line-height: 1.55;
-
-      margin-bottom: 24px;
-
-    }
-
 
     .welcome {
-
-      min-height: 72vh;
-
-      display: flex;
-
-      flex-direction: column;
-
-      justify-content: center;
-
+        padding: 35px 18px;
     }
 
-
-    .house-hero {
-
-      height: 190px;
-
-      border-radius: 24px;
-
-      margin-bottom: 25px;
-
-      background:
-        linear-gradient(
-          135deg,
-          #0b567f,
-          #13a99f
-        );
-
-      position: relative;
-
-      overflow: hidden;
-
-      display: flex;
-
-      align-items: flex-end;
-
-      padding: 22px;
-
-      box-shadow:
-        0 15px 35px
-        rgba(8, 78, 116, 0.18);
-
+    .welcome h2 {
+        font-size: 34px;
     }
 
-
-    .house-shape {
-
-      position: absolute;
-
-      right: 28px;
-
-      bottom: 25px;
-
-      font-size: 115px;
-
-      opacity: 0.25;
-
+    .features {
+        grid-template-columns: 1fr;
     }
-
-
-    .hero-text {
-
-      color: white;
-
-      font-weight: 700;
-
-      font-size: 15px;
-
-    }
-
-
-    .benefits {
-
-      display: grid;
-
-      gap: 10px;
-
-      margin:
-        18px
-        0
-        24px;
-
-    }
-
-
-    .benefit {
-
-      display: flex;
-
-      align-items: center;
-
-      gap: 12px;
-
-      font-size: 14px;
-
-      color: #40566c;
-
-    }
-
-
-    .benefit-icon {
-
-      width: 30px;
-
-      height: 30px;
-
-      background: #e9f8f6;
-
-      color: #078d86;
-
-      border-radius: 9px;
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: center;
-
-    }
-
-
-    .info-card {
-
-      background:
-        linear-gradient(
-          135deg,
-          #f1f8fc,
-          #edf9f7
-        );
-
-      border:
-        1px solid
-        #d9ebef;
-
-      border-radius: 18px;
-
-      padding: 18px;
-
-      margin:
-        18px
-        0;
-
-    }
-
-
-    .info-card-title {
-
-      font-size: 14px;
-
-      font-weight: 800;
-
-      color: #173f5f;
-
-      margin-bottom: 8px;
-
-    }
-
-
-    .info-card p {
-
-      margin: 0;
-
-      font-size: 14px;
-
-      line-height: 1.5;
-
-      color: #607286;
-
-    }
-
 
     .options {
-
-      display: grid;
-
-      gap: 11px;
-
-      margin-top: 20px;
-
+        grid-template-columns: 1fr;
     }
 
-
-    .option {
-
-      width: 100%;
-
-      border:
-        2px solid
-        #e3e9ee;
-
-      background: white;
-
-      border-radius: 16px;
-
-      padding: 16px;
-
-      display: flex;
-
-      align-items: center;
-
-      gap: 14px;
-
-      cursor: pointer;
-
-      text-align: left;
-
-      transition:
-        all 0.2s ease;
-
-      color: #173f5f;
-
+    .dashboard-grid {
+        grid-template-columns: 1fr;
     }
 
-
-    .option:hover {
-
-      border-color: #6bc9c2;
-
-      transform:
-        translateY(-1px);
-
+    .metrics {
+        grid-template-columns: 1fr;
     }
-
-
-    .option.selected {
-
-      border-color: #11a79e;
-
-      background: #effbf9;
-
-      box-shadow:
-        0 5px 18px
-        rgba(17, 167, 158, 0.12);
-
-    }
-
-
-    .option-icon {
-
-      width: 42px;
-
-      height: 42px;
-
-      border-radius: 12px;
-
-      background: #f0f5f8;
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: center;
-
-      font-size: 20px;
-
-      font-weight: bold;
-
-      flex-shrink: 0;
-
-    }
-
-
-    .option.selected
-    .option-icon {
-
-      background: #d8f3ef;
-
-    }
-
-
-    .option-text {
-
-      flex: 1;
-
-    }
-
-
-    .option-title {
-
-      font-size: 15px;
-
-      font-weight: 700;
-
-      margin-bottom: 3px;
-
-    }
-
-
-    .option-description {
-
-      font-size: 12px;
-
-      color: #718096;
-
-    }
-
-
-    .input-label {
-
-      font-size: 13px;
-
-      font-weight: 700;
-
-      color: #40566c;
-
-      margin-bottom: 8px;
-
-      display: block;
-
-    }
-
-
-    .input-wrapper {
-
-      position: relative;
-
-      margin-top: 20px;
-
-    }
-
-
-    .input-prefix {
-
-      position: absolute;
-
-      left: 16px;
-
-      top: 50%;
-
-      transform:
-        translateY(-50%);
-
-      color: #74879a;
-
-      font-weight: 700;
-
-      font-size: 17px;
-
-    }
-
-
-    .input-wrapper input {
-
-      padding-left: 43px;
-
-    }
-
-
-    input {
-
-      width: 100%;
-
-      padding: 16px;
-
-      border:
-        2px solid
-        #e0e7ed;
-
-      border-radius: 15px;
-
-      outline: none;
-
-      font-size: 17px;
-
-      color: #173f5f;
-
-    }
-
-
-    input:focus {
-
-      border-color: #13a69d;
-
-      box-shadow:
-        0 0 0 4px
-        rgba(19,166,157,0.08);
-
-    }
-
 
     .navigation {
-
-      display: flex;
-
-      gap: 10px;
-
-      margin-top: 26px;
-
+        flex-direction: column-reverse;
     }
 
-
-    .back-button {
-
-      width: 35%;
-
-      padding: 16px;
-
-      border:
-        2px solid
-        #dce4ea;
-
-      background: white;
-
-      color: #173f5f;
-
-      border-radius: 14px;
-
-      font-weight: 700;
-
-      cursor: pointer;
-
+    .navigation .btn {
+        width: 100%;
     }
 
-
-    .continue-button {
-
-      width: 65%;
-
-      padding: 16px;
-
-      border: none;
-
-      background:
-        linear-gradient(
-          135deg,
-          #0c5279,
-          #087d8a
-        );
-
-      color: white;
-
-      border-radius: 14px;
-
-      font-weight: 700;
-
-      cursor: pointer;
-
-      box-shadow:
-        0 7px 18px
-        rgba(8,82,121,0.18);
-
+    .review-row {
+        flex-direction: column;
+        gap: 3px;
     }
 
-
-    .continue-button:disabled {
-
-      background: #cbd5dd;
-
-      box-shadow: none;
-
-      cursor: not-allowed;
-
+    .review-row strong {
+        text-align: left;
     }
 
-
-    /* =========================
-       REVIEW SCREEN
-    ========================= */
-
-    .review-card {
-
-      background: #ffffff;
-
-      border:
-        1px solid
-        #e1e8ed;
-
-      border-radius: 20px;
-
-      overflow: hidden;
-
-      margin-top: 20px;
-
-      box-shadow:
-        0 8px 25px
-        rgba(16,42,67,0.06);
-
+    .big-number {
+        font-size: 42px;
     }
+}
 
-
-    .review-item {
-
-      padding: 17px;
-
-      border-bottom:
-        1px solid
-        #edf1f4;
-
-      display: flex;
-
-      align-items: center;
-
-      gap: 13px;
-
-    }
-
-
-    .review-item:last-child {
-
-      border-bottom: none;
-
-    }
-
-
-    .review-icon {
-
-      width: 38px;
-
-      height: 38px;
-
-      background: #eaf7f5;
-
-      color: #087f79;
-
-      border-radius: 11px;
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: center;
-
-      flex-shrink: 0;
-
-    }
-
-
-    .review-info {
-
-      flex: 1;
-
-      min-width: 0;
-
-    }
-
-
-    .review-label {
-
-      font-size: 11px;
-
-      color: #7b8a99;
-
-      margin-bottom: 4px;
-
-    }
-
-
-    .review-value {
-
-      font-size: 14px;
-
-      font-weight: 700;
-
-      color: #173f5f;
-
-      word-break: break-word;
-
-    }
-
-
-    .edit-button {
-
-      border: none;
-
-      background: #eef8f7;
-
-      color: #087f79;
-
-      padding:
-        8px
-        11px;
-
-      border-radius: 9px;
-
-      font-size: 12px;
-
-      font-weight: 800;
-
-      cursor: pointer;
-
-      flex-shrink: 0;
-
-    }
-
-
-    .edit-button:hover {
-
-      background: #dff3f0;
-
-    }
-
-
-    .review-note {
-
-      margin-top: 17px;
-
-      background:
-        linear-gradient(
-          135deg,
-          #f1f8fc,
-          #edf9f7
-        );
-
-      border-radius: 17px;
-
-      padding: 17px;
-
-    }
-
-
-    .review-note strong {
-
-      color: #173f5f;
-
-      font-size: 14px;
-
-    }
-
-
-    .review-note p {
-
-      margin:
-        7px
-        0
-        0;
-
-      color: #607286;
-
-      font-size: 13px;
-
-      line-height: 1.5;
-
-    }
-
-
-    .final-button {
-
-      margin-top: 20px;
-
-      width: 100%;
-
-      padding: 18px;
-
-      border: none;
-
-      border-radius: 15px;
-
-      background:
-        linear-gradient(
-          135deg,
-          #0c5279,
-          #087d8a
-        );
-
-      color: white;
-
-      font-size: 16px;
-
-      font-weight: 800;
-
-      cursor: pointer;
-
-      box-shadow:
-        0 9px 22px
-        rgba(8,82,121,0.18);
-
-    }
-
-
-    .footer-note {
-
-      text-align: center;
-
-      color: #91a0ae;
-
-      font-size: 11px;
-
-      margin-top: 16px;
-
-      line-height: 1.4;
-
-    }
-
-
-    .error {
-
-      color: #c0392b;
-
-      background: #fff3f2;
-
-      border-radius: 10px;
-
-      padding: 10px;
-
-      font-size: 13px;
-
-      margin-top: 8px;
-
-    }
-
-
-    @media (max-width: 600px) {
-
-      body {
-
-        background: white;
-
-      }
-
-
-      .app {
-
-        box-shadow: none;
-
-      }
-
-
-      .content {
-
-        padding-left: 20px;
-
-        padding-right: 20px;
-
-      }
-
-    }
-
-  </style>
-
+</style>
 </head>
-
 
 <body>
 
+<header class="header">
 
-<div class="app">
+    <div class="header-inner">
 
+        <div class="logo-area">
 
-  <!-- HEADER -->
+            <div class="logo">
+                🏠
+            </div>
 
-  <div class="header">
+            <div class="logo-text">
+                <h1>HomeBuy AI</h1>
+                <p>Your Homebuying Advisor</p>
+            </div>
 
-    <div class="logo">
+        </div>
 
-      <div class="logo-icon">
-        🏠
-      </div>
-
-      HomeBuy <span>AI</span>
-
-    </div>
-
-
-    <div class="tagline">
-
-      Your Home.<br>
-
-      A Smarter Tomorrow.
+        <div class="ai-badge">
+            🤖 AI Powered
+        </div>
 
     </div>
 
-  </div>
+</header>
 
 
+<main class="main">
 
-  <!-- PROGRESS -->
+    <div id="app"></div>
 
-  <div class="progress-section">
-
-    <div class="progress-top">
-
-      <div
-        class="progress-label"
-        id="progressLabel">
-
-        Let's get started
-
-      </div>
-
-
-      <div
-        class="progress-number"
-        id="progressNumber">
-
-        1 of 8
-
-      </div>
-
-    </div>
-
-
-    <div class="progress">
-
-      <div
-        class="progress-bar"
-        id="progressBar">
-      </div>
-
-    </div>
-
-  </div>
-
-
-
-  <!-- CONTENT -->
-
-  <div class="content">
-
-    <div
-      class="screen"
-      id="app">
-    </div>
-
-  </div>
-
-
-</div>
-
+</main>
 
 
 <script>
 
+/* =========================================
+   HOME BUY AI
+========================================= */
 
-/* ==========================================
-   USER DATA
-========================================== */
-
-let answers = {
-
-  homeStatus: "",
-
-  military: "",
-
-  militaryStatus: "",
-
-  location: "",
-
-  income: "",
-
-  debt: "",
-
-  propertyType: ""
-
+var answers = {
+    homeStatus: "",
+    military: "",
+    militaryStatus: "",
+    state: "",
+    location: "",
+    loanType: "",
+    income: "",
+    debt: "",
+    savings: "",
+    downPayment: "",
+    creditScore: "",
+    comfortablePayment: "",
+    emergencySavings: "",
+    propertyType: "",
+    purchasePurpose: "",
+    timeline: "",
+    targetPrice: "",
+    priorities: []
 };
 
+var step = 0;
+
+var states = [
+    "Alabama","Alaska","Arizona","Arkansas","California",
+    "Colorado","Connecticut","Delaware","Florida","Georgia",
+    "Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas",
+    "Kentucky","Louisiana","Maine","Maryland","Massachusetts",
+    "Michigan","Minnesota","Mississippi","Missouri","Montana",
+    "Nebraska","Nevada","New Hampshire","New Jersey",
+    "New Mexico","New York","North Carolina","North Dakota",
+    "Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island",
+    "South Carolina","South Dakota","Tennessee","Texas","Utah",
+    "Vermont","Virginia","Washington","West Virginia",
+    "Wisconsin","Wyoming"
+];
+
+var app = document.getElementById("app");
 
 
-/* ==========================================
-   ELEMENTS
-========================================== */
+/* =========================================
+   STORAGE
+========================================= */
 
-const app =
-  document.getElementById("app");
+function save() {
 
+    try {
+        localStorage.setItem(
+            "homebuyAIAnswers",
+            JSON.stringify(answers)
+        );
+    } catch(e) {}
 
-const progressBar =
-  document.getElementById("progressBar");
-
-
-const progressLabel =
-  document.getElementById("progressLabel");
-
-
-const progressNumber =
-  document.getElementById("progressNumber");
+}
 
 
+function load() {
 
-/* ==========================================
+    try {
+
+        var saved =
+            localStorage.getItem("homebuyAIAnswers");
+
+        if (saved) {
+
+            var parsed =
+                JSON.parse(saved);
+
+            for (var key in parsed) {
+
+                if (
+                    Object.prototype.hasOwnProperty.call(
+                        answers,
+                        key
+                    )
+                ) {
+
+                    answers[key] = parsed[key];
+
+                }
+
+            }
+
+        }
+
+    } catch(e) {}
+
+}
+
+
+load();
+
+
+/* =========================================
+   ESCAPE
+========================================= */
+
+function safe(value) {
+
+    if (value === null || value === undefined) {
+        return "";
+    }
+
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+}
+
+
+/* =========================================
    PROGRESS
-========================================== */
+========================================= */
 
-function updateProgress(
-  percent,
-  step,
-  label
-) {
+function progress(number) {
 
-  progressBar.style.width =
-    percent + "%";
+    if (number === 0) {
+        return "";
+    }
 
-  progressNumber.textContent =
-    step + " of 8";
+    var percent =
+        Math.round((number / 8) * 100);
 
-  progressLabel.textContent =
-    label;
+    return `
+        <div class="progress-area">
 
+            <div class="progress-info">
+                <span>Your Homebuying Journey</span>
+                <span>${number} of 8</span>
+            </div>
+
+            <div class="progress-bar">
+
+                <div
+                    class="progress-fill"
+                    style="width:${percent}%"
+                ></div>
+
+            </div>
+
+        </div>
+    `;
 }
 
 
+/* =========================================
+   OPTION
+========================================= */
 
-/* ==========================================
+function option(
+    emoji,
+    title,
+    value,
+    selected,
+    action,
+    description
+) {
+
+    return `
+        <button
+            type="button"
+            class="option ${selected ? "selected" : ""}"
+            onclick="${action}"
+        >
+
+            <div class="option-icon">
+                ${emoji}
+            </div>
+
+            <span class="option-title">
+                ${safe(title)}
+            </span>
+
+            ${
+                description
+                ?
+                `<span class="option-description">
+                    ${safe(description)}
+                </span>`
+                :
+                ""
+            }
+
+        </button>
+    `;
+}
+
+
+/* =========================================
    WELCOME
-========================================== */
+========================================= */
 
-function showWelcome() {
+function welcome() {
 
-  updateProgress(
-    8,
-    1,
-    "Let's get started"
-  );
+    step = 0;
 
+    app.innerHTML = `
 
-  app.innerHTML = `
+        <div class="card welcome">
 
-    <div class="screen">
-
-      <div class="welcome">
-
-
-        <div class="house-hero">
-
-          <div class="house-shape">
-            🏡
-          </div>
-
-          <div class="hero-text">
-            Your goals. Your home. Your future.
-          </div>
-
-        </div>
-
-
-        <div class="eyebrow">
-          ✦ Your Home Buying Advisor
-        </div>
-
-
-        <h1>
-          Let's find a home that actually
-          makes sense for you.
-        </h1>
-
-
-        <p class="subtitle">
-
-          HomeBuy AI helps you understand what
-          you can comfortably afford, explore
-          your options, and make confident
-          decisions before you buy.
-
-        </p>
-
-
-        <div class="benefits">
-
-
-          <div class="benefit">
-
-            <div class="benefit-icon">
-              ✦
+            <div class="house">
+                🏡
             </div>
 
-            Personalized guidance
+            <h2>
+                Welcome to
+                <span class="gradient">
+                    HomeBuy AI
+                </span>
+            </h2>
 
-          </div>
+            <p class="welcome-description">
+                Buying a home is one of the biggest financial
+                decisions you'll ever make. HomeBuy AI helps
+                you understand the numbers before you make it.
+            </p>
 
+            <div class="trust-box">
 
-          <div class="benefit">
+                <strong>
+                    🤝 HomeBuy AI is here to help you get to the right professionals.
+                </strong>
 
-            <div class="benefit-icon">
-              ✓
+                <br><br>
+
+                HomeBuy AI does not replace your lender,
+                real estate agent, inspector, insurance agent,
+                title company, property manager, or other
+                professionals involved in the homebuying process.
+
+                <br><br>
+
+                Instead, we'll help you understand when you
+                may need them, what questions to ask, and
+                eventually help you find professionals who
+                can assist you.
+
+                <br><br>
+
+                <strong>
+                    AI helps you prepare. Professionals help you complete the process. You make the decision.
+                </strong>
+
             </div>
 
-            Real insights, not guesswork
+            <div class="features">
 
-          </div>
+                <div class="feature">
+                    <div class="feature-icon">💰</div>
+                    <strong>Know Your Numbers</strong>
+                    <span>Understand what your home could really cost.</span>
+                </div>
 
+                <div class="feature">
+                    <div class="feature-icon">🧠</div>
+                    <strong>Make Better Decisions</strong>
+                    <span>See the financial tradeoffs before buying.</span>
+                </div>
 
-          <div class="benefit">
+                <div class="feature">
+                    <div class="feature-icon">🤝</div>
+                    <strong>Find The Right Help</strong>
+                    <span>Connect with professionals when you need them.</span>
+                </div>
 
-            <div class="benefit-icon">
-              ♡
             </div>
 
-            Support at every step
-
-          </div>
-
-
-        </div>
-
-
-        <button
-          class="final-button"
-          onclick="startAdvisor()">
-
-          Let's Get Started →
-
-        </button>
-
-
-        <div class="footer-note">
-
-          You make the decision.
-          We're here to help you
-          make a better one.
+            <button
+                class="btn primary"
+                onclick="start()"
+            >
+                🚀 Let's Get Started
+            </button>
 
         </div>
-
-
-      </div>
-
-    </div>
-
-  `;
-
+    `;
 }
 
 
+function start() {
 
-/* ==========================================
-   INTRO
-========================================== */
+    step = 1;
 
-function startAdvisor() {
-
-  updateProgress(
-    15,
-    1,
-    "Getting to know you"
-  );
-
-
-  app.innerHTML = `
-
-    <div class="screen">
-
-
-      <div class="eyebrow">
-        ✦ Before we begin
-      </div>
-
-
-      <h2>
-        Let's make this about you.
-      </h2>
-
-
-      <p class="subtitle">
-
-        I'm going to ask you a few questions
-        so I can understand your situation
-        and give you more useful answers.
-
-      </p>
-
-
-      <div class="info-card">
-
-        <div class="info-card-title">
-          A little information goes a long way.
-        </div>
-
-        <p>
-
-          There are no right or wrong answers.
-          The more you tell me, the more helpful
-          HomeBuy AI can be.
-
-        </p>
-
-      </div>
-
-
-      <div class="navigation">
-
-        <button
-          class="back-button"
-          onclick="showWelcome()">
-
-          ← Back
-
-        </button>
-
-
-        <button
-          class="continue-button"
-          onclick="showHomeStatus()">
-
-          Continue →
-
-        </button>
-
-      </div>
-
-
-    </div>
-
-  `;
-
+    aboutYou();
 }
 
 
+/* =========================================
+   ABOUT YOU
+========================================= */
 
-/* ==========================================
-   HOME STATUS
-========================================== */
+function aboutYou() {
 
-function showHomeStatus() {
+    step = 1;
 
-  updateProgress(
-    25,
-    2,
-    "About your homeownership"
-  );
+    app.innerHTML = `
 
+        ${progress(step)}
 
-  app.innerHTML = `
+        <div class="screen-title">
 
-    <div class="screen">
-
-
-      <div class="eyebrow">
-        🏠 Your experience
-      </div>
-
-
-      <h2>
-        Have you owned a home before?
-      </h2>
-
-
-      <p class="subtitle">
-
-        This helps HomeBuy AI understand
-        your experience and identify resources
-        that may be relevant to you.
-
-      </p>
-
-
-      <div class="options">
-
-
-        ${homeOption(
-          "First-time homebuyer",
-          "🏠",
-          "I'm purchasing my first home"
-        )}
-
-
-        ${homeOption(
-          "Current homeowner",
-          "🔑",
-          "I'm looking to purchase another property"
-        )}
-
-
-        ${homeOption(
-          "Multiple properties",
-          "🏢",
-          "I'm adding another property to my portfolio"
-        )}
-
-
-        ${homeOption(
-          "Investment",
-          "📈",
-          "I'm looking for an investment opportunity"
-        )}
-
-
-      </div>
-
-
-      <div class="navigation">
-
-
-        <button
-          class="back-button"
-          onclick="startAdvisor()">
-
-          ← Back
-
-        </button>
-
-
-        <button
-          class="continue-button"
-          onclick="continueHomeStatus()"
-          ${answers.homeStatus === ""
-            ? "disabled"
-            : ""}>
-
-          Continue →
-
-        </button>
-
-
-      </div>
-
-
-    </div>
-
-  `;
-
-}
-
-
-
-function homeOption(
-  title,
-  icon,
-  description
-) {
-
-  const selected =
-    answers.homeStatus === title
-      ? "selected"
-      : "";
-
-
-  return `
-
-    <button
-      class="option ${selected}"
-      onclick="selectHomeStatus('${title}')">
-
-      <div class="option-icon">
-        ${icon}
-      </div>
-
-      <div class="option-text">
-
-        <div class="option-title">
-          ${title}
-        </div>
-
-        <div class="option-description">
-          ${description}
-        </div>
-
-      </div>
-
-    </button>
-
-  `;
-
-}
-
-
-
-function selectHomeStatus(status) {
-
-  answers.homeStatus =
-    status;
-
-  showHomeStatus();
-
-}
-
-
-
-function continueHomeStatus() {
-
-  if (!answers.homeStatus) {
-    return;
-  }
-
-  showMilitaryQuestion();
-
-}
-
-
-
-/* ==========================================
-   MILITARY QUESTION
-========================================== */
-
-function showMilitaryQuestion() {
-
-  updateProgress(
-    35,
-    3,
-    "Understanding your options"
-  );
-
-
-  app.innerHTML = `
-
-    <div class="screen">
-
-
-      <div class="eyebrow">
-        Military benefits
-      </div>
-
-
-      <h2>
-        Have you served in the military?
-      </h2>
-
-
-      <p class="subtitle">
-
-        This helps HomeBuy AI identify
-        potential military and VA-related
-        homebuying options.
-
-      </p>
-
-
-      <div class="options">
-
-
-        <button
-          class="option
-          ${answers.military === 'Yes'
-            ? 'selected'
-            : ''}"
-          onclick="selectMilitary('Yes')">
-
-
-          <div class="option-icon">
-            ✓
-          </div>
-
-
-          <div class="option-text">
-
-            <div class="option-title">
-              Yes
+            <div class="step">
+                👋 STEP 1
             </div>
 
-            <div class="option-description">
-              I have served or currently serve
-            </div>
+            <h2>
+                Tell us a little about you
+            </h2>
 
-          </div>
+            <p>
+                This helps us understand what type of
+                homebuying journey you're on.
+            </p>
 
-
-        </button>
-
-
-
-        <button
-          class="option
-          ${answers.military === 'No'
-            ? 'selected'
-            : ''}"
-          onclick="selectMilitary('No')">
-
-
-          <div class="option-icon">
-            ✕
-          </div>
-
-
-          <div class="option-text">
-
-            <div class="option-title">
-              No
-            </div>
-
-            <div class="option-description">
-              I have not served in the military
-            </div>
-
-          </div>
-
-
-        </button>
-
-
-      </div>
-
-
-      <div class="info-card">
-
-        <div class="info-card-title">
-          Your service matters.
         </div>
 
-        <p>
+        <div class="card form-card">
 
-          If you have served, we'll ask one
-          additional question so we can better
-          understand which homebuying pathways
-          may apply to you.
+            <div class="section">
 
-        </p>
+                <div class="section-title">
+                    🏠 Have you owned a home before?
+                </div>
 
-      </div>
+                <div class="options">
 
+                    ${option(
+                        "🌱",
+                        "I'm a first-time buyer",
+                        "first",
+                        answers.homeStatus === "first",
+                        "homeStatus('first')",
+                        "I'm purchasing my first home."
+                    )}
 
-      <div class="navigation">
+                    ${option(
+                        "🏡",
+                        "Yes, I've owned a home",
+                        "previous",
+                        answers.homeStatus === "previous",
+                        "homeStatus('previous')",
+                        "I've owned a home before."
+                    )}
 
-        <button
-          class="back-button"
-          onclick="showHomeStatus()">
+                    ${option(
+                        "🏘️",
+                        "I own multiple properties",
+                        "multiple",
+                        answers.homeStatus === "multiple",
+                        "homeStatus('multiple')",
+                        "I'm looking at another property."
+                    )}
 
-          ← Back
+                </div>
 
-        </button>
+            </div>
 
+            <div class="section">
 
-        <button
-          class="continue-button"
-          onclick="continueMilitary()"
-          ${answers.military === ""
-            ? "disabled"
-            : ""}>
+                <div class="section-title">
+                    🪖 Have you served in the military?
+                </div>
 
-          Continue →
+                <div class="options">
 
-        </button>
+                    ${option(
+                        "🇺🇸",
+                        "Yes",
+                        "yes",
+                        answers.military === "yes",
+                        "military('yes')",
+                        "We'll show military related pathways."
+                    )}
 
+                    ${option(
+                        "🙂",
+                        "No",
+                        "no",
+                        answers.military === "no",
+                        "military('no')",
+                        "We'll show other pathways."
+                    )}
 
-      </div>
+                </div>
 
+            </div>
 
-    </div>
+            ${
+                answers.military === "yes"
+                ?
+                `
+                <div class="section">
 
-  `;
+                    <div class="section-title">
+                        🎖️ What is your military status?
+                    </div>
 
-}
+                    <div class="options">
 
+                        ${option("🪖","Active Duty","active",answers.militaryStatus==="active","militaryStatus('active')")}
 
+                        ${option("🇺🇸","Reserve","reserve",answers.militaryStatus==="reserve","militaryStatus('reserve')")}
 
-function selectMilitary(answer) {
+                        ${option("⭐","National Guard","guard",answers.militaryStatus==="guard","militaryStatus('guard')")}
 
-  answers.military =
-    answer;
+                        ${option("🎖️","Veteran","veteran",answers.militaryStatus==="veteran","militaryStatus('veteran')")}
 
-  showMilitaryQuestion();
+                        ${option("🏅","Retired Military","retired",answers.militaryStatus==="retired","militaryStatus('retired')")}
 
-}
+                    </div>
 
+                </div>
+                `
+                :
+                ""
+            }
 
-
-function continueMilitary() {
-
-  if (!answers.military) {
-    return;
-  }
-
-
-  if (answers.military === "Yes") {
-
-    showMilitaryStatus();
-
-  } else {
-
-    answers.militaryStatus = "";
-
-    showLocation();
-
-  }
-
-}
-
-
-
-/* ==========================================
-   MILITARY STATUS
-========================================== */
-
-function showMilitaryStatus() {
-
-  updateProgress(
-    45,
-    4,
-    "Military status"
-  );
-
-
-  app.innerHTML = `
-
-    <div class="screen">
-
-
-      <div class="eyebrow">
-        Your service
-      </div>
-
-
-      <h2>
-        What is your current military status?
-      </h2>
-
-
-      <p class="subtitle">
-
-        Select the option that best
-        describes you.
-
-      </p>
-
-
-      <div class="options">
-
-
-        ${militaryOption(
-          "Active Duty",
-          "★",
-          "Currently serving on active duty"
-        )}
-
-
-        ${militaryOption(
-          "Reserve",
-          "◆",
-          "Currently serving in the Reserve"
-        )}
-
-
-        ${militaryOption(
-          "National Guard",
-          "◆",
-          "Currently serving in the National Guard"
-        )}
-
-
-        ${militaryOption(
-          "Veteran",
-          "★",
-          "Previously served in the military"
-        )}
-
-
-        ${militaryOption(
-          "Retired Military",
-          "★",
-          "Retired from military service"
-        )}
-
-
-      </div>
-
-
-      <div class="navigation">
-
-        <button
-          class="back-button"
-          onclick="showMilitaryQuestion()">
-
-          ← Back
-
-        </button>
-
-
-        <button
-          class="continue-button"
-          onclick="continueMilitaryStatus()"
-          ${answers.militaryStatus === ""
-            ? "disabled"
-            : ""}>
-
-          Continue →
-
-        </button>
-
-
-      </div>
-
-
-    </div>
-
-  `;
-
-}
-
-
-
-function militaryOption(
-  title,
-  icon,
-  description
-) {
-
-  const selected =
-    answers.militaryStatus === title
-      ? "selected"
-      : "";
-
-
-  return `
-
-    <button
-      class="option ${selected}"
-      onclick="selectMilitaryStatus('${title}')">
-
-      <div class="option-icon">
-        ${icon}
-      </div>
-
-      <div class="option-text">
-
-        <div class="option-title">
-          ${title}
         </div>
 
-        <div class="option-description">
-          ${description}
+        <div class="navigation">
+
+            <button
+                class="btn secondary"
+                onclick="welcome()"
+            >
+                ← Back
+            </button>
+
+            <button
+                class="btn primary"
+                onclick="continueAbout()"
+            >
+                Continue →
+            </button>
+
         </div>
-
-      </div>
-
-    </button>
-
-  `;
-
+    `;
 }
 
 
+function homeStatus(value) {
 
-function selectMilitaryStatus(status) {
+    answers.homeStatus = value;
 
-  answers.militaryStatus =
-    status;
+    save();
 
-  showMilitaryStatus();
-
+    aboutYou();
 }
 
 
+function military(value) {
 
-function continueMilitaryStatus() {
+    answers.military = value;
 
-  if (!answers.militaryStatus) {
-    return;
-  }
+    if (value === "no") {
 
-  showLocation();
+        answers.militaryStatus = "";
 
+        if (answers.loanType === "VA") {
+            answers.loanType = "";
+        }
+
+    }
+
+    save();
+
+    aboutYou();
 }
 
 
+function militaryStatus(value) {
 
-/* ==========================================
+    answers.militaryStatus = value;
+
+    save();
+
+    aboutYou();
+}
+
+
+function continueAbout() {
+
+    if (!answers.homeStatus) {
+        alert("Please select your homeownership status.");
+        return;
+    }
+
+    if (!answers.military) {
+        alert("Please select whether you have served in the military.");
+        return;
+    }
+
+    if (
+        answers.military === "yes" &&
+        !answers.militaryStatus
+    ) {
+        alert("Please select your military status.");
+        return;
+    }
+
+    locationScreen();
+}
+
+
+/* =========================================
    LOCATION
-========================================== */
+========================================= */
 
-function showLocation() {
+function locationScreen() {
 
-  updateProgress(
-    57,
-    5,
-    "Where are you buying?"
-  );
+    step = 2;
 
+    var stateOptions =
+        `<option value="">Select your state</option>`;
 
-  app.innerHTML = `
+    for (var i = 0; i < states.length; i++) {
 
-    <div class="screen">
+        stateOptions += `
+            <option
+                value="${safe(states[i])}"
+                ${answers.state === states[i] ? "selected" : ""}
+            >
+                ${safe(states[i])}
+            </option>
+        `;
 
+    }
 
-      <div class="eyebrow">
-        📍 Your market
-      </div>
+    app.innerHTML = `
 
+        ${progress(step)}
 
-      <h2>
-        Where are you looking to buy?
-      </h2>
+        <div class="screen-title">
 
+            <div class="step">
+                📍 STEP 2
+            </div>
 
-      <p class="subtitle">
+            <h2>
+                Where are you buying?
+            </h2>
 
-        Enter the city, state, or ZIP code
-        where you're thinking about purchasing
-        a home.
+            <p>
+                Location can affect taxes, insurance,
+                programs, and the true cost of owning a home.
+            </p>
 
-      </p>
-
-
-      <div class="input-wrapper">
-
-        <span class="input-prefix">
-          📍
-        </span>
-
-        <input
-          id="locationInput"
-          type="text"
-          placeholder="Example: Waukegan, IL"
-          value="${answers.location}"
-        >
-
-      </div>
-
-
-      <div id="locationError"></div>
-
-
-      <div class="navigation">
-
-        <button
-          class="back-button"
-          onclick="goBackFromLocation()">
-
-          ← Back
-
-        </button>
-
-
-        <button
-          class="continue-button"
-          onclick="saveLocation()">
-
-          Continue →
-
-        </button>
-
-      </div>
-
-
-    </div>
-
-  `;
-
-}
-
-
-
-function goBackFromLocation() {
-
-  if (answers.military === "Yes") {
-
-    showMilitaryStatus();
-
-  } else {
-
-    showMilitaryQuestion();
-
-  }
-
-}
-
-
-
-function saveLocation() {
-
-  const location =
-    document
-      .getElementById("locationInput")
-      .value
-      .trim();
-
-
-  if (!location) {
-
-    document
-      .getElementById("locationError")
-      .innerHTML = `
-
-        <div class="error">
-          Please enter a city, state, or ZIP code.
         </div>
 
-      `;
+        <div class="card form-card">
 
-    return;
+            <div class="input-group">
 
-  }
+                <label>
+                    🇺🇸 What state are you looking in?
+                </label>
 
+                <select
+                    onchange="setState(this.value)"
+                >
+                    ${stateOptions}
+                </select>
 
-  answers.location =
-    location;
+            </div>
 
+            <div class="input-group">
 
-  showIncome();
+                <label>
+                    📍 City, County, or ZIP
+                </label>
 
+                <input
+                    type="text"
+                    value="${safe(answers.location)}"
+                    placeholder="Example: Waukegan or 60085"
+                    oninput="setLocation(this.value)"
+                >
+
+            </div>
+
+            ${
+                answers.state
+                ?
+                `
+                <div class="info">
+
+                    <strong>
+                        💡 Why do we ask for your state?
+                    </strong>
+
+                    <br>
+
+                    Your state may offer benefits,
+                    grants, tax programs, down payment assistance,
+                    or other resources that could help during
+                    the homebuying process.
+
+                </div>
+                `
+                :
+                ""
+            }
+
+        </div>
+
+        <div class="navigation">
+
+            <button
+                class="btn secondary"
+                onclick="aboutYou()"
+            >
+                ← Back
+            </button>
+
+            <button
+                class="btn primary"
+                onclick="continueLocation()"
+            >
+                Continue →
+            </button>
+
+        </div>
+    `;
 }
 
 
+function setState(value) {
 
-/* ==========================================
+    answers.state = value;
+
+    save();
+
+    locationScreen();
+}
+
+
+function setLocation(value) {
+
+    answers.location = value;
+
+    save();
+}
+
+
+function continueLocation() {
+
+    if (!answers.state) {
+        alert("Please select your state.");
+        return;
+    }
+
+    if (!answers.location.trim()) {
+        alert("Please enter a city, county, or ZIP.");
+        return;
+    }
+
+    loanScreen();
+}
+
+
+/* =========================================
+   LOAN
+========================================= */
+
+function loanScreen() {
+
+    step = 3;
+
+    var html = "";
+
+    if (answers.military === "yes") {
+
+        html += option(
+            "🪖",
+            "VA Loan",
+            "VA",
+            answers.loanType === "VA",
+            "loan('VA')",
+            "For eligible veterans and service members."
+        );
+
+    }
+
+    html += option(
+        "🏦",
+        "FHA Loan",
+        "FHA",
+        answers.loanType === "FHA",
+        "loan('FHA')",
+        "A common option with lower down payment requirements."
+    );
+
+    html += option(
+        "🏠",
+        "Conventional Loan",
+        "Conventional",
+        answers.loanType === "Conventional",
+        "loan('Conventional')",
+        "A common home loan offered by private lenders."
+    );
+
+    html += option(
+        "🌾",
+        "USDA Loan",
+        "USDA",
+        answers.loanType === "USDA",
+        "loan('USDA')",
+        "May be available for eligible properties."
+    );
+
+    html += option(
+        "💵",
+        "Cash",
+        "Cash",
+        answers.loanType === "Cash",
+        "loan('Cash')",
+        "Purchasing without a mortgage."
+    );
+
+    html += option(
+        "🤔",
+        "I'm Not Sure",
+        "Not Sure",
+        answers.loanType === "Not Sure",
+        "loan('Not Sure')",
+        "That's okay. We'll help you understand your options."
+    );
+
+    app.innerHTML = `
+
+        ${progress(step)}
+
+        <div class="screen-title">
+
+            <div class="step">
+                💳 STEP 3
+            </div>
+
+            <h2>
+                How are you buying?
+            </h2>
+
+            <p>
+                Don't worry if you don't know yet.
+                Choosing "I'm Not Sure" is completely okay.
+            </p>
+
+        </div>
+
+        <div class="options">
+            ${html}
+        </div>
+
+        <div class="navigation">
+
+            <button
+                class="btn secondary"
+                onclick="locationScreen()"
+            >
+                ← Back
+            </button>
+
+            <button
+                class="btn primary"
+                onclick="continueLoan()"
+            >
+                Continue →
+            </button>
+
+        </div>
+    `;
+}
+
+
+function loan(value) {
+
+    if (
+        value === "VA" &&
+        answers.military !== "yes"
+    ) {
+        return;
+    }
+
+    answers.loanType = value;
+
+    save();
+
+    loanScreen();
+}
+
+
+function continueLoan() {
+
+    if (!answers.loanType) {
+        alert("Please select a loan option.");
+        return;
+    }
+
+    if (
+        answers.loanType === "VA" &&
+        answers.military !== "yes"
+    ) {
+        answers.loanType = "";
+        save();
+        alert("VA loans are only available through this pathway when military service is selected.");
+        return;
+    }
+
+    incomeScreen();
+}
+
+
+/* =========================================
    INCOME
-========================================== */
+========================================= */
 
-function showIncome() {
+function incomeScreen() {
 
-  updateProgress(
-    68,
-    6,
-    "Understanding your finances"
-  );
+    step = 4;
+
+    app.innerHTML = `
+
+        ${progress(step)}
+
+        <div class="screen-title">
+
+            <div class="step">
+                💼 STEP 4
+            </div>
+
+            <h2>
+                Let's talk about income
+            </h2>
+
+            <p>
+                This helps HomeBuy AI understand what
+                monthly payment may fit your lifestyle.
+            </p>
+
+        </div>
+
+        <div class="card form-card">
+
+            <div class="input-group">
+
+                <label>
+                    💰 Annual household income
+                </label>
+
+                <input
+                    type="number"
+                    min="0"
+                    value="${safe(answers.income)}"
+                    placeholder="Example: 85000"
+                    oninput="setIncome(this.value)"
+                >
+
+                <div class="help">
+                    Include the household income you expect to use when buying.
+                </div>
+
+            </div>
+
+            <div class="input-group">
+
+                <label>
+                    💳 Monthly debt payments
+                </label>
+
+                <input
+                    type="number"
+                    min="0"
+                    value="${safe(answers.debt)}"
+                    placeholder="Example: 800"
+                    oninput="setDebt(this.value)"
+                >
+
+                <div class="help">
+                    Include car payments, student loans,
+                    credit cards, and other recurring debt.
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="navigation">
+
+            <button
+                class="btn secondary"
+                onclick="loanScreen()"
+            >
+                ← Back
+            </button>
+
+            <button
+                class="btn primary"
+                onclick="continueIncome()"
+            >
+                Continue →
+            </button>
+
+        </div>
+    `;
+}
 
 
-  app.innerHTML = `
+function setIncome(value) {
 
-    <div class="screen">
+    answers.income = value;
 
-
-      <div class="eyebrow">
-        💰 Your income
-      </div>
+    save();
+}
 
 
-      <h2>
-        What is your approximate annual
-        household income?
-      </h2>
+function setDebt(value) {
+
+    answers.debt = value;
+
+    save();
+}
 
 
-      <p class="subtitle">
+function continueIncome() {
 
-        An estimate is perfectly fine.
-        This helps HomeBuy AI understand
-        your potential affordability range.
+    if (!answers.income) {
+        alert("Please enter your annual household income.");
+        return;
+    }
 
-      </p>
+    if (answers.debt === "") {
+        alert("Please enter your monthly debt payments. Enter 0 if you have none.");
+        return;
+    }
 
-
-      <label class="input-label">
-        Annual household income
-      </label>
-
-
-      <div class="input-wrapper">
-
-        <span class="input-prefix">
-          $
-        </span>
+    moneyScreen();
+}
 
 
-        <input
-          id="incomeInput"
-          type="number"
-          placeholder="Example: 85000"
-          value="${answers.income}"
+/* =========================================
+   MONEY
+========================================= */
+
+function moneyScreen() {
+
+    step = 5;
+
+    app.innerHTML = `
+
+        ${progress(step)}
+
+        <div class="screen-title">
+
+            <div class="step">
+                💵 STEP 5
+            </div>
+
+            <h2>
+                What does your buying power look like?
+            </h2>
+
+            <p>
+                We're looking at more than just your
+                down payment. Cash reserves matter too.
+            </p>
+
+        </div>
+
+        <div class="card form-card">
+
+            <div class="section">
+
+                <div class="section-title">
+                    💰 How much do you have saved?
+                </div>
+
+                <div class="options">
+
+                    ${option("💵","Under $5,000","under5",answers.savings==="under5","savings('under5')")}
+
+                    ${option("💵","$5,000 to $9,999","5to10",answers.savings==="5to10","savings('5to10')")}
+
+                    ${option("💰","$10,000 to $19,999","10to20",answers.savings==="10to20","savings('10to20')")}
+
+                    ${option("💰","$20,000 to $39,999","20to40",answers.savings==="20to40","savings('20to40')")}
+
+                    ${option("💎","$40,000 to $74,999","40to75",answers.savings==="40to75","savings('40to75')")}
+
+                    ${option("💎","$75,000+","75plus",answers.savings==="75plus","savings('75plus')")}
+
+                    ${option("🤔","I'm not sure","unknown",answers.savings==="unknown","savings('unknown')")}
+
+                </div>
+
+            </div>
+
+            <div class="section">
+
+                <div class="section-title">
+                    🏦 How much are you planning to put toward the purchase?
+                </div>
+
+                <div class="options">
+
+                    ${option("💵","Under $10,000","under10",answers.downPayment==="under10","downPayment('under10')")}
+
+                    ${option("💰","$10,000 to $24,999","10to25",answers.downPayment==="10to25","downPayment('10to25')")}
+
+                    ${option("💰","$25,000 to $49,999","25to50",answers.downPayment==="25to50","downPayment('25to50')")}
+
+                    ${option("💎","$50,000+","50plus",answers.downPayment==="50plus","downPayment('50plus')")}
+
+                    ${option("🤔","I'm not sure","unknown",answers.downPayment==="unknown","downPayment('unknown')")}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="navigation">
+
+            <button
+                class="btn secondary"
+                onclick="incomeScreen()"
+            >
+                ← Back
+            </button>
+
+            <button
+                class="btn primary"
+                onclick="continueMoney()"
+            >
+                Continue →
+            </button>
+
+        </div>
+    `;
+}
+
+
+function savings(value) {
+
+    answers.savings = value;
+
+    save();
+
+    moneyScreen();
+}
+
+
+function downPayment(value) {
+
+    answers.downPayment = value;
+
+    save();
+
+    moneyScreen();
+}
+
+
+function continueMoney() {
+
+    if (!answers.savings) {
+        alert("Please select your savings range.");
+        return;
+    }
+
+    if (!answers.downPayment) {
+        alert("Please select your down payment range.");
+        return;
+    }
+
+    comfortScreen();
+}
+
+
+/* =========================================
+   COMFORT
+========================================= */
+
+function comfortScreen() {
+
+    step = 6;
+
+    app.innerHTML = `
+
+        ${progress(step)}
+
+        <div class="screen-title">
+
+            <div class="step">
+                ❤️ STEP 6
+            </div>
+
+            <h2>
+                What feels comfortable to you?
+            </h2>
+
+            <p>
+                Qualification and comfort are not always
+                the same thing. We want to understand yours.
+            </p>
+
+        </div>
+
+        <div class="card form-card">
+
+            <div class="section">
+
+                <div class="section-title">
+                    🏠 Comfortable monthly housing payment
+                </div>
+
+                <div class="options">
+
+                    ${option("🏠","Under $1,500","under1500",answers.comfortablePayment==="under1500","comfort('under1500')")}
+
+                    ${option("🏠","$1,500 to $1,999","1500to1999",answers.comfortablePayment==="1500to1999","comfort('1500to1999')")}
+
+                    ${option("🏡","$2,000 to $2,499","2000to2499",answers.comfortablePayment==="2000to2499","comfort('2000to2499')")}
+
+                    ${option("🏡","$2,500 to $2,999","2500to2999",answers.comfortablePayment==="2500to2999","comfort('2500to2999')")}
+
+                    ${option("🏠","$3,000 to $3,499","3000to3499",answers.comfortablePayment==="3000to3499","comfort('3000to3499')")}
+
+                    ${option("💎","$3,500+","3500plus",answers.comfortablePayment==="3500plus","comfort('3500plus')")}
+
+                    ${option("🤔","I'm not sure","unknown",answers.comfortablePayment==="unknown","comfort('unknown')")}
+
+                </div>
+
+            </div>
+
+            <div class="section">
+
+                <div class="section-title">
+                    📊 Approximate credit score
+                </div>
+
+                <div class="options">
+
+                    ${option("⭐","760+","760",answers.creditScore==="760","credit('760')")}
+
+                    ${option("⭐","740 to 759","740",answers.creditScore==="740","credit('740')")}
+
+                    ${option("👍","700 to 739","700",answers.creditScore==="700","credit('700')")}
+
+                    ${option("👍","660 to 699","660",answers.creditScore==="660","credit('660')")}
+
+                    ${option("📈","620 to 659","620",answers.creditScore==="620","credit('620')")}
+
+                    ${option("⚠️","Below 620","below620",answers.creditScore==="below620","credit('below620')")}
+
+                    ${option("🤔","I don't know","unknown",answers.creditScore==="unknown","credit('unknown')")}
+
+                </div>
+
+            </div>
+
+            <div class="section">
+
+                <div class="section-title">
+                    🛟 Emergency savings after buying
+                </div>
+
+                <div class="options">
+
+                    ${option("🪙","Less than $5,000","under5",answers.emergencySavings==="under5","emergency('under5')")}
+
+                    ${option("💵","$5,000 to $9,999","5to10",answers.emergencySavings==="5to10","emergency('5to10')")}
+
+                    ${option("💰","$10,000 to $19,999","10to20",answers.emergencySavings==="10to20","emergency('10to20')")}
+
+                    ${option("💎","$20,000+","20plus",answers.emergencySavings==="20plus","emergency('20plus')")}
+
+                    ${option("🤔","I'm not sure","unknown",answers.emergencySavings==="unknown","emergency('unknown')")}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="navigation">
+
+            <button
+                class="btn secondary"
+                onclick="moneyScreen()"
+            >
+                ← Back
+            </button>
+
+            <button
+                class="btn primary"
+                onclick="continueComfort()"
+            >
+                Continue →
+            </button>
+
+        </div>
+    `;
+}
+
+
+function comfort(value) {
+
+    answers.comfortablePayment = value;
+
+    save();
+
+    comfortScreen();
+}
+
+
+function credit(value) {
+
+    answers.creditScore = value;
+
+    save();
+
+    comfortScreen();
+}
+
+
+function emergency(value) {
+
+    answers.emergencySavings = value;
+
+    save();
+
+    comfortScreen();
+}
+
+
+function continueComfort() {
+
+    if (!answers.comfortablePayment) {
+        alert("Please select your comfortable monthly payment.");
+        return;
+    }
+
+    if (!answers.creditScore) {
+        alert("Please select your approximate credit score.");
+        return;
+    }
+
+    if (!answers.emergencySavings) {
+        alert("Please select your emergency savings.");
+        return;
+    }
+
+    homeScreen();
+}
+
+
+/* =========================================
+   HOME
+========================================= */
+
+function homeScreen() {
+
+    step = 7;
+
+    app.innerHTML = `
+
+        ${progress(step)}
+
+        <div class="screen-title">
+
+            <div class="step">
+                🏡 STEP 7
+            </div>
+
+            <h2>
+                Tell us about the home
+            </h2>
+
+            <p>
+                Help us understand what you're trying
+                to accomplish with the purchase.
+            </p>
+
+        </div>
+
+        <div class="card form-card">
+
+            <div class="section">
+
+                <div class="section-title">
+                    🏠 What type of property are you looking for?
+                </div>
+
+                <div class="options">
+
+                    ${option("🏡","Single Family Home","single",answers.propertyType==="single","propertyType('single')")}
+
+                    ${option("🏘️","Multi Family Home","multi",answers.propertyType==="multi","propertyType('multi')")}
+
+                    ${option("🏢","Condo","condo",answers.propertyType==="condo","propertyType('condo')")}
+
+                    ${option("🌳","Land","land",answers.propertyType==="land","propertyType('land')")}
+
+                </div>
+
+            </div>
+
+            <div class="section">
+
+                <div class="section-title">
+                    🎯 What are you planning to use the property for?
+                </div>
+
+                <div class="options">
+
+                    ${option("🏠","My primary home","primary",answers.purchasePurpose==="primary","purpose('primary')")}
+
+                    ${option("💰","Investment property","investment",answers.purchasePurpose==="investment","purpose('investment')")}
+
+                    ${option("🌴","Second or vacation home","vacation",answers.purchasePurpose==="vacation","purpose('vacation')")}
+
+                    ${option("🏗️","Land to build on","build",answers.purchasePurpose==="build","purpose('build')")}
+
+                </div>
+
+            </div>
+
+            <div class="section">
+
+                <div class="section-title">
+                    ⏰ When are you planning to buy?
+                </div>
+
+                <div class="options">
+
+                    ${option("🚀","Within 3 months","3months",answers.timeline==="3months","timeline('3months')")}
+
+                    ${option("📅","3 to 6 months","6months",answers.timeline==="6months","timeline('6months')")}
+
+                    ${option("🗓️","6 to 12 months","12months",answers.timeline==="12months","timeline('12months')")}
+
+                    ${option("🌱","1 to 2 years","2years",answers.timeline==="2years","timeline('2years')")}
+
+                    ${option("🔭","More than 2 years","more2",answers.timeline==="more2","timeline('more2')")}
+
+                    ${option("👀","I'm just exploring","exploring",answers.timeline==="exploring","timeline('exploring')")}
+
+                </div>
+
+            </div>
+
+            <div class="section">
+
+                <div class="section-title">
+                    💵 Do you have a home price you're currently targeting?
+                </div>
+
+                <input
+                    id="targetPrice"
+                    type="number"
+                    min="0"
+                    value="${safe(answers.targetPrice)}"
+                    placeholder="Example: 300000"
+                    oninput="targetPrice(this.value)"
+                >
+
+                <div class="help">
+                    Optional. You can change this later.
+                </div>
+
+            </div>
+
+            <div class="section">
+
+                <div class="section-title">
+                    ❤️ What matters most to you?
+                </div>
+
+                <div class="help" style="margin-bottom:12px;">
+                    Choose as many as you want.
+                </div>
+
+                <div class="options">
+
+                    ${priority("💵","Lowest monthly payment","payment")}
+
+                    ${priority("💰","Lowest upfront cost","upfront")}
+
+                    ${priority("🏡","Larger home","larger")}
+
+                    ${priority("📍","Better neighborhood","neighborhood")}
+
+                    ${priority("🚗","Shorter commute","commute")}
+
+                    ${priority("📈","Building equity","equity")}
+
+                    ${priority("💎","Investment potential","investment")}
+
+                    ${priority("👨‍👩‍👧‍👦","More space for family","family")}
+
+                    ${priority("🎓","Schools","schools")}
+
+                    ${priority("🌳","Outdoor space","outdoor")}
+
+                    ${priority("❤️","Being close to family","familyclose")}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="navigation">
+
+            <button
+                class="btn secondary"
+                onclick="comfortScreen()"
+            >
+                ← Back
+            </button>
+
+            <button
+                class="btn primary"
+                onclick="continueHome()"
+            >
+                Review My Answers →
+            </button>
+
+        </div>
+    `;
+}
+
+
+function propertyType(value) {
+
+    preservePrice();
+
+    answers.propertyType = value;
+
+    save();
+
+    homeScreen();
+}
+
+
+function purpose(value) {
+
+    preservePrice();
+
+    answers.purchasePurpose = value;
+
+    save();
+
+    homeScreen();
+}
+
+
+function timeline(value) {
+
+    preservePrice();
+
+    answers.timeline = value;
+
+    save();
+
+    homeScreen();
+}
+
+
+function targetPrice(value) {
+
+    answers.targetPrice = value;
+
+    save();
+}
+
+
+function preservePrice() {
+
+    var input =
+        document.getElementById("targetPrice");
+
+    if (input) {
+        answers.targetPrice = input.value;
+    }
+}
+
+
+function priority(emoji,title,value) {
+
+    var selected =
+        answers.priorities.indexOf(value) !== -1;
+
+    return `
+        <button
+            type="button"
+            class="option ${selected ? "selected" : ""}"
+            onclick="togglePriority('${value}')"
         >
 
-      </div>
+            <div class="option-icon">
+                ${emoji}
+            </div>
 
-
-      <div id="incomeError"></div>
-
-
-      <div class="navigation">
-
-        <button
-          class="back-button"
-          onclick="showLocation()">
-
-          ← Back
+            <span class="option-title">
+                ${title}
+            </span>
 
         </button>
-
-
-        <button
-          class="continue-button"
-          onclick="saveIncome()">
-
-          Continue →
-
-        </button>
-
-      </div>
-
-
-    </div>
-
-  `;
-
+    `;
 }
 
 
+function togglePriority(value) {
 
-function saveIncome() {
+    preservePrice();
 
-  const income =
-    document
-      .getElementById("incomeInput")
-      .value;
+    var index =
+        answers.priorities.indexOf(value);
+
+    if (index === -1) {
+
+        answers.priorities.push(value);
+
+    } else {
+
+        answers.priorities.splice(index,1);
+
+    }
+
+    save();
+
+    homeScreen();
+}
 
 
-  if (
-    !income ||
-    Number(income) <= 0
-  ) {
+function continueHome() {
 
-    document
-      .getElementById("incomeError")
-      .innerHTML = `
+    preservePrice();
 
-        <div class="error">
-          Please enter your approximate annual income.
+    save();
+
+    if (!answers.propertyType) {
+        alert("Please select a property type.");
+        return;
+    }
+
+    if (!answers.purchasePurpose) {
+        alert("Please select what you plan to use the property for.");
+        return;
+    }
+
+    if (!answers.timeline) {
+        alert("Please select your purchase timeline.");
+        return;
+    }
+
+    if (answers.priorities.length === 0) {
+        alert("Please select at least one priority.");
+        return;
+    }
+
+    reviewScreen();
+}
+
+
+/* =========================================
+   REVIEW
+========================================= */
+
+function reviewScreen() {
+
+    step = 8;
+
+    app.innerHTML = `
+
+        ${progress(step)}
+
+        <div class="screen-title">
+
+            <div class="step">
+                ✅ STEP 8
+            </div>
+
+            <h2>
+                You're almost ready
+            </h2>
+
+            <p>
+                Review your answers before entering HomeBuy AI.
+            </p>
+
         </div>
 
-      `;
-
-    return;
-
-  }
-
-
-  answers.income =
-    income;
-
-
-  showDebt();
-
-}
-
-
-
-/* ==========================================
-   DEBT
-========================================== */
-
-function showDebt() {
-
-  updateProgress(
-    78,
-    7,
-    "Understanding your finances"
-  );
-
-
-  app.innerHTML = `
-
-    <div class="screen">
-
-
-      <div class="eyebrow">
-        💳 Your monthly obligations
-      </div>
-
-
-      <h2>
-        About how much do you pay
-        toward debt each month?
-      </h2>
-
-
-      <p class="subtitle">
-
-        Include things like car payments,
-        student loans, credit cards,
-        and personal loans.
-
-      </p>
-
-
-      <label class="input-label">
-        Monthly debt payments
-      </label>
-
-
-      <div class="input-wrapper">
-
-        <span class="input-prefix">
-          $
-        </span>
-
-
-        <input
-          id="debtInput"
-          type="number"
-          placeholder="Example: 850"
-          value="${answers.debt}"
-        >
-
-      </div>
-
-
-      <div id="debtError"></div>
-
-
-      <div class="navigation">
-
-        <button
-          class="back-button"
-          onclick="showIncome()">
-
-          ← Back
-
-        </button>
-
-
-        <button
-          class="continue-button"
-          onclick="saveDebt()">
-
-          Continue →
-
-        </button>
-
-      </div>
-
-
-    </div>
-
-  `;
-
-}
-
-
-
-function saveDebt() {
-
-  const debt =
-    document
-      .getElementById("debtInput")
-      .value;
-
-
-  if (
-    debt === "" ||
-    Number(debt) < 0
-  ) {
-
-    document
-      .getElementById("debtError")
-      .innerHTML = `
-
-        <div class="error">
-          Please enter your approximate monthly debt.
-        </div>
-
-      `;
-
-    return;
-
-  }
-
-
-  answers.debt =
-    debt;
-
-
-  showPropertyType();
-
-}
-
-
-
-/* ==========================================
-   PROPERTY TYPE
-========================================== */
-
-function showPropertyType() {
-
-  updateProgress(
-    90,
-    8,
-    "Your home search"
-  );
-
-
-  app.innerHTML = `
-
-    <div class="screen">
-
-
-      <div class="eyebrow">
-        🏡 Your next property
-      </div>
-
-
-      <h2>
-        What type of property are you
-        planning to purchase?
-      </h2>
-
-
-      <p class="subtitle">
-
-        This helps your HomeBuy AI Advisor
-        understand what you're looking for
-        and give you more relevant guidance.
-
-      </p>
-
-
-      <div class="options">
-
-
-        ${propertyOption(
-          "Single Family Home",
-          "🏠",
-          "A traditional single-family residence"
+        ${reviewCard(
+            "👋 About You",
+            [
+                ["Homeownership", homeStatusText()],
+                ["Military", answers.military === "yes" ? "Yes 🇺🇸" : "No"],
+                ["Military Status", militaryText()]
+            ],
+            1
         )}
 
-
-        ${propertyOption(
-          "Multi-Family Home",
-          "🏢",
-          "A property with multiple residential units"
+        ${reviewCard(
+            "📍 Location",
+            [
+                ["State", answers.state],
+                ["Location", answers.location]
+            ],
+            2
         )}
 
-
-        ${propertyOption(
-          "Land",
-          "🌳",
-          "Land for future use or development"
+        ${reviewCard(
+            "💳 Financing",
+            [
+                ["Loan Type", loanText()]
+            ],
+            3
         )}
 
-
-        ${propertyOption(
-          "Condo",
-          "🏙️",
-          "A condominium or condo unit"
+        ${reviewCard(
+            "💰 Finances",
+            [
+                ["Annual Income", "$" + Number(answers.income || 0).toLocaleString()],
+                ["Monthly Debt", "$" + Number(answers.debt || 0).toLocaleString()],
+                ["Savings", savingsText()],
+                ["Down Payment", downPaymentText()]
+            ],
+            4
         )}
 
+        ${reviewCard(
+            "❤️ Comfort Zone",
+            [
+                ["Comfortable Payment", comfortText()],
+                ["Credit Score", creditText()],
+                ["Emergency Savings", emergencyText()]
+            ],
+            6
+        )}
 
-      </div>
+        ${reviewCard(
+            "🏡 Home Plan",
+            [
+                ["Property", propertyText()],
+                ["Purpose", purposeText()],
+                ["Timeline", timelineText()],
+                ["Target Price", answers.targetPrice ? "$" + Number(answers.targetPrice).toLocaleString() : "Not provided"],
+                ["Priorities", answers.priorities.join(", ")]
+            ],
+            7
+        )}
 
+        <div class="navigation">
 
-      <div class="info-card">
+            <button
+                class="btn secondary"
+                onclick="homeScreen()"
+            >
+                ← Back
+            </button>
 
-        <div class="info-card-title">
-
-          Your plans can change.
-          That's okay.
+            <button
+                class="btn primary"
+                onclick="dashboard()"
+            >
+                🤖 Enter HomeBuy AI
+            </button>
 
         </div>
-
-
-        <p>
-
-          You can update your property type
-          anytime in your settings. Life changes,
-          and we're always here to help you
-          adjust your homebuying plan.
-
-        </p>
-
-
-      </div>
-
-
-      <div class="navigation">
-
-        <button
-          class="back-button"
-          onclick="showDebt()">
-
-          ← Back
-
-        </button>
-
-
-        <button
-          class="continue-button"
-          onclick="continuePropertyType()"
-          ${answers.propertyType === ""
-            ? "disabled"
-            : ""}>
-
-          Continue →
-
-        </button>
-
-
-      </div>
-
-
-    </div>
-
-  `;
-
+    `;
 }
 
 
+function reviewCard(title,rows,editStep) {
 
-function propertyOption(
-  title,
-  icon,
-  description
-) {
+    var html = "";
 
-  const selected =
-    answers.propertyType === title
-      ? "selected"
-      : "";
+    for (var i = 0; i < rows.length; i++) {
 
+        if (!rows[i][1]) {
+            continue;
+        }
 
-  return `
+        html += `
+            <div class="review-row">
+                <span>${safe(rows[i][0])}</span>
+                <strong>${safe(rows[i][1])}</strong>
+            </div>
+        `;
+    }
 
-    <button
-      class="option ${selected}"
-      onclick="selectPropertyType('${title}')">
+    return `
+        <div class="card review">
 
-      <div class="option-icon">
-        ${icon}
-      </div>
+            <div class="review-header">
 
+                <strong>
+                    ${title}
+                </strong>
 
-      <div class="option-text">
+                <button
+                    class="edit"
+                    onclick="edit(${editStep})"
+                >
+                    ✏️ Edit
+                </button>
 
-        <div class="option-title">
-          ${title}
+            </div>
+
+            <div class="review-body">
+                ${html}
+            </div>
+
         </div>
-
-        <div class="option-description">
-          ${description}
-        </div>
-
-      </div>
-
-
-    </button>
-
-  `;
-
+    `;
 }
 
 
+/* =========================================
+   TEXT
+========================================= */
 
-function selectPropertyType(type) {
+function homeStatusText() {
 
-  answers.propertyType =
-    type;
+    var map = {
+        first: "First time buyer",
+        previous: "Previously owned a home",
+        multiple: "Own multiple properties"
+    };
 
-  showPropertyType();
-
+    return map[answers.homeStatus] || "";
 }
 
 
+function militaryText() {
 
-function continuePropertyType() {
+    var map = {
+        active: "Active Duty",
+        reserve: "Reserve",
+        guard: "National Guard",
+        veteran: "Veteran",
+        retired: "Retired Military"
+    };
 
-  if (!answers.propertyType) {
-    return;
-  }
-
-
-  showReview();
-
+    return map[answers.militaryStatus] || "";
 }
 
 
-
-/* ==========================================
-   REVIEW SCREEN
-========================================== */
-
-function showReview() {
-
-  updateProgress(
-    100,
-    8,
-    "Review your information"
-  );
-
-
-  let militaryText =
-    "No military service";
-
-
-  if (answers.military === "Yes") {
-
-    militaryText =
-      answers.militaryStatus;
-
-  }
-
-
-  app.innerHTML = `
-
-    <div class="screen">
-
-
-      <div class="eyebrow">
-        ✦ Almost there
-      </div>
-
-
-      <h2>
-        Review your information
-      </h2>
-
-
-      <p class="subtitle">
-
-        Take a moment to make sure everything
-        looks right. You can edit anything
-        before continuing.
-
-      </p>
-
-
-      <div class="review-card">
-
-
-        <div class="review-item">
-
-
-          <div class="review-icon">
-            🏠
-          </div>
-
-
-          <div class="review-info">
-
-            <div class="review-label">
-              Homeownership
-            </div>
-
-
-            <div class="review-value">
-              ${answers.homeStatus}
-            </div>
-
-          </div>
-
-
-          <button
-            class="edit-button"
-            onclick="editHomeStatus()">
-
-            Edit
-
-          </button>
-
-
-        </div>
-
-
-
-        <div class="review-item">
-
-
-          <div class="review-icon">
-            ✓
-          </div>
-
-
-          <div class="review-info">
-
-            <div class="review-label">
-              Military
-            </div>
-
-
-            <div class="review-value">
-              ${militaryText}
-            </div>
-
-          </div>
-
-
-          <button
-            class="edit-button"
-            onclick="editMilitary()">
-
-            Edit
-
-          </button>
-
-
-        </div>
-
-
-
-        <div class="review-item">
-
-
-          <div class="review-icon">
-            📍
-          </div>
-
-
-          <div class="review-info">
-
-            <div class="review-label">
-              Location
-            </div>
-
-
-            <div class="review-value">
-              ${answers.location}
-            </div>
-
-          </div>
-
-
-          <button
-            class="edit-button"
-            onclick="showLocation()">
-
-            Edit
-
-          </button>
-
-
-        </div>
-
-
-
-        <div class="review-item">
-
-
-          <div class="review-icon">
-            $
-          </div>
-
-
-          <div class="review-info">
-
-            <div class="review-label">
-              Annual household income
-            </div>
-
-
-            <div class="review-value">
-
-              $${Number(
-                answers.income
-              ).toLocaleString()}
-
-            </div>
-
-          </div>
-
-
-          <button
-            class="edit-button"
-            onclick="showIncome()">
-
-            Edit
-
-          </button>
-
-
-        </div>
-
-
-
-        <div class="review-item">
-
-
-          <div class="review-icon">
-            💳
-          </div>
-
-
-          <div class="review-info">
-
-            <div class="review-label">
-              Monthly debt
-            </div>
-
-
-            <div class="review-value">
-
-              $${Number(
-                answers.debt
-              ).toLocaleString()}
-
-            </div>
-
-          </div>
-
-
-          <button
-            class="edit-button"
-            onclick="showDebt()">
-
-            Edit
-
-          </button>
-
-
-        </div>
-
-
-
-        <div class="review-item">
-
-
-          <div class="review-icon">
-            🏡
-          </div>
-
-
-          <div class="review-info">
-
-            <div class="review-label">
-              Property type
-            </div>
-
-
-            <div class="review-value">
-              ${answers.propertyType}
-            </div>
-
-          </div>
-
-
-          <button
-            class="edit-button"
-            onclick="showPropertyType()">
-
-            Edit
-
-          </button>
-
-
-        </div>
-
-
-      </div>
-
-
-      <div class="review-note">
-
-
-        <strong>
-          Your information isn't set in stone.
-        </strong>
-
-
-        <p>
-
-          Life changes, and your homebuying plans
-          can change with it. You can update your
-          information anytime in Settings.
-
-        </p>
-
-
-      </div>
-
-
-      <button
-        class="final-button"
-        onclick="enterAdvisor()">
-
-        Continue to My HomeBuy AI Advisor →
-
-      </button>
-
-
-      <div class="footer-note">
-
-        You make the decision.
-        We're here to help you make
-        a better one.
-
-      </div>
-
-
-    </div>
-
-  `;
-
+function loanText() {
+
+    var map = {
+        VA: "VA Loan 🪖",
+        FHA: "FHA Loan",
+        Conventional: "Conventional Loan",
+        USDA: "USDA Loan",
+        Cash: "Cash",
+        "Not Sure": "I'm Not Sure"
+    };
+
+    return map[answers.loanType] || "";
 }
 
 
+function savingsText() {
 
-/* ==========================================
-   EDIT HOMEOWNERSHIP
-========================================== */
+    var map = {
+        under5: "Under $5,000",
+        5to10: "$5,000 to $9,999",
+        10to20: "$10,000 to $19,999",
+        20to40: "$20,000 to $39,999",
+        40to75: "$40,000 to $74,999",
+        75plus: "$75,000+",
+        unknown: "I'm not sure"
+    };
 
-function editHomeStatus() {
-
-  showHomeStatus();
-
+    return map[answers.savings] || "";
 }
 
 
+function downPaymentText() {
 
-/* ==========================================
-   EDIT MILITARY
-========================================== */
+    var map = {
+        under10: "Under $10,000",
+        10to25: "$10,000 to $24,999",
+        25to50: "$25,000 to $49,999",
+        50plus: "$50,000+",
+        unknown: "I'm not sure"
+    };
 
-function editMilitary() {
-
-  showMilitaryQuestion();
-
+    return map[answers.downPayment] || "";
 }
 
 
+function comfortText() {
 
-/* ==========================================
-   ENTER APP
-========================================== */
+    var map = {
+        under1500: "Under $1,500",
+        1500to1999: "$1,500 to $1,999",
+        2000to2499: "$2,000 to $2,499",
+        2500to2999: "$2,500 to $2,999",
+        3000to3499: "$3,000 to $3,499",
+        3500plus: "$3,500+",
+        unknown: "I'm not sure"
+    };
 
-function enterAdvisor() {
-
-  updateProgress(
-    100,
-    8,
-    "Your Advisor"
-  );
-
-
-  app.innerHTML = `
-
-    <div class="screen">
+    return map[answers.comfortablePayment] || "";
+}
 
 
-      <div class="success-icon"
-        style="
-          width:68px;
-          height:68px;
-          border-radius:50%;
-          background:linear-gradient(
-            135deg,
-            #0ca59b,
-            #16b8a7
-          );
-          color:white;
-          display:flex;
-          align-items:center;
-          justify-content:center;
-          margin:20px auto;
-          font-size:30px;
-        ">
+function creditText() {
 
-        ✓
+    var map = {
+        760: "760+",
+        740: "740 to 759",
+        700: "700 to 739",
+        660: "660 to 699",
+        620: "620 to 659",
+        below620: "Below 620",
+        unknown: "I don't know"
+    };
 
-      </div>
+    return map[answers.creditScore] || "";
+}
 
 
-      <div class="eyebrow">
-        ✦ Welcome to HomeBuy AI
-      </div>
+function emergencyText() {
+
+    var map = {
+        under5: "Less than $5,000",
+        5to10: "$5,000 to $9,999",
+        10to20: "$10,000 to $19,999",
+        20plus: "$20,000+",
+        unknown: "I'm not sure"
+    };
+
+    return map[answers.emergencySavings] || "";
+}
 
 
-      <h2>
-        Your Advisor is ready.
-      </h2>
+function propertyText() {
+
+    var map = {
+        single: "Single Family Home",
+        multi: "Multi Family Home",
+        condo: "Condo",
+        land: "Land"
+    };
+
+    return map[answers.propertyType] || "";
+}
 
 
-      <p class="subtitle">
+function purposeText() {
 
-        Now we can start looking at what
-        actually makes sense for you.
+    var map = {
+        primary: "Primary Home",
+        investment: "Investment Property",
+        vacation: "Second or Vacation Home",
+        build: "Land to Build On"
+    };
 
-      </p>
+    return map[answers.purchasePurpose] || "";
+}
 
 
-      <div class="info-card">
+function timelineText() {
 
-        <div class="info-card-title">
+    var map = {
+        3months: "Within 3 months",
+        6months: "3 to 6 months",
+        12months: "6 to 12 months",
+        2years: "1 to 2 years",
+        more2: "More than 2 years",
+        exploring: "Just exploring"
+    };
 
-          Your next step
+    return map[answers.timeline] || "";
+}
+
+
+/* =========================================
+   EDIT
+========================================= */
+
+function edit(number) {
+
+    if (number === 1) {
+        aboutYou();
+    }
+
+    if (number === 2) {
+        locationScreen();
+    }
+
+    if (number === 3) {
+        loanScreen();
+    }
+
+    if (number === 4) {
+        incomeScreen();
+    }
+
+    if (number === 6) {
+        comfortScreen();
+    }
+
+    if (number === 7) {
+        homeScreen();
+    }
+}
+
+
+/* =========================================
+   DASHBOARD
+========================================= */
+
+function dashboard() {
+
+    step = 9;
+
+    app.innerHTML = `
+
+        <div class="dashboard-header">
+
+            <h2>
+                👋 Welcome to HomeBuy AI
+            </h2>
+
+            <p>
+                Your information is saved. Now let's start
+                making sense of your homebuying journey.
+            </p>
 
         </div>
 
+        <div class="dashboard-grid">
 
-        <p>
+            <div
+                class="dashboard-card"
+                onclick="affordability()"
+            >
 
-          HomeBuy AI will help you understand
-          your comfortable price range, explore
-          potential programs, analyze properties,
-          and understand the financial tradeoffs
-          before you buy.
+                <div class="dashboard-icon blue-bg">
+                    🧮
+                </div>
 
-        </p>
+                <h3>
+                    Can I Afford This Home?
+                </h3>
 
-      </div>
+                <p>
+                    See what a home could really cost each month,
+                    not just the mortgage payment.
+                </p>
 
+                <div class="card-link">
+                    Analyze affordability →
+                </div>
 
-      <button
-        class="final-button"
-        onclick="showReview()">
-
-        Review My Information
-
-      </button>
-
-
-      <div class="footer-note">
-
-        You can change your information
-        anytime in Settings.
-
-      </div>
+            </div>
 
 
-    </div>
+            <div class="dashboard-card coming">
 
-  `;
+                <div class="badge">
+                    COMING SOON
+                </div>
 
+                <div class="dashboard-icon green-bg">
+                    🏠
+                </div>
+
+                <h3>
+                    Find a Home
+                </h3>
+
+                <p>
+                    Search for homes that fit your financial
+                    comfort zone and priorities.
+                </p>
+
+                <div class="card-link">
+                    Explore homes →
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-card coming">
+
+                <div class="badge">
+                    COMING SOON
+                </div>
+
+                <div class="dashboard-icon purple-bg">
+                    🤝
+                </div>
+
+                <h3>
+                    Find a Professional
+                </h3>
+
+                <p>
+                    Find lenders, agents, inspectors, insurance
+                    professionals, and more.
+                </p>
+
+                <div class="card-link">
+                    Find help →
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-card coming">
+
+                <div class="badge">
+                    COMING SOON
+                </div>
+
+                <div class="dashboard-icon orange-bg">
+                    💰
+                </div>
+
+                <h3>
+                    Find Homebuying Programs
+                </h3>
+
+                <p>
+                    Discover grants, assistance programs,
+                    veteran resources, and other opportunities.
+                </p>
+
+                <div class="card-link">
+                    Find programs →
+                </div>
+
+            </div>
+
+
+            <div
+                class="dashboard-card"
+                onclick="challenge()"
+            >
+
+                <div class="dashboard-icon yellow-bg">
+                    🔍
+                </div>
+
+                <h3>
+                    Challenge My Decision
+                </h3>
+
+                <p>
+                    Thinking about buying a specific home?
+                    Let HomeBuy AI challenge the numbers.
+                </p>
+
+                <div class="card-link">
+                    Challenge this home →
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-card coming">
+
+                <div class="badge">
+                    COMING SOON
+                </div>
+
+                <div class="dashboard-icon purple-bg">
+                    🗺️
+                </div>
+
+                <h3>
+                    My Homebuying Plan
+                </h3>
+
+                <p>
+                    Build a personalized roadmap from where
+                    you are today to closing day.
+                </p>
+
+                <div class="card-link">
+                    View my plan →
+                </div>
+
+            </div>
+
+        </div>
+
+        <div style="text-align:center;margin-top:22px;">
+
+            <button
+                class="btn secondary"
+                onclick="startOver()"
+            >
+                🔄 Start Over
+            </button>
+
+        </div>
+    `;
 }
 
 
+/* =========================================
+   AFFORDABILITY
+========================================= */
 
-/* ==========================================
+function affordability() {
+
+    var income =
+        Number(answers.income || 0);
+
+    var debt =
+        Number(answers.debt || 0);
+
+    var monthlyIncome =
+        income / 12;
+
+    var housingEstimate =
+        monthlyIncome * .28;
+
+    var priceEstimate =
+        housingEstimate * 12 * 4.5;
+
+    if (answers.targetPrice) {
+        priceEstimate =
+            Number(answers.targetPrice);
+    }
+
+    var risk = "🟢 Comfortable";
+    var riskClass = "green-risk";
+
+    if (
+        answers.emergencySavings === "under5"
+    ) {
+
+        risk = "🟡 Needs Attention";
+        riskClass = "yellow-risk";
+
+    }
+
+    app.innerHTML = `
+
+        <div class="screen-title">
+
+            <div class="step">
+                🧮 AFFORDABILITY
+            </div>
+
+            <h2>
+                Let's look beyond the mortgage
+            </h2>
+
+            <p>
+                This is an early planning estimate.
+                It is not a loan approval.
+            </p>
+
+        </div>
+
+        <div class="card affordability">
+
+            <div class="center muted">
+                🎯 ESTIMATED HOME PRICE TO EXPLORE
+            </div>
+
+            <div class="big-number">
+                $${Math.round(priceEstimate).toLocaleString()}
+            </div>
+
+            <div class="center muted">
+                HomeBuy AI planning estimate
+            </div>
+
+            <div class="metrics">
+
+                <div class="metric">
+                    <small>Monthly income</small>
+                    <strong>
+                        $${Math.round(monthlyIncome).toLocaleString()}
+                    </strong>
+                </div>
+
+                <div class="metric">
+                    <small>Monthly debt</small>
+                    <strong>
+                        $${debt.toLocaleString()}
+                    </strong>
+                </div>
+
+                <div class="metric">
+                    <small>Housing estimate</small>
+                    <strong>
+                        $${Math.round(housingEstimate).toLocaleString()}
+                    </strong>
+                </div>
+
+            </div>
+
+            <div class="risk ${riskClass}">
+                ${risk}
+            </div>
+
+            <div class="ai-box">
+
+                <div class="ai-title">
+                    🤖 HomeBuy AI says
+                </div>
+
+                <p>
+                    The goal isn't to find the biggest home
+                    you might qualify for. The goal is to find
+                    a home you can actually enjoy living in
+                    without constantly worrying about the payment.
+                </p>
+
+                <p>
+                    As HomeBuy AI develops, this section will
+                    include taxes, insurance, HOA fees,
+                    maintenance, utilities, debt, cash reserves,
+                    loan details, and other costs.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="navigation">
+
+            <button
+                class="btn secondary"
+                onclick="dashboard()"
+            >
+                ← Dashboard
+            </button>
+
+            <button
+                class="btn primary"
+                onclick="challenge()"
+            >
+                🔍 Challenge a Home →
+            </button>
+
+        </div>
+    `;
+}
+
+
+/* =========================================
+   CHALLENGE
+========================================= */
+
+function challenge() {
+
+    app.innerHTML = `
+
+        <div class="screen-title">
+
+            <div class="step">
+                🔍 CHALLENGE MY DECISION
+            </div>
+
+            <h2>
+                Have a home in mind?
+            </h2>
+
+            <p>
+                Enter the price and we'll help you
+                think through the financial impact.
+            </p>
+
+        </div>
+
+        <div class="card form-card">
+
+            <div class="input-group">
+
+                <label>
+                    🏠 Home purchase price
+                </label>
+
+                <input
+                    id="challengePrice"
+                    type="number"
+                    min="0"
+                    placeholder="Example: 300000"
+                >
+
+            </div>
+
+            <button
+                class="btn primary"
+                style="width:100%;"
+                onclick="analyze()"
+            >
+                🤖 Analyze This Home
+            </button>
+
+        </div>
+
+        <div class="navigation">
+
+            <button
+                class="btn secondary"
+                onclick="dashboard()"
+            >
+                ← Dashboard
+            </button>
+
+        </div>
+    `;
+}
+
+
+function analyze() {
+
+    var input =
+        document.getElementById("challengePrice");
+
+    var price =
+        Number(input.value);
+
+    if (!price || price <= 0) {
+
+        alert("Please enter a valid home price.");
+
+        return;
+    }
+
+    var mortgage =
+        price * .005;
+
+    var taxes =
+        price * .0012;
+
+    var insurance =
+        price * .00035;
+
+    var maintenance =
+        price * .00083;
+
+    var utilities = 250;
+
+    var total =
+        mortgage +
+        taxes +
+        insurance +
+        maintenance +
+        utilities;
+
+    var risk = "🟢 Looks Reasonable";
+    var riskClass = "green-risk";
+
+    if (
+        answers.emergencySavings === "under5"
+    ) {
+
+        risk = "🟡 This May Be a Stretch";
+        riskClass = "yellow-risk";
+
+    }
+
+    app.innerHTML = `
+
+        <div class="screen-title">
+
+            <div class="step">
+                🤖 HOME ANALYSIS
+            </div>
+
+            <h2>
+                Here's what we found
+            </h2>
+
+            <p>
+                Purchase price is only one part of owning a home.
+            </p>
+
+        </div>
+
+        <div class="card affordability">
+
+            <div class="center muted">
+                🏠 HOME PRICE
+            </div>
+
+            <div class="big-number">
+                $${price.toLocaleString()}
+            </div>
+
+            <div class="metrics">
+
+                <div class="metric">
+                    <small>Mortgage estimate</small>
+                    <strong>
+                        $${Math.round(mortgage).toLocaleString()}
+                    </strong>
+                </div>
+
+                <div class="metric">
+                    <small>Taxes</small>
+                    <strong>
+                        $${Math.round(taxes).toLocaleString()}
+                    </strong>
+                </div>
+
+                <div class="metric">
+                    <small>Insurance</small>
+                    <strong>
+                        $${Math.round(insurance).toLocaleString()}
+                    </strong>
+                </div>
+
+                <div class="metric">
+                    <small>Maintenance</small>
+                    <strong>
+                        $${Math.round(maintenance).toLocaleString()}
+                    </strong>
+                </div>
+
+                <div class="metric">
+                    <small>Utilities</small>
+                    <strong>
+                        $${utilities.toLocaleString()}
+                    </strong>
+                </div>
+
+                <div class="metric">
+                    <small>Estimated monthly total</small>
+                    <strong>
+                        $${Math.round(total).toLocaleString()}
+                    </strong>
+                </div>
+
+            </div>
+
+            <div class="risk ${riskClass}">
+                ${risk}
+            </div>
+
+            <div class="ai-box">
+
+                <div class="ai-title">
+                    🔥 Challenge the purchase
+                </div>
+
+                <p>
+                    Can you comfortably handle the payment,
+                    taxes, insurance, maintenance, utilities,
+                    and unexpected repairs while still having
+                    money left for the rest of your life?
+                </p>
+
+                <p>
+                    You can still choose to pursue this home.
+                    Our job is to make sure you understand
+                    the financial tradeoff before you do.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="navigation">
+
+            <button
+                class="btn secondary"
+                onclick="dashboard()"
+            >
+                ← Dashboard
+            </button>
+
+            <button
+                class="btn primary"
+                onclick="challenge()"
+            >
+                🔄 Analyze Another Home
+            </button>
+
+        </div>
+    `;
+}
+
+
+/* =========================================
    START OVER
-========================================== */
+========================================= */
 
 function startOver() {
 
-  answers = {
+    var confirmed =
+        confirm(
+            "Are you sure you want to start over? Your saved answers will be cleared."
+        );
 
-    homeStatus: "",
+    if (!confirmed) {
+        return;
+    }
 
-    military: "",
+    localStorage.removeItem(
+        "homebuyAIAnswers"
+    );
 
-    militaryStatus: "",
+    answers = {
+        homeStatus: "",
+        military: "",
+        militaryStatus: "",
+        state: "",
+        location: "",
+        loanType: "",
+        income: "",
+        debt: "",
+        savings: "",
+        downPayment: "",
+        creditScore: "",
+        comfortablePayment: "",
+        emergencySavings: "",
+        propertyType: "",
+        purchasePurpose: "",
+        timeline: "",
+        targetPrice: "",
+        priorities: []
+    };
 
-    location: "",
-
-    income: "",
-
-    debt: "",
-
-    propertyType: ""
-
-  };
-
-
-  showWelcome();
-
+    welcome();
 }
 
 
+/* =========================================
+   START APP
+========================================= */
 
-/* ==========================================
-   START
-========================================== */
-
-showWelcome();
-
+welcome();
 
 </script>
-
 
 </body>
 </html>
