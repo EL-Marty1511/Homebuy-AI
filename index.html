@@ -575,5 +575,269 @@ document.getElementById("app").innerHTML='<div class="title"><div class="step">�
 function startOver(){if(!confirm("Are you sure you want to start over? Your saved answers will be cleared."))return;localStorage.removeItem("homebuyAIAnswers");A={homeStatus:"",guidance:"",maritalStatus:"",military:"",militaryStatus:"",spouseInfo:"",spouseIncome:"",spouseDebt:"",spouseMilitary:"",spouseMilitaryStatus:"",spouseCreditScore:"",state:"",location:"",loanType:"",income:"",debt:"",savings:"",downPayment:"",creditScore:"",comfortablePayment:"",emergencySavings:"",propertyType:"",purchasePurpose:"",timeline:"",targetPrice:"",priorities:[],homeAddress:"",listingUrl:"",propertyDescription:"",bedrooms:"",bathrooms:"",squareFeet:"",yearBuilt:"",propertyTaxes:"",hoa:"",propertyData:null,rentOutUnit:"",rentalUnits:"",rentalIncome:"",propertyLookupStatus:""};welcome()}
 welcome();
 </script>
+  <!-- HomeBuy AI Live Advisor -->
+<div id="aiChat" class="ai-chat">
+  <div class="ai-chat-header">
+    <div>
+      <strong>🤖 HomeBuy AI Advisor</strong>
+      <small>Ask me anything about buying a home</small>
+    </div>
+    <button onclick="toggleAIChat()">×</button>
+  </div>
+
+  <div id="aiMessages" class="ai-messages">
+    <div class="ai-message ai">
+      👋 Hi! I'm your HomeBuy AI Advisor. Ask me a question about your homebuying situation, affordability, financing, or a property you're considering.
+    </div>
+  </div>
+
+  <div class="ai-chat-input">
+    <input
+      id="aiInput"
+      type="text"
+      placeholder="Ask HomeBuy AI..."
+      onkeydown="if(event.key==='Enter') sendAIMessage()"
+    />
+    <button onclick="sendAIMessage()">Send</button>
+  </div>
+</div>
+
+<button class="ai-chat-launcher" onclick="toggleAIChat()">
+  🤖 Talk to HomeBuy AI
+</button>
+
+<script>
+function toggleAIChat() {
+  const chat = document.getElementById("aiChat");
+  chat.classList.toggle("open");
+
+  if (chat.classList.contains("open")) {
+    setTimeout(() => {
+      document.getElementById("aiInput").focus();
+    }, 100);
+  }
+}
+
+function addAIMessage(text, type) {
+  const messages = document.getElementById("aiMessages");
+
+  const message = document.createElement("div");
+  message.className = "ai-message " + type;
+  message.textContent = text;
+
+  messages.appendChild(message);
+  messages.scrollTop = messages.scrollHeight;
+}
+
+async function sendAIMessage() {
+  const input = document.getElementById("aiInput");
+  const message = input.value.trim();
+
+  if (!message) return;
+
+  addAIMessage(message, "user");
+  input.value = "";
+
+  const loading = document.createElement("div");
+  loading.className = "ai-message ai";
+  loading.textContent = "Thinking...";
+  loading.id = "aiThinking";
+
+  document.getElementById("aiMessages").appendChild(loading);
+
+  try {
+    const response = await fetch("/api/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message: message
+      })
+    });
+
+    const data = await response.json();
+
+    document.getElementById("aiThinking")?.remove();
+
+    if (!response.ok) {
+      addAIMessage(
+        data.error || "I'm having trouble connecting right now.",
+        "ai"
+      );
+      return;
+    }
+
+    addAIMessage(
+      data.reply || "I wasn't able to generate a response.",
+      "ai"
+    );
+
+  } catch (error) {
+    document.getElementById("aiThinking")?.remove();
+
+    addAIMessage(
+      "I couldn't connect to the HomeBuy AI service. Please try again.",
+      "ai"
+    );
+  }
+}
+  /* HomeBuy AI Live Advisor */
+
+.ai-chat-launcher {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 9999;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, #ff2f92, #ff7043);
+  color: white;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 12px 35px rgba(255, 47, 146, 0.35);
+}
+
+.ai-chat {
+  position: fixed;
+  right: 24px;
+  bottom: 82px;
+  width: 380px;
+  max-width: calc(100vw - 32px);
+  height: 560px;
+  max-height: calc(100vh - 120px);
+  z-index: 9998;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 24px;
+  background: rgba(20, 10, 45, 0.97);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(18px);
+}
+
+.ai-chat.open {
+  display: flex;
+}
+
+.ai-chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px;
+  background: linear-gradient(135deg, #ff2f92, #ff7043);
+  color: white;
+}
+
+.ai-chat-header strong {
+  display: block;
+  font-family: "Manrope", sans-serif;
+  font-size: 16px;
+}
+
+.ai-chat-header small {
+  display: block;
+  margin-top: 4px;
+  opacity: 0.9;
+  font-size: 12px;
+}
+
+.ai-chat-header button {
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.ai-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ai-message {
+  max-width: 85%;
+  padding: 12px 14px;
+  border-radius: 16px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.ai-message.ai {
+  align-self: flex-start;
+  background: rgba(255,255,255,0.09);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #fff;
+  border-bottom-left-radius: 5px;
+}
+
+.ai-message.user {
+  align-self: flex-end;
+  background: linear-gradient(135deg, #00d9ff, #5875ff);
+  color: white;
+  border-bottom-right-radius: 5px;
+}
+
+.ai-chat-input {
+  display: flex;
+  gap: 8px;
+  padding: 14px;
+  border-top: 1px solid rgba(255,255,255,0.12);
+  background: rgba(0,0,0,0.18);
+}
+
+.ai-chat-input input {
+  flex: 1;
+  min-width: 0;
+  padding: 13px 14px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 14px;
+  outline: none;
+  background: rgba(255,255,255,0.08);
+  color: white;
+  font-family: "DM Sans", sans-serif;
+}
+
+.ai-chat-input input::placeholder {
+  color: rgba(255,255,255,0.6);
+}
+
+.ai-chat-input button {
+  padding: 0 17px;
+  border: 0;
+  border-radius: 14px;
+  background: #00d9ff;
+  color: #08112f;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .ai-chat {
+    right: 12px;
+    bottom: 76px;
+    width: calc(100vw - 24px);
+    height: 70vh;
+  }
+
+  .ai-chat-launcher {
+    right: 12px;
+    bottom: 12px;
+  }
+}
+</script>
 </body>
 </html>
